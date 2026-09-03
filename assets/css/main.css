@@ -5342,7 +5342,7 @@ a.minServ-btn:hover{
 .mobnvlogo {
     display: inline-flex;
     height: 52px;
-    width: 52pz;
+    width: 52px;
 }
 .mobnvlogo img {
   width: 100%;
@@ -6092,12 +6092,13 @@ a.mobsubLink {
     height: 100%;
     left: 0;
     top: 0;
-    background: linear-gradient(
+    /* background: linear-gradient(
         180deg,
         rgba(0, 0, 0, 0.38) 0%,
         rgb(0 0 0 / 41%) 66%,
         rgba(0, 0, 0, 1) 100%
-    );
+    ); */
+    background: linear-gradient(180deg, rgb(0 0 0 / 16%) 0%, rgb(0 0 0 / 19%) 66%, rgba(0, 0, 0, 1) 100%);
     transition: background 0.5s ease;
 }
 .extprtitle-sec {

@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="MSWE — AI, innovation and digital transformation solutions.">
     <title>MSWE | Home</title>
-
+     <!-- Prevents the "shows first, then animates" flash: hides .wow elements
+         from the very first paint, before wow.min.js / animate.css even load.
+         WOW.js itself flips visibility back to visible right as it adds the
+         animation classes, so this only ever hides content for a few ms. -->
+    <style>
+      .wow { visibility: hidden; }
+    </style>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="assets/images/mswe-dark.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2187,7 +2193,7 @@
         </div>
         </div>
         <div class="ourprjCrd">
-          <div class="casesec-wrp cstservCard-striky">
+          <div class="casesec-wrp cstservCard-striky1 mb-0">
           <div class="casesty-crd">
             <div class="row">
               <div class="col-md-12 col-lg-6">
@@ -2240,7 +2246,7 @@
             </div>
           </div>
         </div>
-        <div class="casesec-wrp cstservCard-striky">
+        <div class="casesec-wrp cstservCard-striky1 d-none">
           <div class="casesty-crd">
             <div class="row">              
               <div class="col-md-12 col-lg-6">
@@ -2293,7 +2299,7 @@
             </div>
           </div>
         </div>
-        <div class="casesec-wrp cstservCard-striky">
+        <div class="casesec-wrp cstservCard-striky1 d-none">
           <div class="casesty-crd">
             <div class="row">
               <div class="col-md-12 col-lg-6">
@@ -3044,12 +3050,12 @@
 
     <script>
      new WOW({
-  boxClass: 'wow',
-  animateClass: 'animate__animated',
-  offset: 100,
-  mobile: true,
-  live: true
-}).init();
+        boxClass: 'wow',
+        animateClass: 'animate__animated',
+        offset: 100,
+        mobile: true,
+        live: true
+      }).init();
     </script>
 
 <script>
