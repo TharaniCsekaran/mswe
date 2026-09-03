@@ -355,7 +355,7 @@ header#headerSection {
 }
 
 .hdr-logo {
-    display: inline-flex;
+    display: inline-block;
     height: 62px;
     position: relative;
 }
@@ -914,17 +914,24 @@ h2.herosect-title {
 }
 
 .herosect-iconlist {
-    display: flex;
-    align-items: center;
-    gap: 60px;
+    display: block;
     margin-top: 30px;
 }
 
 a.herosectIcon {
     height: 55px;
-    display: inline-flex;
+    display: inline-block;
+    width: 55px;
+    margin-right: 60px;
 }
-
+a.herosectIcon:last-child {
+  margin-right: 0;
+}
+.herosectIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 .herosect-titlewrap {
     width: 80%;
     padding-bottom: 5px;
@@ -1913,12 +1920,14 @@ p.mswecrd-serv-desc {
 
 .clientbox img,
 .clientbox svg{
+  width:100%;
+  height:70px;
   max-height:70px;
   max-width:100%;
   object-fit:contain;
   /* desaturate until hovered — keeps the wall calm on a light page */
   /* filter:grayscale(1); */
-  opacity:.72;
+  /* opacity:.72; */
   transition:filter .4s var(--ease),opacity .4s var(--ease);
 }
 .clientbx-wrap:hover .clientbox img,
@@ -1935,6 +1944,8 @@ p.mswecrd-serv-desc {
 }
 .clientfrontmb-box svg,
 .clientfrontmb-box img{
+  width:100%;
+  height:56px;
   max-height:56px;
   max-width:100%;
   object-fit:contain;
@@ -2479,7 +2490,8 @@ p.mswecrd-serv-desc {
   padding-bottom: 30px;
 }
 .ftrbtm-log {
-  display: inline-flex;
+  display: inline-block;
+  width: 72px;
   height: 72px;
   position: relative;
 }
@@ -4163,6 +4175,7 @@ a.minServ-btn:hover{
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .wrkFol-item:hover .wrkFol-inner,
@@ -4178,8 +4191,11 @@ a.minServ-btn:hover{
   height: 100%;
   border-radius: 24px;
   overflow: hidden;
-  backface-visibility: hidden;
+ backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);       /* forces its own compositing layer */
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
   box-shadow: 0 18px 46px rgba(20, 16, 60, 0.1);
 }
 
@@ -4254,9 +4270,10 @@ a.minServ-btn:hover{
 
 /* Back */
 .wrkFol-back {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg) translateZ(0);  /* combine, don't overwrite translateZ */
+  transform: rotateY(180deg) translateZ(0);
   background: #fff;
-  border: 1px solid var(--wf-line);
+  border: 1px solid #efefef;
   padding: 34px 28px;
   display: flex;
   flex-direction: column;
@@ -4393,7 +4410,7 @@ a.minServ-btn:hover{
 }
 @media (max-width: 991px) {
   .wrkFol-item {
-    height: 420px;
+    height: 450px;
   }
 }
 @media (max-width: 767px) {
@@ -4415,7 +4432,7 @@ a.minServ-btn:hover{
     line-height: 26px;
   }
   .wrkFol-item {
-    height: 400px;
+    height: 450px;
   }
   .wrkFol-title {
     font-size: 21px;
@@ -5325,6 +5342,12 @@ a.minServ-btn:hover{
 .mobnvlogo {
     display: inline-flex;
     height: 52px;
+    width: 52pz;
+}
+.mobnvlogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .mobHead.scroll-hide {
   transform: translateY(-100%);
@@ -5634,11 +5657,10 @@ a.mobsubLink {
     font-size: 30px;
     line-height: 42px;
   }
-  .herosect-iconlist {
-    gap: 26px;
-  }
   a.herosectIcon {
     height: 52px;
+    width: 52px;
+    margin-right: 26px;
   }
   .about-title, .cap-intro h2, .askUs-heading {
     font-size: 28px;
@@ -5710,11 +5732,10 @@ a.mobsubLink {
     font-size: 35px;
     line-height: 50px;
   }
-  .herosect-iconlist {
-    gap: 26px;
-  }
   a.herosectIcon {
     height: 52px;
+    width: 52px;
+    margin-right: 26px;
   }
   .about-title, .cap-intro h2, .askUs-heading, .minServ-heading {
     font-size: 32px;
@@ -6041,7 +6062,6 @@ a.mobsubLink {
     .extraServ {
         margin-top: 0;
         padding: 50px 0;
-        padding-bottom: 0 !important;
     }
 
 }
@@ -6299,4 +6319,9 @@ a.mobsubLink {
     width: 40px;
     height: 40px;
   }
+      .ind-panel-media img {
+        left: 12px;
+        right: 12px;
+        width: 93%;
+    }
 }
