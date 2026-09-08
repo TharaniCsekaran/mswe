@@ -2200,13 +2200,21 @@ p.mswecrd-serv-desc {
   /* the hexagon shape */
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   transition: transform 0.35s var(--ease), background 0.35s var(--ease);
-  /* staggered entrance */
-  opacity: 0;
-  animation: techIn 0.5s var(--ease) forwards;
+  /* entrance opacity/transform is handled by AOS's own [data-aos] stylesheet
+     (see the data-aos attribute on each tile); the transition timing below
+     is tuned specifically for these tiles */
+  will-change: transform, opacity;
 }
 .tech-item:hover {
   transform: translateY(-6px) scale(1.04);
   background: #fff;
+}
+
+/* smoother, snappier feel for the fade-up entrance on these tiles specifically —
+   shorter duration + a gentle ease-out instead of AOS's default timing */
+.techsec .tech-item[data-aos="fade-up"] {
+  transition-duration: 0.55s !important;
+  transition-timing-function: cubic-bezier(0.16, 0.84, 0.44, 1) !important;
 }
 
 /* clip-path kills box-shadow, so the glow lives on a wrapper */
@@ -2235,48 +2243,6 @@ p.mswecrd-serv-desc {
   color: var(--text);
   text-align: center;
   line-height: 1.25;
-}
-
-/* stagger — each tile fades up slightly after the last */
-@keyframes techIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.tech-cell:nth-child(1) .tech-item {
-  animation-delay: 0s;
-}
-.tech-cell:nth-child(2) .tech-item {
-  animation-delay: 0.04s;
-}
-.tech-cell:nth-child(3) .tech-item {
-  animation-delay: 0.08s;
-}
-.tech-cell:nth-child(4) .tech-item {
-  animation-delay: 0.12s;
-}
-.tech-cell:nth-child(5) .tech-item {
-  animation-delay: 0.16s;
-}
-.tech-cell:nth-child(6) .tech-item {
-  animation-delay: 0.2s;
-}
-.tech-cell:nth-child(7) .tech-item {
-  animation-delay: 0.24s;
-}
-.tech-cell:nth-child(8) .tech-item {
-  animation-delay: 0.28s;
-}
-.tech-cell:nth-child(9) .tech-item {
-  animation-delay: 0.32s;
-}
-.tech-cell:nth-child(10) .tech-item {
-  animation-delay: 0.36s;
 }
 
 @media (max-width: 575.98px) {
@@ -5190,7 +5156,7 @@ a.minServ-btn:hover{
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 45%;
+  width: 40% !important;
 }
 .crewRow-dots .swiper-pagination-bullet {
   width: 32px;
@@ -5580,6 +5546,15 @@ a.mobsubLink {
     height: 100vh;
     overflow: hidden;
     overflow-y: auto;
+    /* replaces the old Animate.css zoomIn/zoomOut with a plain CSS transition */
+    opacity: 0;
+    transform: scale(0.3);
+    transition: opacity 0.5s cubic-bezier(0.16, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+.extraServ.is-open {
+    opacity: 1;
+    transform: scale(1);
 }
 .extraServ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -6162,7 +6137,10 @@ a.mobsubLink {
 
 @media (max-width: 400px) {
     .likmob-card {
-        min-height: 670px;
+        min-height: 690px;
+    }
+    .mobservWrap .swiper-pagination{
+        bottom: 20px !important;
     }
 }
 @media (min-width: 401px) and (max-width: 576px) {
@@ -6276,6 +6254,9 @@ a.mobsubLink {
   }
       .minServ-head{
         margin-bottom: 40px;
+      }
+      .crewRow-dots{
+        width: 65% !important;
       }
 }
 
