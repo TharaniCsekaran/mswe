@@ -1,0 +1,2014 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Explore how Mistral Large 4 is advancing enterprise AI, intelligent automation and software development.">
+
+    <title>Mistral Large 4: Advancing Enterprise AI | MSWE</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/mswe-dark.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+
+    <!-- Blog Details CSS -->
+    <style>
+
+        :root {
+            --blog-bg: #F7F8FB;
+            --blog-white: #FFFFFF;
+            --blog-text: #14161C;
+            --blog-muted: #687083;
+            --blog-primary: #6E6BFF;
+            --blog-secondary: #1AA8E0;
+            --blog-border: rgba(20, 22, 28, 0.10);
+            --blog-gradient: linear-gradient(120deg, #6E6BFF, #1AA8E0);
+            --blog-radius: 14px;
+            --blog-ease: cubic-bezier(.16, 1, .3, 1);
+        }
+
+        body {
+            background: var(--blog-white);
+            color: var(--blog-text);
+            font-family: "Inter", sans-serif;
+        }
+
+        /* Reading Progress */
+
+        .blogProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--blog-gradient);
+            z-index: 9999;
+            transition: width .1s linear;
+        }
+
+        /* Breadcrumb */
+
+        .blogBreadcrumb {
+            padding: 25px 0 15px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .blogBreadcrumb ul {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .blogBreadcrumb li {
+            color: var(--blog-muted);
+            font-size: 13px;
+        }
+
+        .blogBreadcrumb a {
+            color: var(--blog-muted);
+            text-decoration: none;
+            transition: color .3s ease;
+        }
+
+        .blogBreadcrumb a:hover {
+            color: var(--blog-primary);
+        }
+
+        .blogBreadcrumb .active {
+            color: var(--blog-text);
+            font-weight: 600;
+        }
+
+        .blogBreadcrumb i {
+            font-size: 11px;
+            opacity: .6;
+        }
+
+        /* Article Header */
+
+        .blogArticleHero {
+            padding: 35px 0 45px;
+        }
+
+        .blogArticleHead {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .blogArticleCat {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border: 1px solid rgba(110, 107, 255, .2);
+            border-radius: 50px;
+            color: #625ee5;
+            background: rgba(110, 107, 255, .07);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .7px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .blogArticleCat span {
+            width: 7px;
+            height: 7px;
+            background: var(--blog-primary);
+            border-radius: 50%;
+        }
+
+        .blogArticleTitle {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(34px, 5vw, 58px);
+            font-weight: 700;
+            line-height: 1.13;
+            letter-spacing: -2px;
+            margin: 0 auto 22px;
+            max-width: 950px;
+        }
+
+        .blogArticleTitle span {
+            background: var(--blog-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blogArticleIntro {
+            max-width: 760px;
+            margin: 0 auto;
+            color: var(--blog-muted);
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        /* Author Details */
+
+        .blogArticleMeta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin-top: 30px;
+        }
+
+        .blogAuthor {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .blogAuthorLogo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f1ff;
+            overflow: hidden;
+        }
+
+        .blogAuthorLogo img {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+        }
+
+        .blogAuthorInfo {
+            text-align: left;
+        }
+
+        .blogAuthorInfo strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .blogAuthorInfo small {
+            display: block;
+            color: var(--blog-muted);
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .blogMetaDivider {
+            width: 1px;
+            height: 28px;
+            background: var(--blog-border);
+        }
+
+        .blogMetaItem {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--blog-muted);
+            font-size: 12px;
+        }
+
+        .blogMetaItem i {
+            font-size: 15px;
+        }
+
+        /* Featured Image */
+
+        .blogFeature {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+
+        .blogFeatureImage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 8;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--blog-bg);
+        }
+
+        .blogFeatureImage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Article Layout */
+
+        .blogContentSection {
+            padding: 75px 0 90px;
+        }
+
+        .blogArticleLayout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 285px;
+            gap: 75px;
+            align-items: start;
+        }
+
+        .blogArticleBody {
+            min-width: 0;
+            max-width: 790px;
+        }
+
+        /* Article Content */
+
+        .blogArticleBody p {
+            color: #555d6d;
+            font-size: 15px;
+            line-height: 1.95;
+            margin-bottom: 22px;
+        }
+
+        .blogArticleBody h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 27px;
+            font-weight: 700;
+            letter-spacing: -.6px;
+            line-height: 1.35;
+            margin: 48px 0 18px;
+            color: var(--blog-text);
+        }
+
+        .blogArticleBody h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 30px 0 13px;
+        }
+
+        .blogArticleBody strong {
+            color: var(--blog-text);
+            font-weight: 600;
+        }
+
+        .blogArticleBody ul {
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .blogArticleBody li {
+            color: #555d6d;
+            font-size: 15px;
+            line-height: 1.9;
+            padding-left: 5px;
+            margin-bottom: 10px;
+        }
+
+        .blogArticleBody li::marker {
+            color: var(--blog-primary);
+        }
+
+        /* Article Highlight */
+
+        .blogHighlight {
+            position: relative;
+            padding: 27px 30px;
+            margin: 35px 0;
+            background: linear-gradient(120deg, #f4f3ff, #f0f9ff);
+            border-left: 4px solid var(--blog-primary);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .blogHighlight p {
+            color: #34394b;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .blogHighlight i {
+            color: var(--blog-primary);
+            font-size: 23px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* Article Image */
+
+        .blogInlineImage {
+            margin: 35px 0;
+        }
+
+        .blogInlineImage img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .blogInlineImage figcaption {
+            color: var(--blog-muted);
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        /* Article Tags */
+
+        .blogArticleTags {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-top: 1px solid var(--blog-border);
+            padding-top: 25px;
+            margin-top: 45px;
+        }
+
+        .blogArticleTags strong {
+            font-size: 13px;
+            margin-right: 5px;
+        }
+
+        .blogArticleTags a {
+            color: #626b7c;
+            background: #f3f4f8;
+            padding: 8px 13px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all .3s ease;
+        }
+
+        .blogArticleTags a:hover {
+            color: #fff;
+            background: var(--blog-primary);
+        }
+
+        /* Sidebar */
+
+        .blogSidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        .blogSideCard {
+            padding: 25px;
+            border: 1px solid var(--blog-border);
+            border-radius: 14px;
+            background: #fff;
+            margin-bottom: 22px;
+        }
+
+        .blogSideTitle {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .blogTOC {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .blogTOC li {
+            margin-bottom: 15px;
+        }
+
+        .blogTOC a {
+            display: block;
+            position: relative;
+            color: var(--blog-muted);
+            font-size: 12px;
+            line-height: 1.6;
+            text-decoration: none;
+            transition: color .3s ease;
+        }
+
+        .blogTOC a:hover,
+        .blogTOC a.active {
+            color: var(--blog-primary);
+        }
+
+        .blogSideContact {
+            background: linear-gradient(145deg, #151b35, #303b77);
+            border: 0;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blogSideContact h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .blogSideContact p {
+            color: rgba(255,255,255,.7);
+            font-size: 12px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .blogSideContact a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 17px;
+            border-radius: 7px;
+            color: #fff;
+            background: var(--blog-primary);
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .3s ease;
+        }
+
+        .blogSideContact a:hover {
+            background: #8582ff;
+            transform: translateY(-2px);
+        }
+
+        /* Related Articles */
+
+        .blogRelatedSection {
+            background: var(--blog-bg);
+            padding: 80px 0;
+        }
+
+        .blogSectionHead {
+            margin-bottom: 35px;
+        }
+
+        .blogSectionLabel {
+            display: inline-block;
+            color: var(--blog-primary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .blogSectionHead h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .blogRelatedCard {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid var(--blog-border);
+            border-radius: 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform .4s var(--blog-ease), box-shadow .4s ease;
+        }
+
+        .blogRelatedCard:hover {
+            color: inherit;
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(20,22,28,.08);
+        }
+
+        .blogRelatedImage {
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+        }
+
+        .blogRelatedImage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .blogRelatedCard:hover .blogRelatedImage img {
+            transform: scale(1.05);
+        }
+
+        .blogRelatedContent {
+            padding: 22px;
+        }
+
+        .blogRelatedCat {
+            color: var(--blog-primary);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+        }
+
+        .blogRelatedContent h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 12px 0;
+        }
+
+        .blogRelatedContent p {
+            color: var(--blog-muted);
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Newsletter */
+
+        .blogNewsSection {
+            padding: 75px 0;
+        }
+
+        .blogNewsCard {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+            padding: 48px 55px;
+            border-radius: 20px;
+            background: linear-gradient(120deg, #151b35, #303e7d);
+        }
+
+        .blogNewsContent {
+            max-width: 530px;
+        }
+
+        .blogNewsContent span {
+            display: inline-block;
+            color: #a6baff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        .blogNewsContent h2 {
+            font-family: "Space Grotesk", sans-serif;
+            color: #fff;
+            font-size: clamp(25px, 3vw, 35px);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .blogNewsContent p {
+            color: rgba(255,255,255,.7);
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .blogNewsForm {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .blogNewsInput {
+            display: flex;
+            align-items: center;
+            height: 55px;
+            padding: 0 16px;
+            border-radius: 8px;
+            background: #fff;
+            gap: 10px;
+        }
+
+        .blogNewsInput i {
+            color: #777f91;
+        }
+
+        .blogNewsInput input {
+            width: 100%;
+            min-width: 0;
+            height: 100%;
+            outline: none;
+            border: 0;
+            background: transparent;
+            color: var(--blog-text);
+            font-size: 13px;
+        }
+
+        .blogNewsForm button {
+            width: 100%;
+            height: 53px;
+            margin-top: 12px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--blog-primary);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .blogNewsForm button:hover {
+            background: #8582ff;
+        }
+
+        .blogNewsNote {
+            display: block;
+            color: rgba(255,255,255,.6);
+            font-size: 10px;
+            margin-top: 12px;
+        }
+
+        /* Back to Blog */
+
+        .blogBackLink {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--blog-text);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color .3s ease;
+            margin-bottom: 25px;
+        }
+
+        .blogBackLink:hover {
+            color: var(--blog-primary);
+        }
+        
+        .blogSideContact h3 {
+            color: #fff !important;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 991px) {
+
+            .blogArticleLayout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .blogArticleBody {
+                max-width: 100%;
+            }
+
+            .blogSidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .blogSideCard {
+                margin: 0;
+            }
+
+            .blogNewsCard {
+                padding: 40px 35px;
+            }
+
+        }
+
+        @media (max-width: 767px) {
+
+            .blogBreadcrumb {
+                padding-top: 20px;
+            }
+
+            .blogArticleHero {
+                padding: 25px 0 35px;
+            }
+
+            .blogArticleTitle {
+                font-size: 36px;
+                letter-spacing: -1.2px;
+            }
+
+            .blogArticleIntro {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .blogArticleMeta {
+                gap: 14px;
+            }
+
+            .blogMetaDivider {
+                display: none;
+            }
+
+            .blogFeatureImage {
+                aspect-ratio: 4 / 3;
+                border-radius: 13px;
+            }
+
+            .blogContentSection {
+                padding: 45px 0 60px;
+            }
+
+            .blogArticleBody p,
+            .blogArticleBody li {
+                font-size: 14px;
+            }
+
+            .blogArticleBody h2 {
+                font-size: 23px;
+                margin-top: 38px;
+            }
+
+            .blogHighlight {
+                padding: 22px;
+            }
+
+            .blogHighlight p {
+                font-size: 16px;
+            }
+
+            .blogSidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .blogRelatedSection {
+                padding: 55px 0;
+            }
+
+            .blogNewsSection {
+                padding: 50px 0;
+            }
+
+            .blogNewsCard {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 32px 23px;
+                gap: 25px;
+                border-radius: 15px;
+            }
+
+            .blogNewsForm {
+                max-width: 100%;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .blogArticleTitle {
+                font-size: 30px;
+            }
+
+            .blogArticleMeta {
+                justify-content: flex-start;
+            }
+
+            .blogAuthor {
+                width: 100%;
+            }
+
+            .blogMetaItem {
+                font-size: 11px;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .blogRelatedCard,
+            .blogRelatedImage img,
+            .blogProgress {
+                transition: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Reading Progress -->
+    <div class="blogProgress" id="blogProgress"></div>
+
+
+    <!-- DESKTOP NAVBAR -->
+    <header id="headerSection" class="d-none">
+
+        <div class="headermain-wrap">
+            <div class="container">
+
+                <div class="headercnt-wrapper">
+
+                    <div class="hdrfrst-sec">
+
+                        <a href="../index.html" class="hdr-logo">
+                            <img class="hdr-logowit" src="../assets/images/mswe-dark.png" alt="MSWE">
+                            <img class="hdr-logodrk" src="../assets/images/mswe-dark.png" alt="MSWE">
+                        </a>
+
+                        <ul class="hdrnav-list">
+
+                            <li class="hdrnav-item">
+                                <a class="hdrnav-link" href="../index.html">Home</a>
+                            </li>
+
+                            <li class="hdrnav-item">
+                                <a class="hdrnav-link" href="../index.html#services">Services</a>
+                            </li>
+
+                            <li class="hdrnav-item">
+                                <a class="hdrnav-link" href="../index.html#about">About</a>
+                            </li>
+
+                            <li class="hdrnav-item">
+                                <a class="hdrnav-link" href="../index.html#how-we-work">How We Work</a>
+                            </li>
+
+                            <li class="hdrnav-item">
+                                <a class="hdrnav-link" href="../index.html#industries">Industries</a>
+                            </li>
+
+                            <li class="hdrnav-item">
+                                <a class="hdrnav-link" href="../index.html#crewRow">Our Team</a>
+                            </li>
+
+                            <li class="hdrnav-item">
+                                <a class="hdrnav-link" href="../index.html#blog">Insights</a>
+                            </li>
+
+                            <li class="hdrreq-btnPrt">
+                                <a class="hdrreq-btn" href="../index.html#contact">
+                                    <span class="hdrreq-btntxt">Get a Quote</span>
+                                    <span class="reqbtn-arw">
+                                        <i class="bi bi-arrow-right"></i>
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+
+    <!-- MOBILE NAVBAR -->
+    <section class="mobHead d-none">
+
+        <div class="container">
+
+            <div class="headrmobnav">
+
+                <a href="../index.html" class="mobnvlogo">
+                    <img src="../assets/images/mswe-dark.png" alt="MSWE">
+                </a>
+
+                <div class="mobmnuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="mobnavCnt">
+
+                    <ul class="mobnavCnt-item">
+
+                        <li class="mobnavCnt-list">
+                            <a href="../index.html" class="mobnavCnt-link">Home</a>
+                        </li>
+
+                        <li class="mobnavCnt-list">
+                            <a href="../index.html#services" class="mobnavCnt-link">Services</a>
+                        </li>
+
+                        <li class="mobnavCnt-list">
+                            <a href="../index.html#about" class="mobnavCnt-link">About</a>
+                        </li>
+
+                        <li class="mobnavCnt-list">
+                            <a href="../index.html#how-we-work" class="mobnavCnt-link">How We Work</a>
+                        </li>
+
+                        <li class="mobnavCnt-list">
+                            <a href="../index.html#industries" class="mobnavCnt-link">Industries</a>
+                        </li>
+
+                        <li class="mobnavCnt-list">
+                            <a href="../index.html#crewRow" class="mobnavCnt-link">Our Team</a>
+                        </li>
+
+                        <li class="mobnavCnt-list">
+                            <a href="../index.html#blog" class="mobnavCnt-link">Insights</a>
+                        </li>
+
+                        <li class="mobnavcnt">
+                            <a class="mobhdrreq-btn" href="../index.html#contact">
+                                <span class="hdrreq-btntxt">Get a Quote</span>
+                                <span class="reqbtn-arw">
+                                    <i class="bi bi-arrow-right"></i>
+                                </span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BREADCRUMB -->
+    <section class="blogBreadcrumb">
+        <div class="container">
+
+            <ul>
+                <li>
+                    <a href="../index.html">Home</a>
+                </li>
+
+                <li><i class="bi bi-chevron-right"></i></li>
+
+                <li>
+                    <a href="../index.html#blog">Insights</a>
+                </li>
+
+                <li><i class="bi bi-chevron-right"></i></li>
+
+                <li class="active">AI Transforming Software Security</li>
+            </ul>
+
+        </div>
+    </section>
+
+<!-- ARTICLE HERO -->
+<section class="blogArticleHero">
+    <div class="container">
+        <div class="blogArticleHead" data-aos="fade-up">
+
+            <span class="blogArticleCat">
+                <span></span>
+                Software Security
+            </span>
+
+            <h1 class="blogArticleTitle">
+                AI Transforming
+                <span>Software Security</span>
+            </h1>
+
+            <p class="blogArticleIntro">
+                Discover how artificial intelligence is transforming
+                cybersecurity through intelligent threat detection,
+                automated vulnerability discovery, and stronger
+                enterprise protection.
+            </p>
+
+            <div class="blogArticleMeta">
+                <div class="blogAuthor">
+                    <div class="blogAuthorLogo">
+                        <img src="../assets/images/mswe-dark.png" alt="MSWE">
+                    </div>
+
+                    <div class="blogAuthorInfo">
+                        <strong>MSWE Editorial Team</strong>
+                        <small>Technology Insights</small>
+                    </div>
+                </div>
+
+                <div class="blogMetaDivider"></div>
+
+                <div class="blogMetaItem">
+                    <i class="bi bi-calendar3"></i>
+                    November 6, 2026
+                </div>
+
+                <div class="blogMetaItem">
+                    <i class="bi bi-clock"></i>
+                    5 min read
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- FEATURED IMAGE -->
+<section class="blogFeature" data-aos="fade-up">
+    <div class="blogFeatureImage">
+        <img src="../assets/images/blog3ai-img.jpg"
+             alt="CERT-In Raises Concerns Over AI Agent Security">
+    </div>
+</section>
+
+
+
+<!-- ARTICLE CONTENT -->
+<section class="blogContentSection">
+    <div class="container">
+
+        <a href="../index.html#blog" class="blogBackLink">
+            <i class="bi bi-arrow-left"></i>
+            Back to Insights
+        </a>
+
+        <div class="blogArticleLayout">
+
+            <!-- MAIN ARTICLE -->
+            <article class="blogArticleBody">
+
+                <p>
+                    As businesses become increasingly dependent on digital
+                    platforms, protecting software applications, networks,
+                    and sensitive information has become more important
+                    than ever. Cyber threats continue to evolve, making
+                    traditional security approaches more challenging
+                    to maintain.
+                </p>
+
+                <p>
+                    Artificial intelligence is transforming the cybersecurity
+                    landscape by helping organizations analyse security data,
+                    identify suspicious activities, and discover potential
+                    vulnerabilities. When combined with established security
+                    practices and human expertise, AI can help businesses
+                    build stronger and more proactive security environments.
+                </p>
+
+                <div class="blogHighlight">
+                    <i class="bi bi-quote"></i>
+
+                    <p>
+                        The future of cybersecurity is not just about
+                        responding to threats. It is about identifying
+                        risks earlier, making informed decisions, and
+                        building stronger digital protection.
+                    </p>
+                </div>
+
+
+                <!-- SECTION 01 -->
+                <h2 id="ai-cybersecurity">
+                    The Growing Role of AI in Cybersecurity
+                </h2>
+
+                <p>
+                    Modern organizations manage enormous amounts of
+                    digital information across applications, cloud
+                    platforms, endpoints, and networks. Monitoring
+                    every activity manually can be difficult,
+                    particularly as cyberattacks become more
+                    sophisticated.
+                </p>
+
+                <p>
+                    AI-powered security solutions can analyse large
+                    volumes of security information, identify unusual
+                    patterns, and highlight activities that may indicate
+                    potential threats. These insights help security
+                    professionals investigate incidents and understand
+                    risks more effectively.
+                </p>
+
+                <p>
+                    From suspicious login attempts to unexpected
+                    network behaviour, AI can support continuous
+                    monitoring and improve visibility across an
+                    organization's digital infrastructure.
+                </p>
+
+
+                <!-- SECTION 02 -->
+                <h2 id="threat-detection">
+                    Intelligent Threat Detection and Prevention
+                </h2>
+
+                <p>
+                    Detecting cyber threats early is essential for
+                    protecting business operations and sensitive data.
+                    AI can support security teams by identifying
+                    unusual behaviour across users, devices,
+                    applications, and network environments.
+                </p>
+
+                <p>
+                    Instead of relying only on predefined security
+                    rules, intelligent detection systems can analyse
+                    patterns and highlight suspicious activities
+                    that may require further investigation.
+                </p>
+
+                <h3>How AI Strengthens Threat Detection</h3>
+
+                <ul>
+                    <li>
+                        <strong>Behaviour Analysis:</strong>
+                        Identify unusual user and system activities
+                        that may indicate potential security risks.
+                    </li>
+
+                    <li>
+                        <strong>Malware Detection:</strong>
+                        Analyse suspicious files and behaviours
+                        to support the identification of malicious software.
+                    </li>
+
+                    <li>
+                        <strong>Suspicious Login Detection:</strong>
+                        Highlight unusual authentication patterns
+                        and potentially compromised accounts.
+                    </li>
+
+                    <li>
+                        <strong>Network Monitoring:</strong>
+                        Analyse network activity to identify
+                        unexpected communication and potential threats.
+                    </li>
+
+                    <li>
+                        <strong>Alert Prioritisation:</strong>
+                        Help security teams organise alerts and
+                        focus on potentially critical incidents.
+                    </li>
+                </ul>
+
+
+                <!-- INLINE IMAGE 01 -->
+                <figure class="blogInlineImage">
+
+                    <img
+                        src="https://wimg.sedaily.com/news/cms/2026/04/18/news-p.v1.20260418.bc983166369d455594b2815d58dd4417_P1.png"
+                        alt="AI cybersecurity operations centre with security analysts monitoring digital threats"
+                        loading="lazy">
+
+                    <figcaption>
+                        AI-powered security monitoring can help
+                        organizations identify suspicious activities
+                        and investigate emerging cyber threats.
+                        <a href="https://en.sedaily.com/property/2026/04/18/training-ai-without-data-reverse-approach-privacy-tech"
+                           target="_blank" rel="noopener noreferrer">
+                            Image source
+                        </a>
+                    </figcaption>
+
+                </figure>
+
+
+                <!-- SECTION 03 -->
+                <h2 id="vulnerability-discovery">
+                    Faster Software Vulnerability Discovery
+                </h2>
+
+                <p>
+                    Software vulnerabilities can expose applications,
+                    customer information, and business systems to
+                    serious security risks. Identifying weaknesses
+                    early in the software development lifecycle is
+                    essential for building secure digital products.
+                </p>
+
+                <p>
+                    AI-assisted development and security tools can
+                    support code analysis, identify potentially
+                    insecure patterns, and help teams investigate
+                    vulnerabilities. These capabilities can complement
+                    traditional security testing and code reviews.
+                </p>
+
+                <h3>Where AI Supports Software Security</h3>
+
+                <ul>
+                    <li>
+                        <strong>Code Analysis:</strong>
+                        Examine application code and highlight
+                        potentially insecure coding patterns.
+                    </li>
+
+                    <li>
+                        <strong>Vulnerability Assessment:</strong>
+                        Support the identification and prioritisation
+                        of software security weaknesses.
+                    </li>
+
+                    <li>
+                        <strong>Security Testing:</strong>
+                        Assist development teams in identifying
+                        potential issues during application testing.
+                    </li>
+
+                    <li>
+                        <strong>Dependency Monitoring:</strong>
+                        Help teams identify risks associated with
+                        outdated or vulnerable software dependencies.
+                    </li>
+
+                    <li>
+                        <strong>Secure Development:</strong>
+                        Support security checks throughout the
+                        software development lifecycle.
+                    </li>
+                </ul>
+
+
+                <!-- SECTION 04 -->
+                <h2 id="security-automation">
+                    Smarter Security Operations and Automation
+                </h2>
+
+                <p>
+                    Security operations teams often manage large
+                    volumes of alerts, investigation tasks, and
+                    incident reports. Reviewing every alert manually
+                    can consume valuable time and make it harder
+                    to focus on critical security incidents.
+                </p>
+
+                <p>
+                    AI-powered automation can support repetitive
+                    activities such as alert classification,
+                    information gathering, incident summarisation,
+                    and investigation workflows. This allows
+                    cybersecurity professionals to spend more
+                    time on complex investigations and important
+                    security decisions.
+                </p>
+
+                <h3>Key Areas of Security Automation</h3>
+
+                <ul>
+                    <li>
+                        <strong>Alert Analysis:</strong>
+                        Assist in reviewing and classifying
+                        security alerts.
+                    </li>
+
+                    <li>
+                        <strong>Incident Investigation:</strong>
+                        Bring relevant security information
+                        together to support investigations.
+                    </li>
+
+                    <li>
+                        <strong>Threat Intelligence:</strong>
+                        Help security teams organise threat
+                        information and identify relevant risks.
+                    </li>
+
+                    <li>
+                        <strong>Response Workflows:</strong>
+                        Support predefined security response
+                        processes and incident handling.
+                    </li>
+
+                    <li>
+                        <strong>Security Reporting:</strong>
+                        Help organise incident information
+                        and generate useful security insights.
+                    </li>
+                </ul>
+
+
+                <!-- INLINE IMAGE 02 -->
+                <figure class="blogInlineImage">
+
+                    <img
+                        src="../assets/images/ai-agents-security.png"
+                        alt="AI-driven cybersecurity threat intelligence and security operations dashboard"
+                        loading="lazy">
+
+                    <figcaption>
+                        AI-driven security operations can help teams
+                        analyse threat intelligence, investigate alerts,
+                        and coordinate incident response.
+                        <a href="../assets/images/ai-agents-security.png"
+                           target="_blank" rel="noopener noreferrer">
+                            Image source
+                        </a>
+                    </figcaption>
+
+                </figure>
+
+
+                <!-- SECTION 05 -->
+                <h2 id="enterprise-protection">
+                    Strengthening Enterprise Security
+                </h2>
+
+                <p>
+                    As organizations adopt cloud platforms,
+                    connected applications, and remote working
+                    environments, protecting business information
+                    requires a comprehensive security approach.
+                </p>
+
+                <p>
+                    AI can support enterprise security by helping
+                    teams monitor access patterns, identify
+                    suspicious behaviour, and understand potential
+                    risks across their digital infrastructure.
+                    However, intelligent security tools should
+                    work alongside established security policies
+                    and security professionals.
+                </p>
+
+                <h3>Important Areas of Enterprise Protection</h3>
+
+                <ul>
+                    <li>
+                        <strong>Data Protection:</strong>
+                        Protect sensitive business and customer
+                        information from unauthorised access.
+                    </li>
+
+                    <li>
+                        <strong>Identity and Access Management:</strong>
+                        Apply appropriate access permissions and
+                        strengthen account security.
+                    </li>
+
+                    <li>
+                        <strong>Endpoint Security:</strong>
+                        Monitor devices and identify suspicious
+                        endpoint activities.
+                    </li>
+
+                    <li>
+                        <strong>Cloud Security:</strong>
+                        Monitor cloud environments and
+                        protect business applications.
+                    </li>
+
+                    <li>
+                        <strong>Continuous Monitoring:</strong>
+                        Review security activities and identify
+                        potential risks across systems.
+                    </li>
+
+                    <li>
+                        <strong>Security Governance:</strong>
+                        Maintain clear security policies,
+                        accountability, and compliance practices.
+                    </li>
+                </ul>
+
+
+                <!-- SECTION 06 -->
+                <h2 id="risks-ai-security">
+                    Understanding the Security Risks of AI
+                </h2>
+
+                <p>
+                    While AI offers new opportunities for cybersecurity,
+                    AI systems can also introduce additional security
+                    risks. Organizations must consider how their AI
+                    applications process information, access systems,
+                    and interact with external services.
+                </p>
+
+                <p>
+                    Risks such as prompt injection, data poisoning,
+                    insecure integrations, and excessive permissions
+                    can affect the confidentiality and reliability
+                    of AI-enabled applications.
+                </p>
+
+                <h3>Security Considerations for AI Systems</h3>
+
+                <ul>
+                    <li>
+                        <strong>Prompt Injection:</strong>
+                        Protect AI applications against malicious
+                        instructions that may influence their behaviour.
+                    </li>
+
+                    <li>
+                        <strong>Data Protection:</strong>
+                        Prevent sensitive information from being
+                        exposed through AI tools and integrations.
+                    </li>
+
+                    <li>
+                        <strong>Access Control:</strong>
+                        Restrict AI applications and agents to
+                        only the permissions they require.
+                    </li>
+
+                    <li>
+                        <strong>Model Security:</strong>
+                        Assess AI models and their supporting
+                        infrastructure for potential weaknesses.
+                    </li>
+
+                    <li>
+                        <strong>Continuous Assessment:</strong>
+                        Regularly test, monitor, and review
+                        AI-enabled applications.
+                    </li>
+                </ul>
+
+
+                <!-- SECTION 07 -->
+                <h2 id="human-expertise">
+                    Why Human Expertise Still Matters
+                </h2>
+
+                <p>
+                    Although AI can improve security monitoring
+                    and analysis, it cannot replace the experience
+                    and judgement of cybersecurity professionals.
+                    AI-generated findings may require validation,
+                    and automated responses must be carefully
+                    controlled.
+                </p>
+
+                <p>
+                    Security teams play an important role in
+                    understanding business context, validating
+                    potential threats, investigating incidents,
+                    and making critical decisions.
+                </p>
+
+                <p>
+                    Combining AI capabilities with human expertise
+                    creates a more balanced security approach,
+                    helping organizations improve efficiency
+                    without losing control over important
+                    security decisions.
+                </p>
+
+
+                <!-- SECTION 08 -->
+                <h2 id="future-cybersecurity">
+                    The Future of AI-Driven Cybersecurity
+                </h2>
+
+                <p>
+                    As cyber threats continue to evolve, AI will
+                    become an increasingly important part of
+                    modern security strategies. Intelligent
+                    threat detection, automated security analysis,
+                    and proactive vulnerability management will
+                    continue to influence how organizations
+                    protect their digital environments.
+                </p>
+
+                <p>
+                    Businesses that combine AI-driven capabilities
+                    with strong security foundations, skilled
+                    professionals, and responsible technology
+                    practices will be better prepared to manage
+                    emerging cybersecurity challenges.
+                </p>
+
+                <p>
+                    At MSWE, we believe meaningful technology
+                    innovation starts with solving real business
+                    challenges. Building secure, reliable, and
+                    intelligent digital experiences is an
+                    important part of that journey.
+                </p>
+
+
+                <!-- ARTICLE TAGS -->
+                <div class="blogArticleTags">
+
+                    <strong>Topics:</strong>
+
+                    <a href="#">Artificial Intelligence</a>
+                    <a href="#">Cybersecurity</a>
+                    <a href="#">Threat Detection</a>
+                    <a href="#">Software Security</a>
+                    <a href="#">AI Governance</a>
+                    <a href="#">Digital Transformation</a>
+
+                </div>
+
+            </article>
+
+
+            <!-- SIDEBAR -->
+            <aside class="blogSidebar">
+
+                <!-- TABLE OF CONTENTS -->
+                <div class="blogSideCard">
+
+                    <h3 class="blogSideTitle">
+                        In This Article
+                    </h3>
+
+                    <ul class="blogTOC">
+
+                        <li>
+                            <a href="#ai-cybersecurity">
+                                The Growing Role of AI
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#threat-detection">
+                                Intelligent Threat Detection
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#vulnerability-discovery">
+                                Software Vulnerability Discovery
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#security-automation">
+                                Security Operations and Automation
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#enterprise-protection">
+                                Enterprise Security
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#risks-ai-security">
+                                AI Security Risks
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#human-expertise">
+                                Human Expertise
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#future-cybersecurity">
+                                Future of AI Cybersecurity
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- CONTACT CARD -->
+                <div class="blogSideCard blogSideContact">
+
+                    <h3>
+                        Ready to Build a More Secure Digital Future?
+                    </h3>
+
+                    <p>
+                        Explore how intelligent technology and
+                        innovative digital solutions can help
+                        move your business forward.
+                    </p>
+
+                    <a href="../index.html#contact">
+                        Let's Talk
+                        <i class="bi bi-arrow-up-right"></i>
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- RELATED ARTICLES -->
+<section class="blogRelatedSection">
+
+    <div class="container">
+
+        <div class="blogSectionHead" data-aos="fade-up">
+
+            <span class="blogSectionLabel">Keep Exploring</span>
+
+            <h2>Related Insights</h2>
+
+        </div>
+
+        <div class="row g-4">
+
+
+                <!-- RELATED 01 -->
+                <div class="col-lg-4 col-md-6">
+
+                    <a href="ai-transforming-software-security.html"
+                        class="blogRelatedCard"
+                        data-aos="fade-up">
+
+                        <div class="blogRelatedImage">
+
+                            <img src="../assets/images/blogbg2.jpg"
+                                alt="AI software security">
+
+                        </div>
+
+                        <div class="blogRelatedContent">
+
+                            <span class="blogRelatedCat">
+                                Software &amp; Security
+                            </span>
+
+                            <h3>
+                                AI Accelerates Software Vulnerability Discovery
+                            </h3>
+
+                            <p>
+                                Explore how AI-powered security tools are
+                                transforming vulnerability detection and
+                                software protection.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- RELATED 02 -->
+                <div class="col-lg-4 col-md-6">
+
+                    <a href="cert-in-ai-security.html"
+                        class="blogRelatedCard"
+                        data-aos="fade-up"
+                        data-aos-delay="100">
+
+                        <div class="blogRelatedImage">
+
+                            <img src="../assets/images/blogbg3.jpg"
+                                alt="AI agent cybersecurity">
+
+                        </div>
+
+                        <div class="blogRelatedContent">
+
+                            <span class="blogRelatedCat">
+                                Cybersecurity
+                            </span>
+
+                            <h3>
+                                CERT-In Raises Concerns Over AI Agent Security
+                            </h3>
+
+                            <p>
+                                Understand emerging AI security risks and
+                                the importance of enterprise data protection.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- RELATED 03 -->
+                <div class="col-lg-4 col-md-6">
+
+                    <a href="digital-feature.html"
+                        class="blogRelatedCard"
+                        data-aos="fade-up"
+                        data-aos-delay="200">
+
+                        <div class="blogRelatedImage">
+
+                            <img src="../assets/images/blog3.jpg"
+                                alt="Latest technology insights">
+
+                        </div>
+
+                        <div class="blogRelatedContent">
+
+                            <span class="blogRelatedCat">
+                                Technology Insights
+                            </span>
+
+                            <h3>
+                                Explore More Ideas Shaping the Digital Future
+                            </h3>
+
+                            <p>
+                                Discover more perspectives on AI, software,
+                                cybersecurity, and digital innovation.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+    </div>
+
+</section>
+
+
+
+
+    <!-- FOOTER -->
+    <footer class="footer-sec">
+
+        <div class="container">
+
+            <div class="ftrlk-sec">
+
+                <div class="row g-4">
+
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="ftrbtm-log mb-3">
+                            <img src="../assets/images/mswe-dark.png" alt="MSWE">
+                        </div>
+
+                        <p class="muted">
+                            Empowering businesses with innovative technology,
+                            intelligent solutions, and scalable digital experiences.
+                            We turn complex ideas into impactful products that
+                            drive growth and lasting value.
+                        </p>
+
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <h5>Quick Links</h5>
+
+                        <div class="footer-links">
+                            <a href="../index.html">Home</a>
+                            <a href="../index.html#services">Services</a>
+                            <a href="../index.html#how-we-work">How We Work</a>
+                            <a href="../index.html#about">About</a>
+                            <a href="../index.html#blog">Insights</a>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <h5>Services</h5>
+
+                        <div class="footer-links">
+                            <a href="../index.html#services">Web App Development</a>
+                            <a href="../index.html#services">Artificial Intelligence</a>
+                            <a href="../index.html#services">Mobile App Development</a>
+                            <a href="../index.html#services">UI/UX Development</a>
+                            <a href="../index.html#services">IoT</a>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+
+                        <h5>Address</h5>
+
+                        <div class="footer-address-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <span>548 Market Street, San Francisco, CA 94104</span>
+                        </div>
+
+                        <div class="footer-address-item">
+                            <i class="bi bi-envelope"></i>
+                            <span>hello@mswe.com</span>
+                        </div>
+
+                        <div class="footer-address-item">
+                            <i class="bi bi-telephone"></i>
+                            <span>+1 (555) 010-2040</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <span class="muted">
+                    &copy; 2026 MSWE. All rights reserved.
+                </span>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#" aria-label="X">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+                    <a href="#" aria-label="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SCROLL TOP -->
+    <button id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 70
+        });
+
+
+        // Reading progress
+        $(window).on('scroll', function () {
+
+            var scrollTop = $(window).scrollTop();
+
+            var docHeight =
+                $(document).height() - $(window).height();
+
+            var progress =
+                docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+            $('#blogProgress').css('width', progress + '%');
+
+        });
+
+
+        // Scroll to top
+        $(window).on('scroll', function () {
+
+            if ($(this).scrollTop() > 300) {
+                $('#scrollTopBtn').addClass('show');
+            } else {
+                $('#scrollTopBtn').removeClass('show');
+            }
+
+        });
+
+        $('#scrollTopBtn').on('click', function () {
+
+            $('html, body').animate({
+                scrollTop: 0
+            }, 500);
+
+        });
+
+
+        // Table of contents active state
+        $(window).on('scroll', function () {
+
+            var current = '';
+
+            $('.blogArticleBody h2[id]').each(function () {
+
+                var top = $(this).offset().top;
+
+                if ($(window).scrollTop() >= top - 160) {
+                    current = $(this).attr('id');
+                }
+
+            });
+
+            $('.blogTOC a').removeClass('active');
+
+            if (current) {
+                $('.blogTOC a[href="#' + current + '"]').addClass('active');
+            }
+
+        });
+
+
+        // Smooth article navigation
+        $('.blogTOC a').on('click', function (e) {
+
+            var target = $($(this).attr('href'));
+
+            if (target.length) {
+
+                e.preventDefault();
+
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 110
+                }, 500);
+
+            }
+
+        });
+
+
+        // Newsletter UI placeholder
+        $('#blogNewsletterForm').on('submit', function (e) {
+
+            e.preventDefault();
+
+            alert('Thank you for your interest! Newsletter subscription will be available soon.');
+
+        });
+
+    </script>
+
+</body>
+</html>

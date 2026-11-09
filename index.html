@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MSWE — AI, innovation and digital transformation solutions.">
+    <meta name="description" content="MSWE — Cybersecurity, AI and web & mobile engineering — secure by design.">
     <title>MSWE | Home</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/mswe-dark.png">
@@ -15,9 +15,16 @@
     
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- CSS : order matters, main.css must be last -->
+     <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+
+<!-- Intl Tel Input CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/css/intlTelInput.css">
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
 
@@ -37,7 +44,6 @@
                           <img class="hdr-logodrk" src="assets/images/mswe-dark.png">
                         </a>
                         <ul class="hdrnav-list">
-                            <li class="hdrnav-item"><a class="hdrnav-link" href="#">Home</a></li>
                             <li class="hdrnav-item">
                                 <a class="hdrnav-link" href="#services">Services
                                     <!-- <span class="hdrdwnIcon">
@@ -51,15 +57,15 @@
                             </li>
                             <li class="hdrnav-item"><a class="hdrnav-link" href="#about">About</a></li>
                             <li class="hdrnav-item"><a class="hdrnav-link" href="#how-we-work">How We Work</a></li>
-                            <li class="hdrnav-item"><a class="hdrnav-link" href="#industries">Industries</a></li>
-                            <li class="hdrnav-item"><a class="hdrnav-link" href="#crewRow">Our Team</a></li>
+                            <li class="hdrnav-item"><a class="hdrnav-link" href="#contact">Contact</a></li>
                             <div class="hdrreq-btnPrt">
-                        <a class="hdrreq-btn" href="#contact"><span class="hdrreq-btntxt">Get a Quote</span>
+                        
+                    </div>
+                          </ul>
+                          <a class="hdrreq-btn" href="#contact"><span class="hdrreq-btntxt">Get a Quote</span>
                           <span class="reqbtn-arw"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M5 13h11.9l-3.6 4.4c-.4.4-.3 1.1.1 1.4.4.4 1.1.3 1.4-.1l5-6 .1-.1c0-.1 0-.1.1-.1 0-.1.1-.2.1-.4 0-.1 0-.2-.1-.4 0-.1 0-.1-.1-.1 0-.1-.1-.1-.1-.1l-5-6c-.2-.4-.5-.5-.8-.5-.2 0-.5.1-.6.2-.4.4-.5 1-.1 1.4l3.6 4.4H5c-.6 0-1 .4-1 1s.4 1 1 1" fill="currentColor" opacity="1" data-original="#000000" class=""></path></g></svg>
                           </span>
                         </a>
-                    </div>
-                          </ul>
                         
                     </div>
                     
@@ -84,12 +90,10 @@
             </div>
             <div class="mobnavCnt">
                 <ul class="mobnavCnt-item">
-                    <li class="mobnavCnt-list"><a href="#" class="mobnavCnt-link">Home</a></li>
                     <li class="mobnavCnt-list"><a href="#services" class="mobnavCnt-link">Services</a></li>
                     <li class="mobnavCnt-list"><a href="#about" class="mobnavCnt-link">About</a></li>
                     <li class="mobnavCnt-list"><a href="#how-we-work" class="mobnavCnt-link">How We Work</a></li>
-                    <li class="mobnavCnt-list"><a href="#industries" class="mobnavCnt-link">Industries</a></li>
-                    <li class="mobnavCnt-list"><a href="#crewRow" class="mobnavCnt-link">Our Team</a></li>
+                    <li class="mobnavCnt-list"><a class="mobnavCnt-link" href="#contact">Contact</a></li>
                     <li class="mobnavcnt">
                         <a class="mobhdrreq-btn" href="#contact"><span class="hdrreq-btntxt">Get a Quote</span>
                           <span class="reqbtn-arw"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M5 13h11.9l-3.6 4.4c-.4.4-.3 1.1.1 1.4.4.4 1.1.3 1.4-.1l5-6 .1-.1c0-.1 0-.1.1-.1 0-.1.1-.2.1-.4 0-.1 0-.2-.1-.4 0-.1 0-.1-.1-.1 0-.1-.1-.1-.1-.1l-5-6c-.2-.4-.5-.5-.8-.5-.2 0-.5.1-.6.2-.4.4-.5 1-.1 1.4l3.6 4.4H5c-.6 0-1 .4-1 1s.4 1 1 1" fill="currentColor" opacity="1" data-original="#000000" class=""></path></g></svg>
@@ -129,29 +133,39 @@
                     <!-- Slide 1 -->
                     <div class="swiper-slide">
                       <div class="herotxt-wrap">
-                        <!-- <h2 class="hero-mainTitle">Turn AI Into Real Products That Think, Learn, and Perform</h2> -->
-                        <!-- <p class="hero-mainDesc">We build intelligent AI solutions that automate workflows, unlock insights, and create smarter digital experiences built for real-world impact.</p> -->
-                        <h2 class="hero-mainTitle">Transform Ideas Into Intelligent Digital Products That Drive Real Growth</h2>
-<p class="hero-mainDesc">We build scalable full-stack, e-learning, and AI solutions that connect technology, learning, and automation to create meaningful digital experiences for modern businesses.</p>
-                        <a href="#services" class="herotuchbtn">
-                          Get in Touch
-                          <span class="tucharw">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                              <path d="M8.75 5.5a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-1.5 0V6.25H9.5a.75.75 0 0 1-.75-.75z" fill="currentColor"></path>
-                              <path d="M19.03 4.97a.75.75 0 0 1 0 1.06L6.302 18.758a.75.75 0 1 1-1.06-1.06L17.969 4.97a.75.75 0 0 1 1.061 0z" fill="currentColor"></path>
-                            </svg>
-                          </span>
-                        </a>
+                        <span class="hroseclbl">CYBERSECURITY · AI · WEB & MOBILE</span>
+                        <h2 class="hero-mainTitle">Secure faster. Ship smarter. Stay compliant.</h2>
+                        <p class="hero-mainDesc">We secure digital identities, develop intelligent AI solutions, and build scalable applications that connect security, innovation, and technology for modern businesses.</p>
+                        <div class="hrobtnWrp">
+                            <a href="#contact" class="herotuchbtn">
+                            Get a free security check
+                            <span class="tucharw">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M8.75 5.5a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-1.5 0V6.25H9.5a.75.75 0 0 1-.75-.75z" fill="currentColor"></path>
+                                <path d="M19.03 4.97a.75.75 0 0 1 0 1.06L6.302 18.758a.75.75 0 1 1-1.06-1.06L17.969 4.97a.75.75 0 0 1 1.061 0z" fill="currentColor"></path>
+                              </svg>
+                            </span>
+                          </a>
+                          <a href="#contact" class="herotuchbtn hrobtnoutLine">
+                            Start a project
+                            <span class="tucharw">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M8.75 5.5a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-1.5 0V6.25H9.5a.75.75 0 0 1-.75-.75z" fill="currentColor"></path>
+                                <path d="M19.03 4.97a.75.75 0 0 1 0 1.06L6.302 18.758a.75.75 0 1 1-1.06-1.06L17.969 4.97a.75.75 0 0 1 1.061 0z" fill="currentColor"></path>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
 
                         <div class="herosect-sec">
                           <div class="herosect-titlewrap">
                             <h2 class="herosect-title">Technologies</h2>
                           </div>
                           <div class="herosect-iconlist">
-                            <a href="javascript:void(0)" class="herosectIcon"><img src="assets/images/logo/python-white.webp" alt="Python"></a>
-                            <a href="javascript:void(0)" class="herosectIcon"><img src="assets/images/logo/react-white.webp" alt="Node.js"></a>
-                            <a href="javascript:void(0)" class="herosectIcon"><img src="assets/images/logo/flutter-white.webp" alt="Django"></a>
-                            <a href="javascript:void(0)" class="herosectIcon"><img src="assets/images/logo/laravel-white.webp" alt="FastAPI"></a>
+                            <a href="javascript:void(0)" class="herosectIcon"><img src="assets/images/logo/microsoft-entrawht.png" alt="Microsoft Entra"></a>
+                            <a href="javascript:void(0)" class="herosectIcon"><img src="assets/images/logo/msazurewht.png" alt="msazure"></a>
+                            <a href="javascript:void(0)" style="width:70px; height: 70px;" class="herosectIcon"><img src="assets/images/logo/CrowdStrike.png" alt="CrowdStrike"></a>
+                            <a href="javascript:void(0)" style="width:50px; height: 50px;" class="herosectIcon"><img src="assets/images/logo/python-white.webp" alt="python"></a>
                           </div>
                         </div>
                       </div>
@@ -300,51 +314,43 @@
             <i class="about-badge-dot"></i>
             About Us
           </span>
-
-          <h2 class="about-title" data-aos="fade-up" data-aos-delay="100">The New Era of <span class="grad-text">Intelligent Software</span></h2>
-
-          <p class="about-desc" data-aos="fade-up" data-aos-delay="200">We're a product studio focused on AI, web, and digital transformation. From LLM-powered features to full platform rebuilds, we help teams ship technology that actually holds up in production.</p>
+          <h2 class="about-title" data-aos="fade-up" data-aos-delay="100"><span class="grad-text">Security-First Engineering</span></h2>
+          <p class="about-desc" data-aos="fade-up" data-aos-delay="200">We're a Chennai-based team that secures identities, builds AI, and ships web and mobile products. Every build starts secure.</p>
 
           <div class="about-grid">
 
             <div class="about-feature" data-aos="fade-up" data-aos-delay="100">
-              <span class="about-feature-icon">
-                <i class="bi bi-lightbulb"></i>
-              </span>
-              <h3 class="about-feature-title">Innovative Ideas</h3>
-              <p class="about-feature-text">We push past the obvious solution to find the one that actually moves the metric.</p>
+                <span class="about-feature-icon">
+                    <i class="bi bi-shield-lock"></i>
+                </span>
+                <h3 class="about-feature-title">Secure by Design</h3>
+                <p class="about-feature-text">Security is built into every sprint, not added as an afterthought.</p>
             </div>
 
             <div class="about-feature" data-aos="fade-up" data-aos-delay="200">
-              <span class="about-feature-icon">
-                <i class="bi bi-cpu"></i>
-              </span>
-              <h3 class="about-feature-title">Modern Stack</h3>
-              <p class="about-feature-text">Current tools and frameworks, chosen for the problem — never for the resume.</p>
+                <span class="about-feature-icon">
+                    <i class="bi bi-person-lock"></i>
+                </span>
+                <h3 class="about-feature-title">Identity Experts</h3>
+                <p class="about-feature-text">Entra ID, SSO, and Conditional Access, configured the right way.</p>
             </div>
 
             <div class="about-feature" data-aos="fade-up" data-aos-delay="300">
-              <span class="about-feature-icon">
-                <i class="bi bi-award"></i>
-              </span>
-              <h3 class="about-feature-title">Senior Expertise</h3>
-              <p class="about-feature-text">Deep technical knowledge from engineers who've shipped production systems before.</p>
+                <span class="about-feature-icon">
+                    <i class="bi bi-cpu"></i>
+                </span>
+                <h3 class="about-feature-title">AI That Ships</h3>
+                <p class="about-feature-text">Turning AI pilots into production-ready solutions with measurable results.</p>
             </div>
 
             <div class="about-feature" data-aos="fade-up" data-aos-delay="400">
-              <span class="about-feature-icon">
-                <i class="bi bi-people"></i>
-              </span>
-              <h3 class="about-feature-title">Trusted Partnership</h3>
-              <p class="about-feature-text">We stick around past launch — support plans and roadmaps, not one-off handoffs.</p>
+                <span class="about-feature-icon">
+                    <i class="bi bi-headset"></i>
+                </span>
+                <h3 class="about-feature-title">We Stay</h3>
+                <p class="about-feature-text">We provide ongoing support and clear roadmaps, not just handoffs.</p>
             </div>
-
           </div>
-
-          <a class="about-link d-none" data-aos="fade-up" data-aos-delay="500" href="#services">
-            Explore our services
-            <i class="bi bi-arrow-up-right"></i>
-          </a>
 
         </div>
       </div>
@@ -353,6 +359,39 @@
   </div>
 </section>
 <!-- About Section End -->
+
+<section class="mswe-achievement">
+    <div class="container">
+        <div class="mswe-achievement-grid">
+
+            <!-- Cybersecurity -->
+            <div class="mswe-achievement-item">
+                <span class="mswe-achievement-number odometer" data-count="98" data-suffix="+">0</span>
+                <h4 data-aos="fade-up" data-aos-delay="100">MFA Coverage</h4>
+                <p data-aos="fade-up" data-aos-delay="200">Risky sign-ins <strong>↓ 60%</strong></p>
+            </div>
+
+            <div class="mswe-achievement-divider"></div>
+
+            <!-- AI -->
+            <div class="mswe-achievement-item">
+                <div><span class="mswe-achievement-number odometer" data-count="68" data-suffix="+">0</span>+</div>
+                <h4 data-aos="fade-up" data-aos-delay="200">AI Automation</h4>
+                <p data-aos="fade-up" data-aos-delay="300">Tickets auto-resolved</p>
+            </div>
+
+            <div class="mswe-achievement-divider"></div>
+
+            <!-- Web Development -->
+            <div class="mswe-achievement-item">
+                <span class="mswe-achievement-number odometer" data-count="95" data-suffix="+">0</span>
+                <h4 data-aos="fade-up" data-aos-delay="300">Lighthouse Score</h4>
+                <p data-aos="fade-up" data-aos-delay="400">Page load time <strong>&lt; 1s</strong></p>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 <!-- Services Section Start -->
 
@@ -378,134 +417,160 @@
 
         <div class="mswe-cards swiper" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1300">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-  <div class="mswe-card-wrp">
-    <span class="mswe-card-tag">Artificial Intelligence</span>
-    <div class="msservImfbg">
-      <img src="assets/images/serv-ai.jpg" alt="Artificial Intelligence">
-    </div>
-    <div class="mswe-crd-txt">
-    
-    <h3 class="mswe-card-title">
-      <a href="#">Putting a private LLM behind your internal tools</a>
-    </h3>
-    <p class="mswecrd-serv-desc">
-      Build secure, private AI solutions that connect intelligently with your internal systems,
-      data, and business workflows.
-    </p>
-    </div>
-  </div>
-</div>
 
-<div class="swiper-slide">
-  <div class="mswe-card-wrp">
-     <span class="mswe-card-tag">Web Development</span>
-    <div class="msservImfbg">
-      <img src="assets/images/web-dev-serv.jpg" alt="Web Development">
-    </div>
-    <div class="mswe-crd-txt">
-   
-    <h3 class="mswe-card-title">
-      <a href="#">Cutting manual onboarding from days to minutes</a>
-    </h3>
-    <p class="mswecrd-serv-desc">
-      Create fast, scalable web platforms that automate onboarding and deliver seamless
-      digital experiences for your customers and teams.
-    </p>
-    </div>
-  </div>
-</div>
-
-<div class="swiper-slide">
-  <div class="mswe-card-wrp">
-    <span class="mswe-card-tag">Mobile App Development</span>
-    <div class="msservImfbg">
-      <img src="assets/images/mobapp-serv.jpg" alt="Mobile App Development">
-    </div>
-    <div class="mswe-crd-txt">
-    <h3 class="mswe-card-title">
-      <a href="#">Conditional access policies that people don't fight</a>
-    </h3>
-    <p class="mswecrd-serv-desc">
-      Develop secure and intuitive mobile applications with smart access controls,
-      reliable performance, and a user experience people trust.
-    </p>
-    </div>
-  </div>
-</div>
-
-<div class="swiper-slide">
-  <div class="mswe-card-wrp">
-    <span class="mswe-card-tag">UI/UX Design</span>
-    <div class="msservImfbg">
-      <img src="assets/images/uiux-serv.jpg" alt="UI UX Design">
-    </div>
-    <div class="mswe-crd-txt">
-    <h3 class="mswe-card-title">
-      <a href="#">Why we still ship server-rendered pages in 2026</a>
-    </h3>
-    <p class="mswecrd-serv-desc">
-      Design modern, user-focused interfaces that combine visual clarity, accessibility,
-      and performance across every digital touchpoint.
-    </p>
-    </div>
-  </div>
-</div>
-
-<div class="swiper-slide">
-  <div class="mswe-card-wrp">
-    <span class="mswe-card-tag">Internet of Things (IoT)</span>
-    <div class="msservImfbg">
-      <img src="assets/images/iot-serv.jpg" alt="Internet of Things">
-    </div>
-    <div class="mswe-crd-txt">
-    <h3 class="mswe-card-title">
-      <a href="#">A migration checklist we actually reuse</a>
-    </h3>
-    <p class="mswecrd-serv-desc">
-      Connect devices, platforms, and real-time data to build intelligent IoT ecosystems
-      that improve efficiency, visibility, and business operations.
-    </p>
-    </div>
-  </div>
-</div>
-
-<div class="swiper-slide">
-  <div class="mswe-card-wrp">
-    <span class="mswe-card-tag">Digital Transformation</span>
-    <div class="msservImfbg">
-      <img src="assets/images/digital-serv.jpg" alt="Digital Transformation">
-    </div>
-    <div class="mswe-crd-txt">
-    <h3 class="mswe-card-title">
-      <a href="#">Designing dashboards people open twice a day</a>
-    </h3>
-    <p class="mswecrd-serv-desc">
-      Transform business operations with intelligent digital solutions, streamlined
-      processes, and data-driven experiences built for measurable growth.
-    </p>
-    </div>
-  </div>
-</div>
-
-<div class="swiper-slide">
-  <div class="mswe-card-wrp">
-      <span class="mswe-card-tag">Cyber Security</span>
-    <div class="msservImfbg">
-      <img src="assets/images/cyber-serv.jpg" alt="Cyber Security">
-    </div>
-    <div class="mswe-crd-txt">
-    <h3 class="mswe-card-title">
-      <a href="#">Cleaning messy client data without breaking trust</a>
-    </h3>
-    <p class="mswecrd-serv-desc">
-      Protect critical systems and sensitive data with proactive security solutions,
-      threat monitoring, and modern identity and access controls.
-    </p>
-    </div>
-  </div>
-</div>
+    <!-- 01 Identity & Access Management -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">Identity Security</span>
+            <div class="msservImfbg">
+                <img src="assets/images/identity-security.png"
+                     alt="Identity and access management security dashboard">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Secure every identity. Control every access.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Entra ID, SSO, MFA, and Conditional Access configured for secure business access.
+                </p>
+            </div>
         </div>
+    </div>
+
+    <!-- 02 Zero Trust Architecture -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">Zero Trust Security</span>
+            <div class="msservImfbg">
+                <img src="assets/images/zero-trust.jpg"
+                     alt="Zero Trust security architecture">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Never trust by default. Always verify.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Verify every user, device, and request with identity-driven access controls.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 Identity Governance -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">Identity Governance</span>
+            <div class="msservImfbg">
+                <img src="assets/images/identity-governance.jpg"
+                     alt="Identity lifecycle and access governance">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Give the right people the right access.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Automate joiner-mover-leaver workflows, access reviews, and privileged access.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 Cloud Security -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">Cloud Security</span>
+            <div class="msservImfbg">
+                <img src="assets/images/cloud-security.jpg"
+                     alt="Cloud security monitoring dashboard">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Build a stronger cloud security posture.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Harden Azure and AWS environments with continuous security assessments.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 VAPT -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">Security Testing</span>
+            <div class="msservImfbg">
+                <img src="assets/images/security-testing.jpg"
+                     alt="Cybersecurity threat monitoring">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Find vulnerabilities before attackers do.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Identify security weaknesses through vulnerability assessments and penetration testing.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 06 Endpoint Detection & Response -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">Endpoint Security</span>
+            <div class="msservImfbg">
+                <img src="assets/images/endpoint-security.jpg"
+                     alt="Endpoint detection and response security">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Every device visible. Every threat contained.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Detect, investigate, and respond to endpoint threats with proactive protection.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 07 AI Governance & Security -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">AI Security</span>
+            <div class="msservImfbg">
+                <img src="assets/images/ai-security.jpg"
+                     alt="AI governance and security monitoring">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Make AI adoption secure and accountable.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Govern AI access, protect sensitive data, and maintain clear audit trails.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 08 SaaS Development -->
+    <div class="swiper-slide">
+        <div class="mswe-card-wrp">
+            <span class="mswe-card-tag">SaaS Development</span>
+            <div class="msservImfbg">
+                <img src="assets/images/mainserv-saas.jpg"
+                     alt="SaaS application identity and access workflow">
+            </div>
+            <div class="mswe-crd-txt">
+                <h3 class="mswe-card-title">
+                    <a href="#">Build SaaS platforms ready to scale.</a>
+                </h3>
+                <p class="mswecrd-serv-desc">
+                    Develop secure, scalable applications with role-based access and cloud integration.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
 
         <div class="mswe-nav">          
 
@@ -526,7 +591,7 @@
 <!-- Services Section End -->
 
 <!-- AI Section Start -->
-<section class="cap-section" id="services">
+<section class="cap-section" id="AIServ">
   <div class="cap-sectionbg">
     <div class="blob blob-a"></div>
     <!-- <div class="blob blob-b"></div> -->
@@ -536,140 +601,132 @@
     <div class="cap-wrapper">
 
       <div class="cap-intro">
-        <span class="ai-card-tag" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">Artificial Intelligent</span>
+        <span class="ai-card-tag" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">Artificial Intelligence</span>
 
-        <h2 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-          Engineering Solutions That <em>Drive Digital Growth</em>
-        </h2>
+        <h2 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000"><em>Build. Govern. Automate.</em></h2>
 
         <p data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
-          From intelligent AI solutions and modern application development to cloud,
-          automation, and enterprise integration, MSWE delivers technology built around
-          your business goals. Our engineering teams combine proven practices,
-          scalable architecture, and agile delivery to transform complex challenges
-          into secure, high-performing, and future-ready digital solutions.
-        </p>
+    We build production-ready AI solutions with security, compliance, and scalability at their core. From intelligent automation to enterprise integration, every solution is designed to deliver measurable results and meet audit requirements.
+</p>
       </div>
 
       <div class="cap-cards">
         <div class="cap-cards">
 
-          <!-- Card 1 -->
-          <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
-            <div class="airt-bgly">
-              <img src="assets/images/sticky-card-ellips.svg">
-            </div>
-
-            <figure>
-              <img src="assets/images/ai-cvr1.jpg"
-                alt="Machine Learning and Predictive AI"
-                loading="lazy">
-            </figure>
-
-            <h3>Machine Learning &amp; Predictive AI</h3>
-
-            <p>
-              We build intelligent AI models that learn from business data,
-              identify patterns, forecast outcomes, and support smarter
-              data-driven decisions.
-            </p>
-
-            <ul>
-              <li>Custom ML model development</li>
-              <li>Predictive analytics &amp; forecasting</li>
-              <li>Pattern recognition</li>
-              <li>Model training &amp; optimization</li>
-            </ul>
-          </article>
-
-
-          <!-- Card 2 -->
-          <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
-            <div class="airt-bgly">
-              <img src="assets/images/sticky-card-ellips.svg">
-            </div>
-
-            <figure>
-              <img src="assets/images/ai-cvr2.jpg"
-                alt="AI Chatbot and Conversational AI"
-                loading="lazy">
-            </figure>
-
-            <h3>AI Chatbot &amp; Conversational AI</h3>
-
-            <p>
-              We develop intelligent conversational solutions that understand
-              users, automate interactions, and deliver personalized support
-              across websites, applications, and digital platforms.
-            </p>
-
-            <ul>
-              <li>Conversational AI development</li>
-              <li>Website &amp; app integration</li>
-              <li>24/7 automated support</li>
-              <li>Natural language processing</li>
-            </ul>
-          </article>
-
-
-          <!-- Card 3 -->
-          <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
-            <div class="airt-bgly">
-              <img src="assets/images/sticky-card-ellips.svg">
-            </div>
-
-            <figure>
-              <img src="assets/images/ai-cvr3.jpg"
-                alt="Data Analytics and AI Insights"
-                loading="lazy">
-            </figure>
-
-            <h3>Data Analytics &amp; AI Insights</h3>
-
-            <p>
-              We transform complex business data into actionable intelligence
-              through analytics, dashboards, and AI-powered insights that help
-              organizations make confident decisions.
-            </p>
-
-            <ul>
-              <li>Business data analysis</li>
-              <li>Interactive dashboards</li>
-              <li>Real-time reporting</li>
-              <li>AI-powered business insights</li>
-            </ul>
-          </article>
-
-
-          <!-- Card 4 -->
-          <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
-            <div class="airt-bgly">
-              <img src="assets/images/sticky-card-ellips.svg">
-            </div>
-
-            <figure>
-              <img src="assets/images/ai-cvr4.jpg"
-                alt="AI Consulting and Intelligent Automation"
-                loading="lazy">
-            </figure>
-
-            <h3>AI Consulting &amp; Intelligent Automation</h3>
-
-            <p>
-              We help businesses identify high-value AI opportunities and
-              automate repetitive processes to improve efficiency, accuracy,
-              productivity, and long-term digital growth.
-            </p>
-
-            <ul>
-              <li>AI strategy &amp; roadmap</li>
-              <li>AI use-case discovery</li>
-              <li>Intelligent workflow automation</li>
-              <li>Process optimization</li>
-            </ul>
-          </article>
-
+    <!-- Card 1: AI Agents -->
+    <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
+        <div class="airt-bgly">
+            <img src="assets/images/sticky-card-ellips.svg" alt="">
         </div>
+
+        <figure>
+            <img src="assets/images/autonomous-agen-workflow.png"
+                alt="Autonomous AI agent workflow"
+                loading="lazy">
+        </figure>
+
+        <h3>AI Agents</h3>
+
+        <p>
+            We build autonomous AI agents that understand goals, make decisions,
+            and execute complex workflows with minimal human intervention.
+        </p>
+
+        <ul>
+            <li>Autonomous workflow development</li>
+            <li>Multi-agent orchestration</li>
+            <li>Tool and API integration</li>
+            <li>Human-in-the-loop controls</li>
+        </ul>
+    </article>
+
+
+    <!-- Card 2: AI Governance & Security -->
+    <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
+        <div class="airt-bgly">
+            <img src="assets/images/sticky-card-ellips.svg" alt="">
+        </div>
+
+        <figure>
+            <img src="assets/images/security-controls.jpg"
+                alt="AI governance, security and audit controls"
+                loading="lazy">
+        </figure>
+
+        <h3>AI Governance &amp; Security</h3>
+
+        <p>
+            We secure AI systems with controlled access, transparent operations,
+            and governance practices designed for enterprise requirements.
+        </p>
+
+        <ul>
+            <li>AI access controls &amp; permissions</li>
+            <li>Audit trails &amp; activity monitoring</li>
+            <li>NIST AI RMF readiness</li>
+            <li>ISO 42001 readiness</li>
+        </ul>
+    </article>
+
+
+    <!-- Card 3: Custom AI Solutions -->
+    <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
+        <div class="airt-bgly">
+            <img src="assets/images/sticky-card-ellips.svg" alt="">
+        </div>
+
+        <figure>
+            <img src="assets/images/cloud-integration.jpg"
+                alt="Custom AI model development and cloud integration"
+                loading="lazy">
+        </figure>
+
+        <h3>Custom AI Solutions</h3>
+
+        <p>
+            We develop tailored AI solutions using your business data,
+            workflows, and requirements to solve real-world challenges.
+        </p>
+
+        <ul>
+            <li>Custom AI model development</li>
+            <li>Business-specific AI applications</li>
+            <li>Enterprise system integration</li>
+            <li>Production deployment &amp; scaling</li>
+        </ul>
+    </article>
+
+
+    <!-- Card 4: Enterprise AI Capabilities -->
+    <article class="cap-card" data-aos="fade-up" data-aos-duration="900">
+        <div class="airt-bgly">
+            <img src="assets/images/sticky-card-ellips.svg" alt="">
+        </div>
+
+        <figure>
+            <img src="assets/images/AIWorkflow.jpg"
+                alt="Enterprise AI workflow and intelligent automation"
+                loading="lazy">
+        </figure>
+
+        <h3>Enterprise AI Capabilities</h3>
+
+        <p>
+            From private AI environments to intelligent automation, we deliver
+            practical capabilities that make business operations smarter,
+            faster, and more efficient.
+        </p>
+
+        <ul>
+            <li>Private LLMs &amp; RAG – Your data stays in your cloud</li>
+            <li>Intelligent Automation – Repetitive work, removed</li>
+            <li>Predictive Analytics – Forecast it before it happens</li>
+            <li>Conversational AI – 24/7 chat and voice support</li>
+            <li>AI Strategy – Find the use cases that pay back</li>
+        </ul>
+    </article>
+
+</div>
       </div>
 
     </div>
@@ -829,8 +886,8 @@
 
         <div class="minServ-wrap">
 
-            <!-- 01 -->
-            <div class="minServ-card">
+          <!-- 01 -->
+            <div class="minServ-card" id="Cybersecurity">
                 <div class="row align-items-center">
                     <div class="col-xl-5">
                         <div class="minServ-visual" data-aos="fade-right" data-aos-delay="200">
@@ -839,32 +896,39 @@
                               <span class="minServ-num mSrv-num-r">01</span>
                             </span>
                             <div class="minServ-shot">
-                                <img src="assets/images/minserv-elearning.jpg" alt="eLearning Design and Development">
+                                <img src="assets/images/minserv-cyber.jpg" alt="Cybersecurity">
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-7">
-                        <div class="minServ-content" data-aos="fade-left" data-aos-delay="300">
-                            <span class="minServ-icn"><i class="bi bi-mortarboard"></i></span>
-                            <h3 class="minServ-title">eLearning Design and Development</h3>
-                            <p class="minServ-lead">Enhance learning experiences with professional eLearning design and development</p>
-                            <p class="minServ-desc">
-                                Elevate your educational or corporate training programs with tailored eLearning solutions.
-                                We create engaging digital learning experiences, from interactive modules to complete
-                                learning management systems, designed to meet your specific goals.
-                            </p>
-                            <ul class="minServ-list">
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Interactive Modules:</strong> Micro-learning, quizzes and simulations that keep learners engaged.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>LMS Development:</strong> Custom platforms with tracking, certification and reporting built in.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>SCORM Compliance:</strong> Standards-ready content that works across every major platform.</p></li>
-                            </ul>
-                        </div>
+                      <div class="minServ-content" data-aos="fade-left" data-aos-delay="300">
+                          <span class="minServ-icn"><i class="bi bi-shield-lock"></i></span>
+                          <h3 class="minServ-title">Cybersecurity</h3>
+                          <p class="minServ-desc">Identity-first security for cloud-first teams and your business with identity, endpoint, cloud, compliance, and AI security solutions.</p>
+                          <a href="#contact" class="minServ-btn mt-4">
+                              Free Security Health Check <i class="bi bi-arrow-up-right"></i>
+                          </a>
+                          <ul class="minServ-list">
+                              <li>
+                                  <span class="minServ-chk"><i class="bi bi-check2"></i></span>
+                                  <p><strong>Identity &amp; Zero Trust Security:</strong> Entra ID, SSO, MFA, Conditional Access, identity governance, and least-privilege access with automated access reviews.</p>
+                              </li>
+                              <li>
+                                  <span class="minServ-chk"><i class="bi bi-check2"></i></span>
+                                  <p><strong>Cloud, Endpoint &amp; Threat Protection:</strong> Azure and AWS hardening, Endpoint Detection &amp; Response, vulnerability assessments, and VAPT to identify and contain threats.</p>
+                              </li>
+                              <li>
+                                  <span class="minServ-chk"><i class="bi bi-check2"></i></span>
+                                  <p><strong>Compliance &amp; AI Governance:</strong> ISO 27001, SOC 2, DPDP Act readiness, and secure AI adoption with clear policies, access controls, and audit trails.</p>
+                              </li>
+                          </ul>
+                      </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 02 -->
-            <div class="minServ-card minServ-swap">
+            <!-- 03 -->
+            <div class="minServ-card minServ-swap" id="digitalSolutions">
                 <div class="row align-items-center">
                     <div class="col-xl-5">
                         <div class="minServ-visual" data-aos="fade-left" data-aos-delay="200">
@@ -873,200 +937,45 @@
                               <span class="minServ-num">02</span>
                             </span>
                             <div class="minServ-shot">
-                                <img src="assets/images/minserv-arvr.jpg" alt="AR VR Design and Development">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7">
-                        <div class="minServ-content" data-aos="fade-right" data-aos-delay="300">
-                            <span class="minServ-icn"><i class="bi bi-badge-vr"></i></span>
-                            <h3 class="minServ-title">AR / VR Design, Development and Services</h3>
-                            <p class="minServ-lead">Revolutionize experiences with expert AR and VR design and development</p>
-                            <p class="minServ-desc">
-                                Unleash the potential of Augmented Reality and Virtual Reality with customized solutions.
-                                From immersive training simulations to interactive marketing experiences, we leverage
-                                AR/VR technology to enhance engagement and foster innovation within your business.
-                            </p>
-                            <ul class="minServ-list">
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Immersive Training:</strong> Risk-free simulated environments for high-stakes skill building.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>3D Product Visualization:</strong> Let customers explore products before they ever buy.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Cross-Device Support:</strong> Built for headsets, mobile AR and the web from day one.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 03 -->
-            <div class="minServ-card">
-                <div class="row align-items-center">
-                    <div class="col-xl-5">
-                        <div class="minServ-visual" data-aos="fade-right" data-aos-delay="200">
-                            <span class="minServ-blob"></span>
-                            <span class="minServ-plate">
-                              <span class="minServ-num mSrv-num-r">03</span>
-                            </span>
-                            <div class="minServ-shot">
-                                <img src="assets/images/mainserv-saas.jpg" alt="SaaS Products">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7">
-                        <div class="minServ-content" data-aos="fade-left" data-aos-delay="300">
-                            <span class="minServ-icn"><i class="bi bi-boxes"></i></span>
-                            <h3 class="minServ-title">SaaS Products</h3>
-                            <p class="minServ-lead">Tailored SaaS solutions for businesses, enhancing efficiency and growth</p>
-                            <p class="minServ-desc">
-                                MSWE excels in developing bespoke Software as a Service platforms for every industry.
-                                Whether in healthcare, real estate or a niche sector, our custom solutions streamline
-                                operations, enhance efficiency and drive measurable growth.
-                            </p>
-                            <ul class="minServ-list">
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Multi-Tenant Architecture:</strong> Secure isolation with shared, cost-efficient infrastructure.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Subscription Billing:</strong> Plans, usage metering and payment gateways handled end to end.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Cloud Scalability:</strong> Infrastructure that grows quietly alongside your user base.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 04 -->
-            <div class="minServ-card minServ-swap">
-                <div class="row align-items-center">
-                    <div class="col-xl-5">
-                        <div class="minServ-visual" data-aos="fade-left" data-aos-delay="200">
-                            <span class="minServ-blob"></span>
-                            <span class="minServ-plate">
-                              <span class="minServ-num">04</span>
-                            </span>
-                            <div class="minServ-shot">
                                 <img src="assets/images/minserv-digital.jpg" alt="Digital Solutions">
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-7">
-                        <div class="minServ-content" data-aos="fade-right" data-aos-delay="300">
-                            <span class="minServ-icn"><i class="bi bi-window-stack"></i></span>
-                            <h3 class="minServ-title">Digital Solutions</h3>
-                            <p class="minServ-lead">Professional web and app design and development for exceptional digital experiences</p>
-                            <p class="minServ-desc">
-                                Enhance your online presence with state-of-the-art web and app design and development
-                                services. We create visually compelling websites and intuitive applications that resonate
-                                with your target audience and deliver exceptional user experiences.
-                            </p>
-                            <ul class="minServ-list">
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Brand-Led Design:</strong> Interfaces that carry your identity through every screen.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Performance First:</strong> Fast, accessible builds tuned for real-world networks.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>SEO Ready:</strong> Clean semantics and structured data baked into the markup.</p></li>
-                            </ul>
-                        </div>
-                    </div>
+          <div class="minServ-content" data-aos="fade-right" data-aos-delay="300">
+              <span class="minServ-icn"><i class="bi bi-window-stack"></i></span>
+
+              <h3 class="minServ-title">Digital Solutions</h3>
+
+              <p class="minServ-lead">Scalable web applications and digital platforms built for performance and growth</p>
+
+              <p class="minServ-desc">
+                  Build powerful digital experiences with our end-to-end development services.
+                  From modern web applications and mobile apps to scalable SaaS platforms,
+                  we create secure, high-performing solutions designed around your business needs.
+              </p>
+
+              <ul class="minServ-list">
+                  <li>
+                      <span class="minServ-chk"><i class="bi bi-check2"></i></span>
+                      <p><strong>Web &amp; Mobile Apps:</strong> React, Next.js, Node.js, and cross-platform iOS and Android development.</p>
+                  </li>
+                  <li>
+                      <span class="minServ-chk"><i class="bi bi-check2"></i></span>
+                      <p><strong>SaaS &amp; UI/UX:</strong> Scalable multi-tenant platforms, subscription billing, and user-focused design systems.</p>
+                  </li>
+                  <li>
+                      <span class="minServ-chk"><i class="bi bi-check2"></i></span>
+                      <p><strong>Cloud &amp; Support:</strong> CI/CD, zero-downtime releases, ongoing maintenance, and performance monitoring.</p>
+                  </li>
+              </ul>
+          </div>
+</div>
                 </div>
             </div>
 
-            <!-- 05 -->
-            <div class="minServ-card">
-                <div class="row align-items-center">
-                    <div class="col-xl-5">
-                        <div class="minServ-visual" data-aos="fade-right" data-aos-delay="200">
-                            <span class="minServ-blob"></span>
-                            <span class="minServ-plate">
-                              <span class="minServ-num mSrv-num-r">05</span>
-                            </span>
-                            <div class="minServ-shot">
-                                <img src="assets/images/minserv-cyber.jpg" alt="Cybersecurity">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7">
-                        <div class="minServ-content" data-aos="fade-left" data-aos-delay="300">
-                            <span class="minServ-icn"><i class="bi bi-shield-lock"></i></span>
-                            <h3 class="minServ-title">Cybersecurity</h3>
-                            <p class="minServ-lead">Secure your business with comprehensive and expert cybersecurity services</p>
-                            <p class="minServ-desc">
-                                At MSWE, cybersecurity is a complete solution designed to protect every facet of your
-                                digital landscape. We deliver endpoint protection, network hardening and data security
-                                measures backed by real-time monitoring and rapid incident response.
-                            </p>
-                            <ul class="minServ-list">
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Endpoint Detection &amp; Response:</strong> Continuous visibility and containment across every device.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Identity &amp; Access Management:</strong> Least-privilege access enforced with modern authentication.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Vulnerability Management:</strong> Assessment and remediation tracking.</p></li>                              </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 06 -->
-            <div class="minServ-card">
-                <div class="row align-items-center">
-                    <div class="col-xl-5">
-                        <div class="minServ-visual" data-aos="fade-right" data-aos-delay="200">
-                            <span class="minServ-blob"></span>
-                            <span class="minServ-plate">
-                              <span class="minServ-num mSrv-num-r">06</span>
-                            </span>
-                            <div class="minServ-shot">
-                                <img src="assets/images/minserv-mobileapp.jpg" alt="Mobile App Development">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7">
-                        <div class="minServ-content" data-aos="fade-left" data-aos-delay="300">                            
-                            <span class="minServ-icn"><i class="bi bi-phone"></i></span>
-                            <h3 class="minServ-title">Mobile App Development</h3>
-                            <p class="minServ-lead">Native and cross-platform apps that feel effortless in the hand</p>
-                            <p class="minServ-desc">
-                                From concept to store listing, we design and develop mobile applications for iOS and
-                                Android that people actually keep installed. Smooth interactions, offline resilience and
-                                tight device integration are treated as requirements, not extras.
-                            </p>
-                            <ul class="minServ-list">
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Cross-Platform Builds:</strong> One codebase in Flutter or React Native, two polished apps.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Native Performance:</strong> Swift and Kotlin engineering where raw speed matters most.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Store Launch &amp; Support:</strong> Publishing, analytics and version updates handled for you.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 08 -->
-            <div class="minServ-card minServ-swap">
-                <div class="row align-items-center">
-                    <div class="col-xl-5">
-                        <div class="minServ-visual" data-aos="fade-left" data-aos-delay="200">
-                            <span class="minServ-blob"></span>
-                            <span class="minServ-plate">
-                              <span class="minServ-num">07</span>
-                            </span>
-                            <div class="minServ-shot">
-                                <img src="assets/images/minserv-uiux.jpg" alt="UI UX Design">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7">
-                        <div class="minServ-content" data-aos="fade-right" data-aos-delay="300">
-                            
-                            <span class="minServ-icn"><i class="bi bi-palette"></i></span>
-                            <h3 class="minServ-title">UI / UX Design</h3>
-                            <p class="minServ-lead">Research-driven design that turns complex products into simple journeys</p>
-                            <p class="minServ-desc">
-                                Great software starts with understanding the person using it. Our designers move from
-                                user research and wireframes to high-fidelity interfaces and reusable design systems,
-                                so every screen looks right and behaves predictably.
-                            </p>
-                            <ul class="minServ-list">
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>User Research &amp; Testing:</strong> Real feedback shaping decisions before a line of code is written.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Interactive Prototypes:</strong> Clickable flows that validate ideas early and cut rework.</p></li>
-                                <li><span class="minServ-chk"><i class="bi bi-check2"></i></span><p><strong>Design Systems:</strong> Consistent tokens and components your team can build on for years.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+            
+          </div>
     </div>
 </section>
 <!-- Main Services Section End -->
@@ -1215,99 +1124,75 @@
     <div class="row justify-content-center">
       <div class="col-lg-12">
 
-        <div class="tl js-tl">
-          <div class="tl-line js-tl-line">
-            <div class="tl-line-progress js-tl-progress"></div>
-          </div>
+       <div class="tl js-tl">
+    <div class="tl-line js-tl-line">
+        <div class="tl-line-progress js-tl-progress"></div>
+    </div>
 
-          <div class="tl-list">
+    <div class="tl-list">
 
-            <div class="tl-item js-tl-item jstl-frst">
-              <div class="tl-marker">
+        <!-- Step 1 -->
+        <div class="tl-item js-tl-item jstl-frst">
+            <div class="tl-marker">
                 <span class="tl-point js-tl-point"></span>
                 <span class="tl-step">Step 1</span>
-              </div>
-              <div class="tl-card">
-                <span class="tl-icon"><i class="bi bi-clipboard-check"></i></span>
-                <div>
-                  <h3>Requirement Analysis</h3>
-                  <p>Understanding your business needs and objectives for a customized AI development solution.</p>
-                </div>
-              </div>
             </div>
+            <div class="tl-card">
+                <span class="tl-icon"><i class="bi bi-search"></i></span>
+                <div>
+                    <h3>Discover</h3>
+                    <p>Understanding your business goals, identifying risks, and defining project scope in one week.</p>
+                </div>
+            </div>
+        </div>
 
-            <div class="tl-item js-tl-item">
-              <div class="tl-marker">
+        <!-- Step 2 -->
+        <div class="tl-item js-tl-item">
+            <div class="tl-marker">
                 <span class="tl-point js-tl-point"></span>
                 <span class="tl-step">Step 2</span>
-              </div>
-              <div class="tl-card">
-                <span class="tl-icon"><i class="bi bi-cpu"></i></span>
-                <div>
-                  <h3>Model Selection</h3>
-                  <p>Choosing the right AI models and algorithms for optimal performance.</p>
-                </div>
-              </div>
             </div>
-
-            <div class="tl-item js-tl-item">
-              <div class="tl-marker">
-                <span class="tl-point js-tl-point"></span>
-                <span class="tl-step">Step 3</span>
-              </div>
-              <div class="tl-card">
-                <span class="tl-icon"><i class="bi bi-database-gear"></i></span>
-                <div>
-                  <h3>Data Preparation</h3>
-                  <p>Collecting, processing, and refining data for precise AI functionality.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="tl-item js-tl-item">
-              <div class="tl-marker">
-                <span class="tl-point js-tl-point"></span>
-                <span class="tl-step">Step 4</span>
-              </div>
-              <div class="tl-card">
+            <div class="tl-card">
                 <span class="tl-icon"><i class="bi bi-code-slash"></i></span>
                 <div>
-                  <h3>Development</h3>
-                  <p>Building intelligent solutions with our expert artificial intelligence developers.</p>
+                    <h3>Build</h3>
+                    <p>Developing in focused two-week sprints with a live working demo after every cycle.</p>
                 </div>
-              </div>
             </div>
+        </div>
 
-            <div class="tl-item js-tl-item">
-              <div class="tl-marker">
+        <!-- Step 3 -->
+        <div class="tl-item js-tl-item">
+            <div class="tl-marker">
                 <span class="tl-point js-tl-point"></span>
-                <span class="tl-step">Step 5</span>
-              </div>
-              <div class="tl-card">
+                <span class="tl-step">Step 3</span>
+            </div>
+            <div class="tl-card">
                 <span class="tl-icon"><i class="bi bi-shield-check"></i></span>
                 <div>
-                  <h3>Testing &amp; Validation</h3>
-                  <p>Ensuring accuracy and performance with rigorous AI app development testing.</p>
+                    <h3>Secure</h3>
+                    <p>Reviewing security, validating quality, and testing every release before deployment.</p>
                 </div>
-              </div>
             </div>
-
-            <div class="tl-item js-tl-item">
-              <div class="tl-marker">
-                <span class="tl-point js-tl-point"></span>
-                <span class="tl-step">Step 6</span>
-              </div>
-              <div class="tl-card">
-                <span class="tl-icon"><i class="bi bi-rocket-takeoff"></i></span>
-                <div>
-                  <h3>Deployment &amp; Support</h3>
-                  <p>Launching your AI solution and providing ongoing maintenance for seamless operation.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
+
+        <!-- Step 4 -->
+        <div class="tl-item js-tl-item">
+            <div class="tl-marker">
+                <span class="tl-point js-tl-point"></span>
+                <span class="tl-step">Step 4</span>
+            </div>
+            <div class="tl-card">
+                <span class="tl-icon"><i class="bi bi-headset"></i></span>
+                <div>
+                    <h3>Support</h3>
+                    <p>Monitoring performance, applying security patches, and continuously improving your solution.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
       </div>
     </div>
@@ -1538,7 +1423,7 @@
 
         </div>
 
-        <div class="row justify-content-center odd-clientrw">
+        <div class="row justify-content-center odd-clientrw d-none">
 
           <div class="col-lg-4 col-xl-4 col-xxl-2">
             <div class="clientbx-wrap" >
@@ -2154,7 +2039,7 @@
     </div>
 
 </section>
- <section class="casesty-sec">
+ <section class="casesty-sec d-none">
   <div class="container">
     <div class="row justify-content-center text-center">
         <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1000">
@@ -2349,7 +2234,7 @@
 <!-- Case studies section End -->
 
 <!-- Workflow Section Start -->
-<section class="wrkFol-sec" id="wrkFol">
+<section class="wrkFol-sec d-none" id="wrkFol">
     <div class="container">
       <div class="row justify-content-center text-center">
   <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1000">
@@ -2456,7 +2341,7 @@
                         </div>
 
                         <div class="wrkFol-face wrkFol-back">
-                            <span class="wrkFol-num">02</span>
+                            <span class="wrkFol-num">01</span>
 
                             <h3 class="wrkFol-backTitle">
                                 Intelligent Threat Detection Platform
@@ -2636,6 +2521,270 @@
         </div>
     </div>
 </section>
+
+<!-- NEW BLOG -->
+
+<section class="wrkFol-sec" id="wrkFol">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+  <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1000">   
+    <span class="about-badge" data-aos="fade-up">
+        <i class="about-badge-dot"></i>
+        Insights & Ideas
+    </span>
+
+    <h2 class="about-title" data-aos="fade-up" data-aos-delay="100">
+        Explore Ideas That
+        <span class="grad-text">Drive Innovation</span>
+    </h2>
+
+    <p class="serv-desc" data-aos="fade-up" data-aos-delay="300">
+        Discover expert insights, emerging technologies, and practical perspectives
+        that inspire innovation, spark new ideas, and help businesses move forward.
+    </p>
+
+  </div>
+</div>
+<div class="row wrkFol-row">
+
+    <!-- 01 - Mistral AI -->
+    <div class="col-lg-4 col-md-6">
+        <a href="blog/mistral-large-4.html"
+            class="wrkFol-item"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            aria-label="Read Mistral Large 4 article"
+            tabindex="0" target="_blank">
+
+            <div class="wrkFol-inner">
+
+                <div class="wrkFol-face wrkFol-front">
+
+                    <img class="wrkFol-img"
+                        src="assets/images/blogbg1.jpg"
+                        alt="Mistral AI and advanced artificial intelligence technology">
+
+                    <div class="wrkFol-frontBody">
+
+                        <span class="wrkFol-cat">Artificial Intelligence</span>
+
+                        <h3 class="wrkFol-title">
+                            Mistral Releases Large 4 for Advanced AI
+                        </h3>
+
+                        <p class="wrkFol-short">
+                            Discover how Mistral's latest AI model is advancing
+                            intelligent automation, software development, and
+                            enterprise AI capabilities.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="wrkFol-face wrkFol-back">
+
+                    <span class="wrkFol-num">01</span>
+
+                    <h3 class="wrkFol-backTitle">
+                        Mistral Large 4: Advancing Enterprise AI
+                    </h3>
+
+                    <p class="wrkFol-full">
+                        Artificial intelligence continues to evolve as Mistral
+                        introduces Large 4, bringing new possibilities for
+                        intelligent applications and enterprise workflows.
+                        Advanced reasoning, improved coding capabilities, and
+                        flexible AI deployment are creating opportunities for
+                        businesses to automate complex tasks, accelerate
+                        development, and build smarter digital experiences.
+                    </p>
+
+                    <ul class="wrkFol-meta">
+                        <li>Mistral AI</li>
+                        <li>Generative AI</li>
+                        <li>Automation</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+
+    <!-- 02 - AI Software Security -->
+    <div class="col-lg-4 col-md-6">
+        <a href="blog/ai-transforming-software-security.html"
+            class="wrkFol-item"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            aria-label="Read AI software security article"
+            tabindex="0" target="_blank">
+
+            <div class="wrkFol-inner">
+
+                <div class="wrkFol-face wrkFol-front">
+
+                    <img class="wrkFol-img"
+                        src="assets/images/blogbg2.jpg"
+                        alt="AI-powered software vulnerability detection and cybersecurity">
+
+                    <div class="wrkFol-frontBody">
+
+                        <span class="wrkFol-cat">Software &amp; Security</span>
+
+                        <h3 class="wrkFol-title">
+                            AI Accelerates Software Vulnerability Discovery
+                        </h3>
+
+                        <p class="wrkFol-short">
+                            Explore how AI-powered security tools are changing
+                            vulnerability detection, software testing, and
+                            enterprise application protection.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="wrkFol-face wrkFol-back">
+
+                    <span class="wrkFol-num">02</span>
+
+                    <h3 class="wrkFol-backTitle">
+                        AI Transforming Software Security
+                    </h3>
+
+                    <p class="wrkFol-full">
+                        Artificial intelligence is transforming how security
+                        teams identify and address software vulnerabilities.
+                        AI-driven analysis helps developers discover weaknesses,
+                        examine code, and prioritize potential threats faster.
+                        As vulnerability discovery becomes more efficient,
+                        organizations must strengthen security testing,
+                        vulnerability management, and timely patching to
+                        protect their digital infrastructure.
+                    </p>
+
+                    <ul class="wrkFol-meta">
+                        <li>AI Security</li>
+                        <li>DevSecOps</li>
+                        <li>Threat Detection</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+
+    <!-- 03 - CERT-In AI Security -->
+    <div class="col-lg-4 col-md-6">
+        <a href="blog/ai-agency-security.html"
+            class="wrkFol-item"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            aria-label="Read CERT-In AI agent security article"
+            tabindex="0" target="_blank">
+
+            <div class="wrkFol-inner">
+
+                <div class="wrkFol-face wrkFol-front">
+
+                    <img class="wrkFol-img"
+                        src="assets/images/blogbg3.jpg"
+                        alt="AI agents, enterprise data protection and cybersecurity">
+
+                    <div class="wrkFol-frontBody">
+
+                        <span class="wrkFol-cat">Cybersecurity</span>
+
+                        <h3 class="wrkFol-title">
+                            CERT-In Raises Concerns Over AI Agent Security
+                        </h3>
+
+                        <p class="wrkFol-short">
+                            Understand emerging security risks in AI agents
+                            and why organizations need stronger access
+                            controls and data protection.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="wrkFol-face wrkFol-back">
+
+                    <span class="wrkFol-num">03</span>
+
+                    <h3 class="wrkFol-backTitle">
+                        Securing the Future of AI Agents
+                    </h3>
+
+                    <p class="wrkFol-full">
+                        As AI agents become more integrated into business
+                        operations, security risks surrounding permissions,
+                        sensitive information, and system access are gaining
+                        attention. CERT-In's concerns highlight the importance
+                        of responsible AI deployment, stronger identity
+                        management, least-privilege access, continuous
+                        monitoring, and robust security policies to protect
+                        enterprise environments.
+                    </p>
+
+                    <ul class="wrkFol-meta">
+                        <li>CERT-In</li>
+                        <li>AI Governance</li>
+                        <li>Data Security</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+</div>
+<div class="blogNewsletter" data-aos="fade-up">
+    <div class="blogNewsletter-content">
+        <span class="blogNewsletter-tag">
+            <i class="bi bi-envelope-paper"></i>
+            MONTHLY · FREE · 5-MINUTE READ
+        </span>
+
+        <h3>
+            Get the Latest <span>Tech Insights</span>
+            Delivered to Your Inbox.
+        </h3>
+
+        <p>
+            Stay ahead with the latest updates on AI, software,
+            cybersecurity and digital transformation.
+        </p>
+    </div>
+
+    <form class="blogNewsletter-form">
+        <div class="blogNewsletter-input">
+            <i class="bi bi-envelope"></i>
+            <input type="email"
+                placeholder="Enter your email address"
+                required>
+        </div>
+
+        <button type="submit">
+            Subscribe
+            <i class="bi bi-arrow-right"></i>
+        </button>
+
+        <span class="blogNewsletter-note">
+            <i class="bi bi-shield-check"></i>
+            Join security and engineering leaders. Unsubscribe anytime.
+
+        </span>
+    </form>
+</div>
+    </div>
+  </section>
+<!-- NEW BLOG End -->
 <!-- Workflow Section End -->
 
 <!-- Testimonials Section Start -->
@@ -2743,6 +2892,117 @@
 </section>
 <!-- Testimonials Section End -->
 
+<section class="clint-sec">
+   <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-12 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">   
+    <span class="about-badge aos-init aos-animate" data-aos="fade-up">
+        <i class="about-badge-dot"></i>
+        MSWE Truust Standard
+    </span>
+
+    <h2 class="about-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+        Built on expertise.
+        <span class="grad-text">Backed by trust.</span>
+    </h2>
+
+    <p class="serv-desc aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+        Our commitment to security is reflected in verified
+                expertise, structured processes, and trusted technologies.
+            </p>
+
+  </div>
+    </div>
+    
+        <div class="row">
+          <div class="col-md-4">
+            <div class="msweTrust-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="msweTrust-top">
+                    <span class="msweTrust-icon">
+                        <i class="bi bi-patch-check"></i>
+                    </span>
+                    <span class="msweTrust-count">01</span>
+                </div>
+
+                <h3>Technical Certifications</h3>
+
+                <p>
+                    Expertise backed by relevant Microsoft security
+                    and identity certifications.
+                </p>
+
+                <div class="msweTrust-tags">
+                    <span>SC-300</span>
+                    <span>AZ-500</span>
+                    <span>Other verified credentials</span>
+                </div>
+
+                <span class="msweTrust-foot">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Only certifications currently held
+                </span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="msweTrust-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="msweTrust-top">
+                    <span class="msweTrust-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </span>
+                    <span class="msweTrust-count">02</span>
+                </div>
+
+                <h3>Security-Driven Processes</h3>
+
+                <p>
+                    Structured security practices aligned with
+                    ISO 27001 principles across our delivery.
+                </p>
+
+                <div class="msweTrust-tags">
+                    <span>Risk Management</span>
+                    <span>Access Controls</span>
+                    <span>Security Reviews</span>
+                </div>
+
+                <span class="msweTrust-foot">
+                    <i class="bi bi-check-circle-fill"></i>
+                    ISO 27001-aligned processes
+                </span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="msweTrust-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="msweTrust-top">
+                    <span class="msweTrust-icon">
+                        <i class="bi bi-microsoft"></i>
+                    </span>
+                    <span class="msweTrust-count">03</span>
+                </div>
+
+                <h3>Microsoft Ecosystem</h3>
+
+                <p>
+                    Building secure solutions around Microsoft's
+                    identity, cloud, and security technologies.
+                </p>
+
+                <div class="msweTrust-tags">
+                    <span>Microsoft Entra ID</span>
+                    <span>Azure Security</span>
+                    <span>Microsoft 365</span>
+                </div>
+
+                <span class="msweTrust-foot">
+                    <i class="bi bi-info-circle"></i>
+                    Partner status shown upon official confirmation
+                </span>
+            </div>
+          </div>
+        </div>
+  </div>
+</section>
+
 <!-- ===== FAQ Section Start ===== -->
 <section class="askUs-sec" id="askUs">
     <div class="container">
@@ -2789,72 +3049,87 @@
 
                     <div class="askUs-list">
 
-                        <div class="askUs-item askUs-active" data-aos="fade-up" data-aos-delay="250">
-                            <button class="askUs-q" type="button">
-                                <span class="askUs-qTxt">What services does MSWE provide?</span>
-                                <span class="askUs-icn"><i></i><i></i></span>
-                            </button>
-                            <div class="askUs-a" style="display:block;">
-                                <div class="askUs-aInner">
-                                    <p>
-                                        We build web and mobile applications, SaaS platforms, eLearning systems and
-                                        AR/VR experiences, backed by UI/UX design and cybersecurity services. Most
-                                        engagements combine a few of these, so we scope the work around your outcome
-                                        rather than a fixed service list.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                      <div class="askUs-item askUs-active" data-aos="fade-up" data-aos-delay="250">
+                          <button class="askUs-q" type="button">
+                              <span class="askUs-qTxt">What does MSWE do?</span>
+                              <span class="askUs-icn"><i></i><i></i></span>
+                          </button>
+                          <div class="askUs-a" style="display:block;">
+                              <div class="askUs-aInner">
+                                  <p>
+                                      We deliver cybersecurity, AI, and web and mobile engineering solutions.
+                                      Many projects combine these capabilities into one engagement, giving you
+                                      a connected team from security to development.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
 
                         <div class="askUs-item" data-aos="fade-up" data-aos-delay="300">
                             <button class="askUs-q" type="button">
-                                <span class="askUs-qTxt">What is your customer geography?</span>
+                                <span class="askUs-qTxt">Can you secure our Microsoft 365 and Entra ID?</span>
                                 <span class="askUs-icn"><i></i><i></i></span>
                             </button>
                             <div class="askUs-a">
                                 <div class="askUs-aInner">
                                     <p>
-                                        We work with clients across India, the Middle East, Europe and North America.
-                                        Delivery runs from our engineering base with overlapping hours arranged per
-                                        region, so you always have a live window for reviews and escalations.
+                                        Yes. Identity security is our core expertise, covering SSO, MFA,
+                                        Conditional Access, identity governance, and security audits
+                                        to protect your Microsoft environment.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="askUs-item" data-aos="fade-up" data-aos-delay="350">
-                            <button class="askUs-q" type="button">
-                                <span class="askUs-qTxt">Which industries do you serve?</span>
-                                <span class="askUs-icn"><i></i><i></i></span>
-                            </button>
-                            <div class="askUs-a">
-                                <div class="askUs-aInner">
-                                    <p>
-                                        Healthcare, education, retail, logistics, manufacturing and financial services
-                                        make up most of our portfolio. Domain depth matters, so we bring in the team
-                                        members who have already shipped in your sector.
-                                    </p>
+                            <div class="askUs-item" data-aos="fade-up" data-aos-delay="350">
+                                <button class="askUs-q" type="button">
+                                    <span class="askUs-qTxt">How do you keep AI systems safe?</span>
+                                    <span class="askUs-icn"><i></i><i></i></span>
+                                </button>
+                                <div class="askUs-a">
+                                    <div class="askUs-aInner">
+                                        <p>
+                                            We build governance into AI from day one, with controlled access,
+                                            clear data boundaries, audit logs, and human review to keep
+                                            AI systems secure and accountable.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="askUs-item" data-aos="fade-up" data-aos-delay="400">
-                            <button class="askUs-q" type="button">
-                                <span class="askUs-qTxt">How long does a typical project take?</span>
-                                <span class="askUs-icn"><i></i><i></i></span>
-                            </button>
-                            <div class="askUs-a">
-                                <div class="askUs-aInner">
-                                    <p>
-                                        A focused MVP usually runs six to ten weeks, while a full platform build takes
-                                        four to six months. We work in two-week sprints with a working demo at the end
-                                        of each one, so progress stays visible rather than promised.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                          <div class="askUs-item" data-aos="fade-up" data-aos-delay="400">
+                              <button class="askUs-q" type="button">
+                                  <span class="askUs-qTxt">How long does a typical project take?</span>
+                                  <span class="askUs-icn"><i></i><i></i></span>
+                              </button>
+                              <div class="askUs-a">
+                                  <div class="askUs-aInner">
+                                      <p>
+                                          An MVP typically takes 6–10 weeks, while a full platform takes
+                                          around 4–6 months. We provide working demos every two weeks
+                                          to keep progress transparent.
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
 
-                        <div class="askUs-item" data-aos="fade-up" data-aos-delay="450">
+                      <div class="askUs-item" data-aos="fade-up" data-aos-delay="450">
+                          <button class="askUs-q" type="button">
+                              <span class="askUs-qTxt">Who owns the source code after delivery?</span>
+                              <span class="askUs-icn"><i></i><i></i></span>
+                          </button>
+                          <div class="askUs-a">
+                              <div class="askUs-aInner">
+                                  <p>
+                                      You do, always. Your project, source code, and deliverables
+                                      belong to you, giving your business complete ownership
+                                      and control.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+
+                        <div class="askUs-item" data-aos="fade-up" data-aos-delay="500">
                             <button class="askUs-q" type="button">
                                 <span class="askUs-qTxt">Do you provide support after launch?</span>
                                 <span class="askUs-icn"><i></i><i></i></span>
@@ -2862,15 +3137,15 @@
                             <div class="askUs-a">
                                 <div class="askUs-aInner">
                                     <p>
-                                        Yes. Every build includes a warranty window, and we offer ongoing maintenance
-                                        plans covering monitoring, security patching, performance tuning and feature
-                                        releases. You keep full ownership of the code either way.
+                                        Yes. Our monthly support plans cover system monitoring,
+                                        security patching, maintenance, and feature updates
+                                        to keep your solutions running smoothly.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                    </div>
+             </div>
                 </div>
             </div>
 
@@ -2890,8 +3165,7 @@
     Contact Us
   </span>
 
-  <h2 class="about-title" data-aos="fade-up" data-aos-delay="100">
-    Start Your Next <span class="grad-text">Digital Journey</span> With Us
+  <h2 class="about-title" data-aos="fade-up" data-aos-delay="100"><span class="grad-text">Let's build it secure</span> With Us
   </h2>
 
   <p class="serv-desc" data-aos="fade-up" data-aos-delay="200">
@@ -2905,33 +3179,122 @@
     
       <div class="row g-4">
         <div class="col-lg-7" data-aos="fade-up">
-          <form class="contact-form" id="contact-form">
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <label for="cf-name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="cf-name" name="name" placeholder="Jane Doe" required />
-              </div>
-              <div class="col-sm-6">
-                <label for="cf-email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="cf-email" name="email" placeholder="jane@company.com" required />
-              </div>
-              <div class="col-sm-6">
-                <label for="cf-company" class="form-label">Company</label>
-                <input type="text" class="form-control" id="cf-company" name="company" placeholder="Company name" />
-              </div>
-              <div class="col-sm-6">
-                <label for="cf-phone" class="form-label">Phone</label>
-                <input type="tel" class="form-control" id="cf-phone" name="phone" placeholder="+1 555 000 0000" />
-              </div>
-              <div class="col-12">
-                <label for="cf-message" class="form-label">Message</label>
-                <textarea class="form-control" id="cf-message" name="message" rows="4" placeholder="What are you building?" required></textarea>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary w-100">Send Message</button>
-              </div>
-            </div>
-          </form>
+          
+<form class="contact-form" id="contact-form">
+
+    <!-- Honeypot Spam Protection -->
+    <div class="contact-hp-field" aria-hidden="true">
+        <label for="cf-website">Leave this field empty</label>
+        <input
+            type="text"
+            id="cf-website"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+        />
+    </div>
+
+    <div class="row g-3">
+
+        <div class="col-sm-6">
+            <label for="cf-name" class="form-label">Name*</label>
+            <input
+                type="text"
+                class="form-control"
+                id="cf-name"
+                name="name"
+                placeholder="Jane Doe"
+                required
+            />
+        </div>
+
+        <div class="col-sm-6">
+            <label for="cf-email" class="form-label">Email*</label>
+            <input
+                type="email"
+                class="form-control"
+                id="cf-email"
+                name="email"
+                placeholder="jane@company.com"
+                required
+            />
+        </div>
+
+        <div class="col-sm-6">
+            <label for="cf-company" class="form-label">Company*</label>
+            <input
+                type="text"
+                class="form-control"
+                id="cf-company"
+                name="company"
+                placeholder="Company name"
+            />
+        </div>
+
+        <div class="col-sm-6">
+            <label for="cf-position" class="form-label">Position</label>
+            <input
+                type="text"
+                class="form-control"
+                id="cf-position"
+                name="position"
+                placeholder="Your position"
+            />
+        </div>
+
+        <div class="col-sm-6">
+    <label for="cf-phone" class="form-label">Phone*</label>
+    <input
+        type="tel"
+        class="form-control"
+        id="cf-phone"
+        name="phone"
+        placeholder="Enter mobile number"
+        required
+    />
+</div>
+
+        <div class="col-sm-6">
+    <label for="cf-topics" class="form-label">Topics</label>
+
+    <select
+        class="form-select"
+        id="cf-topics"
+        name="topics"
+        multiple
+        required
+    >
+        <option value="AI">Artificial Intelligence</option>
+        <option value="Cyber Security">Cyber Security</option>
+        <option value="Digital Marketing">Digital Marketing</option>
+    </select>
+</div>
+
+        <div class="col-12">
+            <label for="cf-message" class="form-label">Message</label>
+            <textarea
+                class="form-control"
+                id="cf-message"
+                name="message"
+                rows="4"
+                placeholder="Tell us what you need. We reply within one business day"
+                required
+            ></textarea>
+        </div>
+
+        <div class="col-12">
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+                id="contact-submit"
+            >
+                Send Message
+            </button>
+        </div>
+
+    </div>
+</form>
+
         </div>
         <div class="col-lg-5" data-aos="fade-up" data-aos-delay="150">
           <div class="contact-info">
@@ -2952,6 +3315,9 @@
             <div class="info-item">
               <span class="info-icon"><i class="bi bi-clock"></i></span>
               <div><h5>Response Time</h5><p>Within one business day, every time.</p></div>
+            </div>
+            <div class="info-item">
+              <button type="submit" class="btn btn-primary twtcalbtn">Book a 20-min call</button>
             </div>
             <div class="contact-infobg">
             </div>
@@ -2977,21 +3343,17 @@
         <div class="col-lg-2 col-md-6">
           <h5>Quick Links</h5>
           <div class="footer-links">
-            <a href="#top">Home</a>
-            <a href="#work">Services</a>
-            <a href="#process">How We Work</a>
-            <a href="#about">Industries</a>
-            <a href="#faq">FAQ</a>
+            <a href="#minServ">Services</a>
+            <a href="#industries">Industries</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#mswePrivacyModal">Privacy & Policy</a>
           </div>
         </div>
         <div class="col-lg-2 col-md-6">
           <h5>Services</h5>
           <div class="footer-links">
-            <a href="#services">Web App Development</a>
-            <a href="#services">Artificial Intelligence</a>
-            <a href="#services">Mobile App Development</a>
-            <a href="#services">UI/UX Development</a>
-            <a href="#services">IoT</a>
+            <a href="#minServ">Cybersecurity</a>
+            <a href="#digitalSolutions">Digital Solutions</a>
+            <a href="#AIServ">AI Development</a>
           </div>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -3031,10 +3393,258 @@
   <i class="bi bi-arrow-up"></i>
 </button>
 
+<!-- MSWE Privacy Policy Modal -->
+<div class="modal fade mswePrivacyModal" id="mswePrivacyModal"
+     tabindex="-1" aria-labelledby="mswePrivacyTitle"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="mswemdl-hdr">
+                    <span class="mswePrivacyTag">MSWE · LEGAL</span>
+                    <h2 class="modal-title" id="mswePrivacyTitle">
+                        Privacy Policy
+                    </h2>
+                    <p class="mswePrivacySubtitle">
+                        Protecting your data. Respecting your privacy.
+                    </p>
+                </div>
+
+                <button type="button" class="mdlclsbtn btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg"
+     width="20" height="20"
+     viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+    <path d="M18 6 6 18"></path>
+    <path d="m6 6 12 12"></path>
+</svg></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+
+                <div class="mswePrivacyIntro">
+                    <span class="mswePrivacyIntroIcon">
+                        <i class="bi bi-shield-lock"></i>
+                    </span>
+                    <div>
+                        <h5>Your Data Deserves Protection</h5>
+                        <p>
+                            At MSWE, we value your privacy and are committed
+                            to handling personal and business information
+                            responsibly across our cybersecurity, AI, and
+                            software solutions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mswePrivacyContent">
+
+                    <!-- 01 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">01</span>
+                        <div>
+                            <h6>Information We Collect</h6>
+                            <p>
+                                We may collect your name, business email,
+                                phone number, company details, enquiry
+                                information, and technical data when you
+                                interact with our website or services.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 02 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">02</span>
+                        <div>
+                            <h6>How We Use Your Information</h6>
+                            <p>
+                                Your information helps us respond to enquiries,
+                                deliver services, manage projects, provide
+                                technical support, improve our solutions,
+                                and communicate important updates.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 03 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">03</span>
+                        <div>
+                            <h6>Cybersecurity & Technical Data</h6>
+                            <p>
+                                When delivering security services, we may
+                                process authorised identity records, access
+                                information, system logs, device details,
+                                and security events strictly for agreed
+                                assessment, monitoring, and protection purposes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 04 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">04</span>
+                        <div>
+                            <h6>AI & Data Processing</h6>
+                            <p>
+                                AI solutions may process business information
+                                and user-provided content to deliver their
+                                intended functionality. Data handling depends
+                                on the solution, configured AI providers,
+                                and applicable project agreements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 05 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">05</span>
+                        <div>
+                            <h6>SaaS & Application Data</h6>
+                            <p>
+                                Information processed through our software
+                                and SaaS solutions may include account details,
+                                application activity, and business records.
+                                Access and processing are governed by the
+                                relevant service configuration and agreements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 06 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">06</span>
+                        <div>
+                            <h6>Data Security & Access Control</h6>
+                            <p>
+                                We apply appropriate technical and
+                                organisational safeguards to help protect
+                                information against unauthorised access,
+                                alteration, disclosure, or loss.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 07 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">07</span>
+                        <div>
+                            <h6>Data Sharing & Third-Party Services</h6>
+                            <p>
+                                We do not sell personal information.
+                                Information may be shared with authorised
+                                technology providers, hosting partners,
+                                and service providers when necessary to
+                                deliver services or meet legal requirements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 08 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">08</span>
+                        <div>
+                            <h6>Data Retention & Your Rights</h6>
+                            <p>
+                                We retain information only as needed for
+                                the purposes described or as required by law
+                                and applicable agreements. You may request
+                                access, correction, or deletion of your
+                                personal information, subject to legal
+                                requirements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 09 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">09</span>
+                        <div>
+                            <h6>Cookies & Website Analytics</h6>
+                            <p>
+                                Our website may use cookies and analytics
+                                technologies to understand visitor activity,
+                                improve performance, and enhance your browsing
+                                experience. You can manage cookie preferences
+                                through available controls and browser settings.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 10 -->
+                    <div class="mswePrivacyItem">
+                        <span class="mswePrivacyNumber">10</span>
+                        <div>
+                            <h6>Policy Updates & Contact</h6>
+                            <p>
+                                We may update this policy as our services
+                                or legal requirements evolve. For privacy
+                                questions or data-related requests, please
+                                contact us through our website's Contact Us page.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mswePrivacyNote">
+                    <i class="bi bi-info-circle"></i>
+                    <p>
+                        This policy may be supplemented by service-specific
+                        agreements, data processing terms, or contractual
+                        privacy commitments.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="mswemdl-ftr modal-footer">
+
+                <div class="form-check mswePrivacyCheck">
+                    <input class="form-check-input" type="checkbox"
+                           id="mswePrivacyAccept">
+
+                    <label class="form-check-label" for="mswePrivacyAccept">
+                        I have read and understood the Privacy Policy.
+                    </label>
+                </div>
+
+                <button type="button" class="btn mswePrivacyBtn"
+                        id="mswePrivacyOk"
+                        data-bs-dismiss="modal" disabled>
+                   Understand
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
     <!-- JS : jQuery first, then plugins, then your custom script -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
+    <!-- Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<!-- Intl Tel Input -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+    
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
@@ -3043,6 +3653,20 @@
         duration: 800,
         once: true
       });
+    </script>
+    <script>
+      $(document).ready(function () {
+
+    $('#mswePrivacyAccept').on('change', function () {
+        $('#mswePrivacyOk').prop('disabled', !this.checked);
+    });
+
+    $('#mswePrivacyModal').on('hidden.bs.modal', function () {
+        $('#mswePrivacyAccept').prop('checked', false);
+        $('#mswePrivacyOk').prop('disabled', true);
+    });
+
+});
     </script>
 
 <script>
@@ -3142,7 +3766,7 @@ $(function () {
     grabCursor: true,
     centeredSlides: true,
     loop: true,
-
+    autoplay: true,
     // Smooth transition
     speed: 1000,
 
@@ -3152,7 +3776,7 @@ $(function () {
 
     // Smooth autoplay
     autoplay: {
-      delay: 3500,
+      delay: 2500,
       disableOnInteraction: false,
       pauseOnMouseEnter: true
     },
@@ -3792,6 +4416,41 @@ $(document).ready(function () {
 });
 </script>
 <script>
+  $(document).ready(function () {
+
+    window.odometerOptions = {
+        duration: 2000,
+        animation: 'count',
+        format: 'd'
+    };
+
+    const achievementObserver = new IntersectionObserver(function (entries, observer) {
+
+        entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+                const $number = $(entry.target);
+                const count = $number.data('count');
+
+                $number.html(count);
+
+                observer.unobserve(entry.target);
+            }
+
+        });
+
+    }, {
+        threshold: 0.5
+    });
+
+    $('.mswe-achievement-number.odometer').each(function () {
+        achievementObserver.observe(this);
+    });
+
+});
+</script>
+<script>
   new Swiper('.likmob-swiper', {
     slidesPerView: 1.08,
     centeredSlides: true,
@@ -3803,6 +4462,343 @@ $(document).ready(function () {
       768: { slidesPerView: 1.4, spaceBetween: 24 }
     }
   });
+</script>
+
+<!-- Contact script -->
+
+<script>
+  
+$(document).ready(function () {
+
+    // =====================================
+    // TOASTR CONFIGURATION
+    // =====================================
+
+    toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        timeOut: 4000,
+        extendedTimeOut: 1000
+    };
+
+
+    // =====================================
+    // SELECT2 INITIALIZATION
+    // =====================================
+
+    $("#cf-topics").select2({
+
+        placeholder: "Select your topics",
+
+        allowClear: true,
+
+        width: "100%"
+
+    });
+
+
+    // =====================================
+    // INTERNATIONAL PHONE INPUT
+    // =====================================
+
+    const phoneInput = document.querySelector("#cf-phone");
+
+    const iti = window.intlTelInput(phoneInput, {
+
+        initialCountry: "in",
+
+        separateDialCode: true,
+
+        nationalMode: true,
+
+        strictMode: true,
+
+        loadUtils: () => import(
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/js/utils.js"
+        )
+
+    });
+
+
+    // =====================================
+    // CUSTOM PHONE VALIDATION
+    // =====================================
+
+    $.validator.addMethod("validPhone", function (value, element) {
+
+        return this.optional(element) || iti.isValidNumber();
+
+    }, "Please enter a valid mobile number");
+
+
+    // =====================================
+    // CONTACT FORM VALIDATION
+    // =====================================
+
+    $("#contact-form").validate({
+
+        ignore: ":hidden:not(#cf-topics)",
+
+        rules: {
+
+            name: {
+                required: true,
+                minlength: 2,
+                maxlength: 100
+            },
+
+            email: {
+                required: true,
+                email: true,
+                maxlength: 150
+            },
+
+            company: {
+                maxlength: 150
+            },
+
+            position: {
+                maxlength: 100
+            },
+
+            phone: {
+                required: true,
+                validPhone: true
+            },
+
+            topics: {
+                required: true
+            },
+
+            message: {
+                required: true,
+                minlength: 10,
+                maxlength: 2000
+            }
+
+        },
+
+        messages: {
+
+            name: {
+                required: "Please enter your name",
+                minlength: "Name must contain at least 2 characters"
+            },
+
+            email: {
+                required: "Please enter your email address",
+                email: "Please enter a valid email address"
+            },
+
+            phone: {
+                required: "Please enter your mobile number",
+                validPhone: "Please enter a valid mobile number"
+            },
+
+            topics: {
+                required: "Please select at least one topic"
+            },
+
+            message: {
+                required: "Please enter your message",
+                minlength: "Message must contain at least 10 characters"
+            }
+
+        },
+
+        errorElement: "span",
+        errorClass: "text-danger",
+
+        errorPlacement: function (error, element) {
+
+            if (element.attr("name") === "topics") {
+
+                error.insertAfter(element.next(".select2"));
+
+            } else if (element.attr("name") === "phone") {
+
+                error.insertAfter(element.closest(".iti"));
+
+            } else {
+
+                error.insertAfter(element);
+
+            }
+
+        },
+
+        highlight: function (element) {
+
+            $(element).addClass("is-invalid");
+
+            if (element.id === "cf-topics") {
+                $("#cf-topics").next(".select2")
+                    .find(".select2-selection")
+                    .addClass("is-invalid");
+            }
+
+            if (element.id === "cf-phone") {
+                $(element).closest(".iti")
+                    .addClass("phone-invalid");
+            }
+
+        },
+
+        unhighlight: function (element) {
+
+            $(element).removeClass("is-invalid");
+
+            if (element.id === "cf-topics") {
+                $("#cf-topics").next(".select2")
+                    .find(".select2-selection")
+                    .removeClass("is-invalid");
+            }
+
+            if (element.id === "cf-phone") {
+                $(element).closest(".iti")
+                    .removeClass("phone-invalid");
+            }
+
+        },
+
+        invalidHandler: function () {
+
+            toastr.warning(
+                "Please check the required fields.",
+                "Validation Error"
+            );
+
+        },
+
+
+        // =====================================
+        // AJAX SUBMISSION
+        // =====================================
+
+        submitHandler: function (form) {
+
+            const $button = $("#contact-submit");
+
+            const originalText = $button.text();
+
+            const formData = {
+
+                name: $("#cf-name").val().trim(),
+
+                email: $("#cf-email").val().trim(),
+
+                company: $("#cf-company").val().trim(),
+
+                position: $("#cf-position").val().trim(),
+
+                // Send international number with country code
+                phone: iti.getNumber(),
+
+                topics: $("#cf-topics").val() || [],
+
+                message: $("#cf-message").val().trim(),
+
+                // Honeypot protection
+                website: $("#cf-website").val().trim()
+
+            };
+
+
+            $button.prop("disabled", true)
+                   .text("Sending...");
+
+
+            $.ajax({
+
+                url: "/api/contact",
+
+                type: "POST",
+
+                contentType: "application/json",
+
+                dataType: "json",
+
+                data: JSON.stringify(formData),
+
+
+                success: function (response) {
+
+                    toastr.success(
+                        response.message ||
+                        "Your message has been sent successfully.",
+                        "Success"
+                    );
+
+                    form.reset();
+
+                    iti.setCountry("in");
+
+                    $("#cf-topics").val(null).trigger("change");
+
+                    $(form).validate().resetForm();
+
+                    $(form).find(".is-invalid")
+                        .removeClass("is-invalid");
+
+                    $(".phone-invalid")
+                        .removeClass("phone-invalid");
+
+                    $("#cf-topics").next(".select2")
+                        .find(".select2-selection")
+                        .removeClass("is-invalid");
+
+                },
+
+
+                error: function (xhr) {
+
+                    const message =
+                        xhr.responseJSON?.message ||
+                        "Something went wrong. Please try again.";
+
+                    toastr.error(
+                        message,
+                        "Submission Failed"
+                    );
+
+                },
+
+
+                complete: function () {
+
+                    $button.prop("disabled", false)
+                           .text(originalText);
+
+                }
+
+            });
+
+            return false;
+
+        }
+
+    });
+
+
+    // Revalidate Select2 when a topic changes
+    $("#cf-topics").on("change", function () {
+
+        $(this).valid();
+
+    });
+
+
+    // Revalidate phone when user changes number
+    $("#cf-phone").on("blur", function () {
+
+        $(this).valid();
+
+    });
+
+});
+
 </script>
   </body>
 </html>
