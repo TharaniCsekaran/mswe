@@ -354,22 +354,21 @@ header#headerSection {
     padding: 16px 0;
 }
 
+/* the MSWE logo is square: keep the box square and show the whole mark */
 .hdr-logo {
-    display: inline-block;
-    height: 62px;
+    display: block;
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
     position: relative;
 }
 .hdr-logo img {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    top: 0;
-    left: 0;
+    object-fit: contain;
     transition: opacity 0.3s ease;
-}
-.hdr-logo img.hdr-logowit {
-  position: relative;
 }
 .hdr-logo img.hdr-logodrk {
     opacity: 0;
@@ -1887,6 +1886,123 @@ p.mswecrd-serv-desc {
 /* How We Work stepper end */
 
 
+/* ===== Careers section (mobile-first) ===== */
+.careers-sec {
+  position: relative;
+  padding: 50px 0;
+}
+.careers-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 20px;
+  text-align: center;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(135deg, rgb(110 107 255 / 45%), rgb(26 168 224 / 45%)) border-box;
+  box-shadow: 0 14px 40px rgb(11 14 20 / 6%);
+}
+.careers-icon {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  font-size: 24px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  box-shadow: 0 10px 24px rgba(110, 107, 255, 0.28);
+}
+.careers-body {
+  min-width: 0;
+}
+.careers-body .about-badge {
+  margin-bottom: 10px;
+}
+.careers-title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+}
+.careers-text {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: var(--fs-body-sm);
+  line-height: 1.65;
+  color: var(--muted);
+}
+.careers-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--grad-a);
+  background: rgb(110 107 255 / 8%);
+}
+.careers-pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grad-b);
+}
+.careers-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--grad-b);
+  animation: careersPulse 1.8s ease-out infinite;
+}
+@keyframes careersPulse {
+  from { transform: scale(1); opacity: 0.6; }
+  to   { transform: scale(2.8); opacity: 0; }
+}
+
+@media (min-width: 768px) {
+  .careers-sec {
+    padding: 64px 0;
+  }
+  .careers-card {
+    padding: 34px 36px;
+  }
+  .careers-title {
+    font-size: 30px;
+  }
+}
+/* laptop/desktop: one row (icon | text | status) */
+@media (min-width: 992px) {
+  .careers-card {
+    flex-direction: row;
+    gap: 26px;
+    text-align: left;
+  }
+  .careers-body {
+    flex: 1 1 auto;
+  }
+  .careers-text {
+    margin: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .careers-pulse::after { animation: none; }
+}
+
 /* SME Experience (clients) section start (mobile-first) */
 
 .clint-sec {
@@ -1895,9 +2011,13 @@ p.mswecrd-serv-desc {
 }
 
 /* logo cards: 2 per row on phones, centred; grows to 6 per row on desktop */
+/* centred wrapping rows: a part-filled last row sits in the middle */
 .sme-clients {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  --cols: 2;
+  --gap: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 14px;
   max-width: 560px;
   margin: 8px auto 0;
@@ -1905,6 +2025,8 @@ p.mswecrd-serv-desc {
   list-style: none;
 }
 .sme-client {
+  flex: 0 0 calc((100% - var(--gap) * (var(--cols) - 1)) / var(--cols));
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1932,7 +2054,7 @@ p.mswecrd-serv-desc {
   height: 56px;
 }
 .sme-client-logo img {
-  max-width: 120px;
+  max-width: min(120px, 100%);
   max-height: 56px;
   width: auto;
   height: auto;
@@ -1947,6 +2069,26 @@ p.mswecrd-serv-desc {
   text-transform: uppercase;
   color: var(--muted);
 }
+/* very wide wordmarks get the full card width so they stay legible */
+.sme-client-logo img.is-wide {
+  max-width: 100%;
+}
+
+/* companies without a downloadable logo: their name, typeset */
+.sme-client-logo--text {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-align: center;
+}
+.sme-clients-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .sme-clients-note {
   max-width: 560px;
   margin: 18px auto 0;
@@ -1958,6 +2100,7 @@ p.mswecrd-serv-desc {
 
 @media (min-width: 768px) {
   .sme-clients {
+    --gap: 20px;
     gap: 20px;
     max-width: 600px;
   }
@@ -1968,21 +2111,29 @@ p.mswecrd-serv-desc {
     height: 64px;
   }
   .sme-client-logo img {
-    max-width: 150px;
+    max-width: min(150px, 100%);
     max-height: 64px;
+  }
+  .sme-client-logo--text {
+    font-size: 19px;
+  }
+  /* many companies: 3 per row on tablets */
+  .sme-clients:has(> .sme-client:nth-child(3)) {
+    --cols: 3;
+    max-width: 760px;
   }
 }
 
 /* once there are more companies, desktop shows them 3 / 6 per row */
 @media (min-width: 992px) {
   .sme-clients:has(> .sme-client:nth-child(3)) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    --cols: 3;
     max-width: 900px;
   }
 }
 @media (min-width: 1200px) {
   .sme-clients:has(> .sme-client:nth-child(5)) {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    --cols: 6;
     max-width: none;
   }
 }
@@ -2374,6 +2525,10 @@ p.mswecrd-serv-desc {
   border-radius: var(--radius);
   padding: 32px;
   height: 100%;
+}
+/* leave room for the sticky header when scrolled to (e.g. from "Book a call") */
+#contact-form {
+  scroll-margin-top: 100px;
 }
 .contact-form .form-label {
   font-family: var(--font-label);
@@ -2779,6 +2934,12 @@ p.mswecrd-serv-desc {
 .info-item p a:hover,
 .footer-address-item a:hover {
   color: var(--grad-a);
+}
+/* company name on its own line above the street address */
+.info-item .info-company {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
 }
 .info-item .info-label {
   color: var(--text);
@@ -6080,6 +6241,33 @@ a.minServ-btn:hover{
     width: 22px;
     border-radius: 4px;
     background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+}
+
+/* ---- one accent colour per niche (cyan / violet / emerald) ---- */
+.achv--cyber    { --achv-accent: #22d3ee; --achv-rgb: 34, 211, 238; }
+.achv--ai       { --achv-accent: #a78bfa; --achv-rgb: 167, 139, 250; }
+.achv--platform { --achv-accent: #34d399; --achv-rgb: 52, 211, 153; }
+
+.mswe-achievement-item[class*="achv--"] .achv-label {
+  color: var(--achv-accent);
+  border-color: rgba(var(--achv-rgb), 0.45);
+  background: rgba(var(--achv-rgb), 0.1);
+}
+.mswe-achievement-item[class*="achv--"] .achv-label i {
+  color: var(--achv-accent);
+}
+.mswe-achievement-item[class*="achv--"] .mswe-achievement-number[data-suffix]::after {
+  color: var(--achv-accent);
+}
+.mswe-achievement-item[class*="achv--"] .mswe-achievement-number {
+  text-shadow: 0 0 28px rgba(var(--achv-rgb), 0.35);
+}
+.mswe-achievement-item[class*="achv--"] .achv-dots .swiper-pagination-bullet {
+  background: rgba(var(--achv-rgb), 0.35);
+}
+.mswe-achievement-item[class*="achv--"] .achv-dots .swiper-pagination-bullet-active {
+  background: var(--achv-accent);
+  box-shadow: 0 0 10px rgba(var(--achv-rgb), 0.6);
 }
 
 /* ---- tablet : three columns side by side ---- */

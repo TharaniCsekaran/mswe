@@ -46,8 +46,9 @@ function getConfig(env = process.env) {
     host: env.SMTP_HOST || 'smtp.titan.email',
     port: Number(env.SMTP_PORT || 465),
     secure: (env.SMTP_SECURE || 'ssl').toLowerCase(), // 'ssl' (465) | 'tls' (587 STARTTLS) | 'none' (local tests only)
-    user: env.SMTP_USER || 'info@mswe.in',
-    pass: env.SMTP_PASS || '',
+    user: (env.SMTP_USER || 'info@mswe.in').trim(),
+    // strip a trailing newline that pasting into the Vercel dashboard can add
+    pass: (env.SMTP_PASS || '').replace(/[\r\n]+$/, ''),
     to: env.MAIL_TO || 'info@mswe.in',
     from: env.MAIL_FROM || env.SMTP_USER || 'info@mswe.in', // Titan only sends as the logged-in mailbox
     fromName: env.MAIL_FROM_NAME || 'MSWE Website',
@@ -265,12 +266,20 @@ function smtpSend(cfg, raw) {
 /* HTTP handler                                                        */
 /* ------------------------------------------------------------------ */
 
-function send(res, status, message) {
+function send(res, status, message, code) {
   res.statusCode = status;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.end(JSON.stringify({ message }));
+  res.end(JSON.stringify(code ? { message, code } : { message }));
+}
+
+/** Short, non-secret reason for a mail failure (visible in the browser Network tab). */
+function failureCode(msg) {
+  if (/AUTH password failed|AUTH user failed/.test(msg)) return 'smtp_auth';     // wrong mailbox password / user
+  if (/timeout/i.test(msg)) return 'smtp_timeout';                                 // port blocked or server slow
+  if (/connection error|closed unexpectedly|greeting/.test(msg)) return 'smtp_connect';
+  return 'smtp_rejected';                                                          // e.g. sender/recipient refused
 }
 
 async function readBody(req) {
@@ -331,7 +340,7 @@ async function handler(req, res) {
     await smtpSend(cfg, raw);
   } catch (e) {
     console.error(`[mswe-contact] ${e.message}`);
-    return send(res, 502, 'Sorry, we could not send your message right now. Please try again, or email info@mswe.in.');
+    return send(res, 502, 'Sorry, we could not send your message right now. Please try again, or email info@mswe.in.', failureCode(e.message));
   }
 
   const first = data.name.split(' ')[0];

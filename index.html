@@ -38,9 +38,9 @@
             <div class="container">
                 <div class="headercnt-wrapper">
                     <div class="hdrfrst-sec">
-                        <a href="#" class="hdr-logo">
-                          <img class="hdr-logowit" src="assets/images/mswe-dark.png">
-                          <img class="hdr-logodrk" src="assets/images/mswe-dark.png">
+                        <a href="#" class="hdr-logo" aria-label="MSWE home">
+                          <img class="hdr-logowit" src="assets/images/mswe-dark.png" alt="MSWE">
+                          <img class="hdr-logodrk" src="assets/images/mswe-dark.png" alt="" aria-hidden="true">
                         </a>
                         <ul class="hdrnav-list">
                             <li class="hdrnav-item">
@@ -56,6 +56,7 @@
                             </li>
                             <li class="hdrnav-item"><a class="hdrnav-link" href="#about">About</a></li>
                             <li class="hdrnav-item"><a class="hdrnav-link" href="#how-we-work">How We Work</a></li>
+                            <li class="hdrnav-item"><a class="hdrnav-link" href="#careers">Careers</a></li>
                             <li class="hdrnav-item"><a class="hdrnav-link" href="#contact">Contact</a></li>
                             <div class="hdrreq-btnPrt">
                         
@@ -79,8 +80,8 @@
     <section class="mobHead d-block d-lg-none">
     <div class="container">
         <div class="headrmobnav">
-            <a href="#" class="mobnvlogo">
-                <img src="assets/images/mswe-dark.png" alt="">
+            <a href="#" class="mobnvlogo" aria-label="MSWE home">
+                <img src="assets/images/mswe-dark.png" alt="MSWE">
             </a>
             <div class="mobmnuToggle">
                 <span></span>
@@ -92,6 +93,7 @@
                     <li class="mobnavCnt-list"><a href="#services" class="mobnavCnt-link">Services</a></li>
                     <li class="mobnavCnt-list"><a href="#about" class="mobnavCnt-link">About</a></li>
                     <li class="mobnavCnt-list"><a href="#how-we-work" class="mobnavCnt-link">How We Work</a></li>
+                    <li class="mobnavCnt-list"><a href="#careers" class="mobnavCnt-link">Careers</a></li>
                     <li class="mobnavCnt-list"><a class="mobnavCnt-link" href="#contact">Contact</a></li>
                     <li class="mobnavcnt">
                         <a class="mobhdrreq-btn" href="#contact"><span class="hdrreq-btntxt">Get a Quote</span>
@@ -368,7 +370,7 @@
         <div class="mswe-achievement-grid">
 
             <!-- 01 Cybersecurity -->
-            <div class="mswe-achievement-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="mswe-achievement-item achv--cyber" data-aos="fade-up" data-aos-delay="100">
                 <span class="achv-label"><i class="bi bi-shield-lock"></i>Cybersecurity</span>
                 <div class="swiper achv-swiper">
                     <div class="swiper-wrapper">
@@ -400,7 +402,7 @@
             <div class="mswe-achievement-divider"></div>
 
             <!-- 02 AI Agents -->
-            <div class="mswe-achievement-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="mswe-achievement-item achv--ai" data-aos="fade-up" data-aos-delay="200">
                 <span class="achv-label"><i class="bi bi-cpu"></i>AI Agents</span>
                 <div class="swiper achv-swiper">
                     <div class="swiper-wrapper">
@@ -432,7 +434,7 @@
             <div class="mswe-achievement-divider"></div>
 
             <!-- 03 GaaS & SaaS Platforms -->
-            <div class="mswe-achievement-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="mswe-achievement-item achv--platform" data-aos="fade-up" data-aos-delay="300">
                 <span class="achv-label"><i class="bi bi-clipboard2-check"></i>GaaS &amp; SaaS Platforms</span>
                 <div class="swiper achv-swiper">
                     <div class="swiper-wrapper">
@@ -1371,16 +1373,52 @@
     <!-- add companies here: one list item per company, two per industry -->
     <ul class="sme-clients" data-aos="fade-up" data-aos-delay="250">
       <li class="sme-client">
-        <span class="sme-client-logo"><img src="assets/images/clients/target.svg" alt="Target"></span>
+        <span class="sme-client-logo"><img src="assets/images/clients/bank-of-ireland.svg" alt="Bank of Ireland" loading="lazy"></span>
+        <span class="sme-client-ind">Fintech &amp; Banking</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo"><img class="is-wide" src="assets/images/clients/berkshire-hathaway.svg" alt="Berkshire Hathaway" loading="lazy"></span>
+        <span class="sme-client-ind">Fintech &amp; Banking</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo"><img src="assets/images/clients/walgreens.svg" alt="Walgreens" loading="lazy"></span>
         <span class="sme-client-ind">Retail &amp; E&#8209;commerce</span>
       </li>
       <li class="sme-client">
-        <span class="sme-client-logo"><img src="assets/images/clients/tata-power.svg" alt="Tata Power"></span>
+        <span class="sme-client-logo"><img src="assets/images/clients/sainsburys.svg" alt="Sainsbury&#39;s" loading="lazy"></span>
+        <span class="sme-client-ind">Retail &amp; E&#8209;commerce</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo"><img src="assets/images/clients/abb.svg" alt="ABB" loading="lazy"></span>
+        <span class="sme-client-ind">Manufacturing</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo"><img src="assets/images/clients/mccain.svg" alt="McCain" loading="lazy"></span>
+        <span class="sme-client-ind">Manufacturing</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo"><img src="assets/images/clients/analog-devices.svg" alt="Analog Devices" loading="lazy"></span>
+        <span class="sme-client-ind">Technology Services</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo sme-client-logo--text">Celestica</span>
+        <span class="sme-client-ind">Technology Services</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo"><img src="assets/images/clients/tata-power.svg" alt="Tata Power" loading="lazy"></span>
+        <span class="sme-client-ind">Energy &amp; Utilities</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo sme-client-logo--text">Endeavour Energy</span>
+        <span class="sme-client-ind">Energy &amp; Utilities</span>
+      </li>
+      <li class="sme-client">
+        <span class="sme-client-logo"><img src="assets/images/clients/northern-powergrid.jpg" alt="Northern Powergrid" loading="lazy"></span>
         <span class="sme-client-ind">Energy &amp; Utilities</span>
       </li>
     </ul>
 
-    <p class="sme-clients-note">Logos are trademarks of their respective owners and reflect our SMEs&#39; prior delivery experience.</p>
+    <p class="sme-clients-note">Logos are trademarks of their respective owners and reflect our SMEs&#39; prior delivery experience. Northern Powergrid logo via <a href="https://commons.wikimedia.org/wiki/File:1356_NPG_New_Logo_Red_187_9-5-2013_No_Strap.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p>
 
   </div>
 </section>
@@ -2217,6 +2255,26 @@
 </section>
 <!-- ===== FAQ Section End ===== -->
 
+<!-- ===== Careers Section Start ===== -->
+<section class="careers-sec" id="careers">
+  <div class="container">
+    <div class="careers-card" data-aos="fade-up">
+      <span class="careers-icon" aria-hidden="true"><i class="bi bi-briefcase"></i></span>
+      <div class="careers-body">
+        <span class="about-badge"><i class="about-badge-dot"></i>Careers</span>
+        <h2 class="careers-title">Join the <span class="grad-text">MSWE team</span></h2>
+        <p class="careers-text">
+          We&#39;re growing across cybersecurity, AI, and enterprise platforms. There are no open
+          positions right now, but new roles will be posted here soon. Thank you for your
+          patience, and please check back shortly.
+        </p>
+      </div>
+      <span class="careers-status"><span class="careers-pulse" aria-hidden="true"></span>New openings coming soon</span>
+    </div>
+  </div>
+</section>
+<!-- ===== Careers Section End ===== -->
+
  <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="container">
@@ -2420,16 +2478,12 @@
           <div class="contact-info">
             <div class="info-item">
               <span class="info-icon"><i class="bi bi-envelope"></i></span>
-              <div><h5>Email</h5><p><span class="info-label">General:</span> <a href="mailto:info@mswe.in">info@mswe.in</a></p><p><span class="info-label">Admin:</span> <a href="mailto:pmo@mswe.in">pmo@mswe.in</a></p></div>
-            </div>
-            <div class="info-item">
-              <span class="info-icon"><i class="bi bi-telephone"></i></span>
-              <div><h5>Phone</h5><p><a href="tel:+919626737345">+91 96267 37345</a></p></div>
+              <div><h5>Email</h5><p><a href="mailto:info@mswe.in">info@mswe.in</a></p></div>
             </div>
             <div class="info-item">
               <span class="info-icon"><i class="bi bi-geo-alt"></i></span>
               <div><h5>Address</h5>
-                <p>MSWE Technology Solutions Pvt. Ltd., New No. 58, 3rd Main Road, Kasturibai Nagar, Adyar, Chennai 600020, Tamil Nadu, India</p>
+                <p><span class="info-company">MSWE Technology Solutions Pvt. Ltd.</span>New No. 58, 3rd Main Road, Kasturibai Nagar, Adyar, Chennai 600020, Tamil Nadu, India</p>
               </div>
             </div>
             <div class="info-item">
@@ -2443,7 +2497,7 @@
               <div><h5>Response Time</h5><p>Within one business day, every time.</p></div>
             </div>
             <div class="info-item">
-              <button type="submit" class="btn btn-primary twtcalbtn">Book a 20-min call</button>
+              <button type="button" class="btn btn-primary twtcalbtn js-book-call">Book a 20-min call</button>
             </div>
             <div class="contact-infobg">
             </div>
@@ -2471,6 +2525,7 @@
           <div class="footer-links">
             <a href="#minServ">Services</a>
             <a href="#industries">Industries</a>
+            <a href="#careers">Careers</a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#mswePrivacyModal">Privacy & Policy</a>
           </div>
         </div>
@@ -2487,7 +2542,6 @@
           <div class="footer-address-item"><i class="bi bi-geo-alt"></i><span>New No. 58, 3rd Main Road, Kasturibai Nagar, Adyar, Chennai 600020, Tamil Nadu, India</span></div>
           <div class="footer-address-item"><i class="bi bi-buildings"></i><span class="pipe-list"><span>Chennai</span><span>Bangalore</span><span>Hyderabad</span><span>Coimbatore</span></span></div>
           <div class="footer-address-item"><i class="bi bi-envelope"></i><a href="mailto:info@mswe.in">info@mswe.in</a></div>
-          <div class="footer-address-item"><i class="bi bi-telephone"></i><a href="tel:+919626737345">+91 96267 37345</a></div>
         </div>
       </div>
       </div>
@@ -2771,7 +2825,6 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
-    <script src="assets/js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
     <script>
@@ -3935,6 +3988,57 @@ $(document).ready(function () {
 
 });
 
+</script>
+<script>
+// "Book a 20-min call": opens the Calendly booking page in a popup.
+// Paste the MSWE Calendly event link below (Calendly > event > Copy link).
+(function () {
+    var CALENDLY_URL = 'https://calendly.com/mswe-info/30min';
+
+    var BRAND = 'hide_gdpr_banner=1&primary_color=6e6bff';
+    var loading = null;
+
+    // Load Calendly's widget only when someone actually clicks (keeps the page fast)
+    function loadCalendly() {
+        if (window.Calendly) return Promise.resolve();
+        if (loading) return loading;
+        loading = new Promise(function (resolve, reject) {
+            var css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.href = 'https://assets.calendly.com/assets/external/widget.css';
+            document.head.appendChild(css);
+            var js = document.createElement('script');
+            js.src = 'https://assets.calendly.com/assets/external/widget.js';
+            js.async = true;
+            js.onload = resolve;
+            js.onerror = reject;
+            document.head.appendChild(js);
+        });
+        return loading;
+    }
+
+    // No link yet: send visitors to the contact form instead of a dead button
+    function fallbackToForm() {
+        var name = document.getElementById('cf-name');
+        var target = document.getElementById('contact-form') || document.getElementById('contact');
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (name) setTimeout(function () { name.focus({ preventScroll: true }); }, 600);
+        if (window.toastr) {
+            toastr.info('Online booking is coming soon. Send us a message and we will schedule your call.', 'Book a call');
+        }
+    }
+
+    document.querySelectorAll('.js-book-call').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            if (!CALENDLY_URL) return fallbackToForm();
+
+            var url = CALENDLY_URL + (CALENDLY_URL.indexOf('?') === -1 ? '?' : '&') + BRAND;
+            loadCalendly()
+                .then(function () { window.Calendly.initPopupWidget({ url: url }); })
+                .catch(function () { window.open(url, '_blank', 'noopener'); }); // e.g. blocked by an ad blocker
+        });
+    });
+})();
 </script>
   </body>
 </html>

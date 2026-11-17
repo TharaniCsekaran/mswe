@@ -50,10 +50,14 @@ and `mx2.titan.email` (20), **SPF** TXT `v=spf1 include:spf.titan.email ~all`, a
 | "Sorry, we could not send your message…" | SMTP problem | Vercel → project → **Logs**: lines start with `[mswe-contact]` |
 | "This form can only be submitted from the MSWE website." | site served from a domain not in `ALLOWED_ORIGINS` | add it to `ALLOWED_ORIGINS` |
 
-Common log messages:
+When sending fails (HTTP 502), the response also carries a short `code`, visible in the
+browser: DevTools → **Network** → `contact` → **Response**. It has the same meaning as the log line:
 
-- `SMTP AUTH password failed`: wrong mailbox password in `SMTP_PASS`.
-- `SMTP connection error` / `SMTP timeout`: set `SMTP_PORT=587` and `SMTP_SECURE=tls`.
+| `code` | Log line | Fix |
+|---|---|---|
+| `smtp_auth` | `SMTP AUTH password failed` | `SMTP_PASS` is wrong. Use the **info@mswe.in mailbox password** (the one you use at mail.titan.email), not your GoDaddy account password. Re-enter it, check it's set for **Production**, then **Redeploy**. |
+| `smtp_timeout` / `smtp_connect` | `SMTP timeout` / `SMTP connection error` | set `SMTP_PORT=587` and `SMTP_SECURE=tls`, then redeploy |
+| `smtp_rejected` | `SMTP MAIL FROM/RCPT TO failed` | `SMTP_USER` and `MAIL_FROM` must both be `info@mswe.in` |
 
 ## Built-in protection
 
