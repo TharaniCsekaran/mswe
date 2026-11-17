@@ -1,3 +1,4 @@
-# Contact form secrets: real mail config must never be committed
-api/mail-config.php
-mswe-mail-config.php
+# Contact form secrets: SMTP password lives in Vercel env vars, never in git
+.env
+.env.*
+.vercel

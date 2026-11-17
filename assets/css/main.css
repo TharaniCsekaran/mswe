@@ -2395,6 +2395,190 @@ p.mswecrd-serv-desc {
   box-shadow: 0 0 0 3px rgba(26, 168, 224, 0.15);
   border-color: var(--grad-b);
 }
+/* ---- Topics: selectable cards (mobile-first) ---- */
+.topic-field {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.topic-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  float: none;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0;
+}
+.topic-hint {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+  opacity: 0.85;
+}
+.topic-chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  border-radius: 14px;
+}
+.topic-chip {
+  position: relative;
+  display: block;
+  margin: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* real checkbox stays focusable for keyboard + screen readers, visually hidden */
+.topic-chip input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.topic-chip-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  min-height: 58px;
+  padding: 10px 30px 10px 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease),
+    box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.topic-chip-icon {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 16px;
+  color: var(--grad-a);
+  background: var(--surface);
+  box-shadow: 0 2px 6px rgb(11 14 20 / 6%);
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.topic-chip-text {
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+.topic-chip-text small {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.topic-chip-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s var(--ease), transform 0.25s var(--ease);
+}
+@media (hover: hover) {
+  .topic-chip:hover .topic-chip-body {
+    border-color: rgb(110 107 255 / 35%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgb(11 14 20 / 6%);
+  }
+}
+.topic-chip input:focus-visible + .topic-chip-body {
+  outline: 2px solid var(--grad-a);
+  outline-offset: 2px;
+}
+/* selected: gradient border, soft tint, filled icon, check badge */
+.topic-chip input:checked + .topic-chip-body {
+  border-color: transparent;
+  background:
+    linear-gradient(rgb(110 107 255 / 7%), rgb(26 168 224 / 7%)) padding-box,
+    linear-gradient(135deg, var(--grad-a), var(--grad-b)) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 8px 20px rgba(110, 107, 255, 0.16);
+}
+.topic-chip input:checked + .topic-chip-body .topic-chip-icon {
+  color: #fff;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+}
+.topic-chip input:checked + .topic-chip-body .topic-chip-check {
+  opacity: 1;
+  transform: scale(1);
+}
+/* error state for the whole group */
+.topic-chips.is-invalid .topic-chip-body {
+  border-color: rgb(220 53 69 / 55%);
+}
+.topic-field .text-danger {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* "Tell us more" field slides open when Others is selected */
+.topic-other {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.35s var(--ease), opacity 0.3s var(--ease), margin 0.35s var(--ease);
+}
+.topic-other.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 14px;
+}
+.topic-other-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 2px; /* room for the focus ring */
+}
+
+@media (min-width: 576px) {
+  .topic-chips {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1200px) {
+  .topic-chip-body {
+    min-height: 62px;
+    padding: 12px 30px 12px 12px;
+  }
+  .topic-chip-text {
+    font-size: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .topic-chip-body, .topic-chip-check, .topic-other {
+    transition: none;
+  }
+}
+
 .contact-info {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -5771,64 +5955,12 @@ a.minServ-btn:hover{
     border: 0 !important;
 }
 
-.contact-form .select2-container--default .select2-selection--multiple {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: var(--fs-body-sm);
-    min-height: 48px;
-    padding: 6px 10px;
-}
-
-.contact-form .select2-container {
-    display: block;
-    width: 100% !important;
-}
-
-.contact-form .select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    padding: 0;
-    margin: 0;
-}
-
-.contact-form .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    padding: 4px 20px;
-    margin: 0;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  border-right : unset !important;
-}
 .contact-form .form-label {
   display: inline-block;
 }
 .contact-form .iti {
   display: block;
 }
-.contact-form .select2-container--default.select2-container--focus .select2-selection--multiple {
-    border-color: var(--border);
-    outline: 0;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
-}
-
-.contact-form .select2-container--default .select2-search--inline .select2-search__field {
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: var(--fs-body-sm);
-    margin-top: 4px;
-}
-
-.contact-form .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
-    color: var(--text-muted);
-}
-
 /* ==========================================================================
    Achievement strip — 3 synced carousels (mobile-first)
    ========================================================================== */

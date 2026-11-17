@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
 <!-- Intl Tel Input CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/css/intlTelInput.css">
@@ -2284,7 +2283,7 @@
             />
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-12">
             <label for="cf-company" class="form-label">Company*</label>
             <input
                 type="text"
@@ -2292,6 +2291,18 @@
                 id="cf-company"
                 name="company"
                 placeholder="Company name"
+                required
+            />
+        </div>
+
+        <div class="col-sm-6">
+            <label for="cf-phone" class="form-label">Phone*</label>
+            <input
+                type="tel"
+                class="form-control"
+                id="cf-phone"
+                name="phone"
+                placeholder="Enter mobile number"
                 required
             />
         </div>
@@ -2307,35 +2318,77 @@
             />
         </div>
 
-        <div class="col-sm-6">
-    <label for="cf-phone" class="form-label">Phone*</label>
-    <input
-        type="tel"
-        class="form-control"
-        id="cf-phone"
-        name="phone"
-        placeholder="Enter mobile number"
-        required
-    />
-</div>
+        <!-- Topics: selectable cards (checkboxes). "Others" reveals the text field below. -->
+        <div class="col-12">
+            <fieldset class="topic-field">
+                <legend class="form-label topic-legend">What can we help with?* <span class="topic-hint">Select all that apply</span></legend>
+                <div class="topic-chips" id="cf-topic-chips">
+                <label class="topic-chip">
+                    <input type="checkbox" name="topics" value="Cybersecurity" id="cf-topics">
+                    <span class="topic-chip-body">
+                        <i class="bi bi-shield-lock topic-chip-icon" aria-hidden="true"></i>
+                        <span class="topic-chip-text">Cybersecurity</span>
+                        <i class="bi bi-check-lg topic-chip-check" aria-hidden="true"></i>
+                    </span>
+                </label>
+                <label class="topic-chip">
+                    <input type="checkbox" name="topics" value="AI Agents &amp; Solutions">
+                    <span class="topic-chip-body">
+                        <i class="bi bi-cpu topic-chip-icon" aria-hidden="true"></i>
+                        <span class="topic-chip-text">AI Agents &amp; Solutions</span>
+                        <i class="bi bi-check-lg topic-chip-check" aria-hidden="true"></i>
+                    </span>
+                </label>
+                <label class="topic-chip">
+                    <input type="checkbox" name="topics" value="GaaS (Governance-as-a-Service)">
+                    <span class="topic-chip-body">
+                        <i class="bi bi-clipboard2-check topic-chip-icon" aria-hidden="true"></i>
+                        <span class="topic-chip-text">GaaS <small>Governance-as-a-Service</small></span>
+                        <i class="bi bi-check-lg topic-chip-check" aria-hidden="true"></i>
+                    </span>
+                </label>
+                <label class="topic-chip">
+                    <input type="checkbox" name="topics" value="SaaS &amp; Enterprise Development">
+                    <span class="topic-chip-body">
+                        <i class="bi bi-window-stack topic-chip-icon" aria-hidden="true"></i>
+                        <span class="topic-chip-text">SaaS &amp; Enterprise Dev</span>
+                        <i class="bi bi-check-lg topic-chip-check" aria-hidden="true"></i>
+                    </span>
+                </label>
+                <label class="topic-chip">
+                    <input type="checkbox" name="topics" value="Industry Experts &amp; Training">
+                    <span class="topic-chip-body">
+                        <i class="bi bi-person-workspace topic-chip-icon" aria-hidden="true"></i>
+                        <span class="topic-chip-text">Industry Experts &amp; Training</span>
+                        <i class="bi bi-check-lg topic-chip-check" aria-hidden="true"></i>
+                    </span>
+                </label>
+                <label class="topic-chip">
+                    <input type="checkbox" name="topics" value="Others">
+                    <span class="topic-chip-body">
+                        <i class="bi bi-plus-circle topic-chip-icon" aria-hidden="true"></i>
+                        <span class="topic-chip-text">Others</span>
+                        <i class="bi bi-check-lg topic-chip-check" aria-hidden="true"></i>
+                    </span>
+                </label>
+                </div>
+            </fieldset>
 
-        <div class="col-sm-6">
-    <label for="cf-topics" class="form-label">Topics*</label>
-
-    <select
-        class="form-select"
-        id="cf-topics"
-        name="topics"
-        multiple
-        required
-    >
-        <option value="Cybersecurity">Cybersecurity</option>
-        <option value="AI Agents &amp; Solutions">AI Agents &amp; Solutions</option>
-        <option value="GaaS (Governance-as-a-Service)">GaaS (Governance-as-a-Service)</option>
-        <option value="SaaS &amp; Enterprise Development">SaaS &amp; Enterprise Development</option>
-        <option value="Industry Experts &amp; Training">Industry Experts &amp; Training</option>
-    </select>
-</div>
+            <div class="topic-other" id="cf-topic-other-wrap" aria-hidden="true">
+                <div class="topic-other-inner">
+                    <label for="cf-topic-other" class="form-label">Tell us more*</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="cf-topic-other"
+                        name="topic_other"
+                        placeholder="e.g. Data migration, ERP support, compliance audit"
+                        maxlength="100"
+                        tabindex="-1"
+                    />
+                </div>
+            </div>
+        </div>
 
         <div class="col-12">
             <label for="cf-message" class="form-label">Message</label>
@@ -2710,7 +2763,6 @@
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
     <!-- Select2 -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- Intl Tel Input -->
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/js/intlTelInput.min.js"></script>
@@ -3552,21 +3604,6 @@ $(document).ready(function () {
 
 
     // =====================================
-    // SELECT2 INITIALIZATION
-    // =====================================
-
-    $("#cf-topics").select2({
-
-        placeholder: "Select your topics",
-
-        allowClear: true,
-
-        width: "100%"
-
-    });
-
-
-    // =====================================
     // INTERNATIONAL PHONE INPUT
     // =====================================
 
@@ -3606,7 +3643,7 @@ $(document).ready(function () {
 
     $("#contact-form").validate({
 
-        ignore: ":hidden:not(#cf-topics)",
+        ignore: ":hidden",
 
         rules: {
 
@@ -3638,6 +3675,13 @@ $(document).ready(function () {
 
             topics: {
                 required: true
+            },
+
+            topic_other: {
+                required: function () {
+                    return $('input[name="topics"][value="Others"]').is(":checked");
+                },
+                maxlength: 100
             },
 
             message: {
@@ -3672,6 +3716,10 @@ $(document).ready(function () {
                 required: "Please select at least one topic"
             },
 
+            topic_other: {
+                required: "Please tell us the other topic"
+            },
+
             message: {
                 required: "Please enter your message",
                 minlength: "Message must contain at least 10 characters"
@@ -3686,7 +3734,7 @@ $(document).ready(function () {
 
             if (element.attr("name") === "topics") {
 
-                error.insertAfter(element.next(".select2"));
+                error.insertAfter("#cf-topic-chips");
 
             } else if (element.attr("name") === "phone") {
 
@@ -3704,10 +3752,8 @@ $(document).ready(function () {
 
             $(element).addClass("is-invalid");
 
-            if (element.id === "cf-topics") {
-                $("#cf-topics").next(".select2")
-                    .find(".select2-selection")
-                    .addClass("is-invalid");
+            if (element.name === "topics") {
+                $("#cf-topic-chips").addClass("is-invalid");
             }
 
             if (element.id === "cf-phone") {
@@ -3721,10 +3767,8 @@ $(document).ready(function () {
 
             $(element).removeClass("is-invalid");
 
-            if (element.id === "cf-topics") {
-                $("#cf-topics").next(".select2")
-                    .find(".select2-selection")
-                    .removeClass("is-invalid");
+            if (element.name === "topics") {
+                $("#cf-topic-chips").removeClass("is-invalid");
             }
 
             if (element.id === "cf-phone") {
@@ -3767,7 +3811,9 @@ $(document).ready(function () {
                 // Send international number with country code
                 phone: iti.getNumber(),
 
-                topics: $("#cf-topics").val() || [],
+                topics: $('input[name="topics"]:checked').map(function () { return this.value; }).get(),
+
+                topic_other: $("#cf-topic-other").val().trim(),
 
                 message: $("#cf-message").val().trim(),
 
@@ -3783,7 +3829,7 @@ $(document).ready(function () {
 
             $.ajax({
 
-                url: "api/contact.php",
+                url: "/api/contact",
 
                 type: "POST",
 
@@ -3806,7 +3852,7 @@ $(document).ready(function () {
 
                     iti.setCountry("in");
 
-                    $("#cf-topics").val(null).trigger("change");
+                    syncTopicOther(false);
 
                     $(form).validate().resetForm();
 
@@ -3816,9 +3862,7 @@ $(document).ready(function () {
                     $(".phone-invalid")
                         .removeClass("phone-invalid");
 
-                    $("#cf-topics").next(".select2")
-                        .find(".select2-selection")
-                        .removeClass("is-invalid");
+                    $("#cf-topic-chips").removeClass("is-invalid");
 
                 },
 
@@ -3853,10 +3897,31 @@ $(document).ready(function () {
     });
 
 
-    // Revalidate Select2 when a topic changes
-    $("#cf-topics").on("change", function () {
+    // Topic cards: revalidate on change, and slide the "Tell us more" field
+    // open only while "Others" is selected
+    function syncTopicOther(focus) {
 
-        $(this).valid();
+        const hasOther = $('input[name="topics"][value="Others"]').is(":checked");
+        const $wrap = $("#cf-topic-other-wrap");
+        const $field = $("#cf-topic-other");
+
+        $wrap.toggleClass("is-open", hasOther).attr("aria-hidden", hasOther ? "false" : "true");
+        $field.attr("tabindex", hasOther ? null : "-1");
+
+        if (hasOther) {
+            if (focus) { setTimeout(function () { $field.trigger("focus"); }, 250); }
+        } else {
+            $field.val("").removeClass("is-invalid");
+            $wrap.find("span.text-danger").remove();
+        }
+
+    }
+
+    $('input[name="topics"]').on("change", function () {
+
+        syncTopicOther(this.value === "Others" && this.checked);
+
+        $("#cf-topics").valid();
 
     });
 

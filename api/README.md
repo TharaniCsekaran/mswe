@@ -1,22 +1,35 @@
-# Contact form: setup on GoDaddy (cPanel) with Titan Mail
+# Contact form: setup on Vercel with Titan Mail
 
-The form on `index.html` posts to `api/contact.php`, which emails each enquiry to
-**info@mswe.in** through Titan Mail's SMTP server (`smtp.titan.email`). The
-visitor's address is set as *Reply-To*, so pressing **Reply** in Titan answers them.
+The form on `index.html` posts to **`/api/contact`**. On Vercel, `api/contact.js`
+runs automatically as a serverless function. It validates the enquiry and emails
+it to **info@mswe.in** through Titan Mail's SMTP server (`smtp.titan.email`).
+The visitor's address is set as *Reply-To*, so pressing **Reply** in Titan answers them.
+
+No npm packages are needed: the function uses only Node's built-in modules.
 
 ## One-time setup
 
-1. **Upload the site** to `public_html` as usual, including the `api/` folder
-   (`contact.php`, `.htaccess`, `mail-config.sample.php`).
-2. **PHP version:** cPanel → *Select PHP Version* → **7.4 or newer** (8.x recommended).
-3. **Create the real config file, outside the public folder:**
-   - cPanel → *File Manager* → go to your **home folder** (the one that *contains* `public_html`).
-   - Copy `public_html/api/mail-config.sample.php` there and rename it to **`mswe-mail-config.php`**.
-   - Edit it and set `'smtp_pass'` to the **info@mswe.in** mailbox password.
-   - This file is never inside `public_html`, so it can't be downloaded, and it is git-ignored.
-4. **Domains:** if the site is not yet on `https://mswe.in`, add the address you are
-   testing on to `'allowed_origins'` in that file, for example `'https://your-temp-domain.com'`.
-   Submissions from any other website are rejected.
+1. **Deploy the site to Vercel** as usual (the `api/` folder must be included).
+2. **Add the mailbox password as an environment variable:**
+   Vercel → your project → **Settings → Environment Variables** → *Add*:
+
+   | Name | Value | Environments |
+   |---|---|---|
+   | `SMTP_PASS` | the **info@mswe.in** mailbox password | Production (and Preview if you test there) |
+
+   Mark it **Sensitive**. It is stored encrypted by Vercel and never reaches the browser or git.
+3. **Redeploy** (Deployments → ⋯ → *Redeploy*) so the new variable is picked up.
+
+That's it. Everything else has working defaults.
+
+### Optional settings (only if you need to change a default)
+
+| Variable | Default | When to change |
+|---|---|---|
+| `SMTP_PORT` / `SMTP_SECURE` | `465` / `ssl` | if port 465 is ever blocked, use `587` / `tls` |
+| `MAIL_TO` | `info@mswe.in` | deliver enquiries to a different inbox |
+| `SMTP_USER`, `MAIL_FROM` | `info@mswe.in` | sending from a different Titan mailbox (both must match) |
+| `ALLOWED_ORIGINS` | `https://mswe.in,https://www.mswe.in` | the site moves to another domain. Vercel's own `*.vercel.app` URLs for this project are always allowed. |
 
 ## Test it
 
@@ -24,23 +37,28 @@ Open the live site, fill in the form and press **Send Message**. You should see
 "Thanks …! Your message has been sent." and the email should arrive in info@mswe.in
 within a minute. Check the spam folder the first time.
 
+**Deliverability:** because the DNS for mswe.in is on Vercel, make sure Titan's
+records are there (Vercel → Domains → mswe.in → DNS): **MX** `mx1.titan.email` (10)
+and `mx2.titan.email` (20), **SPF** TXT `v=spf1 include:spf.titan.email ~all`, and the
+**DKIM** TXT record shown in your Titan admin panel.
+
 ## If it doesn't work
 
 | Message the visitor sees | Cause | Fix |
 |---|---|---|
-| "Our contact form is being set up…" | config file not found, or `smtp_pass` empty | step 3: check the file name and location |
-| "Sorry, we could not send your message…" | SMTP problem | see the error log (cPanel → *Errors*, or `error_log` in `public_html/api/`): lines start with `[mswe-contact]` |
-| "This form can only be submitted from the MSWE website." | domain not in `allowed_origins` | step 4 |
+| "Our contact form is being set up…" | `SMTP_PASS` missing | step 2, then redeploy |
+| "Sorry, we could not send your message…" | SMTP problem | Vercel → project → **Logs**: lines start with `[mswe-contact]` |
+| "This form can only be submitted from the MSWE website." | site served from a domain not in `ALLOWED_ORIGINS` | add it to `ALLOWED_ORIGINS` |
 
-Common SMTP errors in the log:
+Common log messages:
 
-- `AUTH password failed`: wrong mailbox password in the config file.
-- `connect ... failed`: GoDaddy blocked port 465. In the config set
-  `'smtp_port' => 587` and `'smtp_secure' => 'tls'`.
+- `SMTP AUTH password failed`: wrong mailbox password in `SMTP_PASS`.
+- `SMTP connection error` / `SMTP timeout`: set `SMTP_PORT=587` and `SMTP_SECURE=tls`.
 
 ## Built-in protection
 
 - Hidden "honeypot" field silently drops simple spam bots.
-- At most 5 messages per visitor IP every 10 minutes.
-- All fields are validated again on the server; topics must be one of the five offered.
-- Only the form's own website can submit; the mailbox password never reaches the browser.
+- At most 5 messages per visitor IP every 10 minutes (per running instance).
+- All fields are validated again on the server; topics must be one of the options offered, and "Others" needs its text filled in.
+- Line breaks are stripped from single-line fields, so nobody can inject extra email headers.
+- Only the MSWE site can submit; the mailbox password never reaches the browser and is never logged.
