@@ -1,0 +1,3 @@
+# Contact form secrets: real mail config must never be committed
+api/mail-config.php
+mswe-mail-config.php
