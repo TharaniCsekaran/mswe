@@ -7633,3 +7633,69 @@ button#mswePrivacyOk:disabled {
   opacity: .9;
   overflow-wrap: anywhere;
 }
+
+/* ==========================================================================
+   Mobile alignment fixes
+   ========================================================================== */
+
+/* Industries carousel: arrow buttons (shown below 991px) + tiles snap into place */
+.ind-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.ind-nav-btn:disabled:hover {
+  background: #fff;
+  color: #14161c;
+  border-color: #ddd;
+}
+@media (max-width: 990.98px) {
+  .ind-tiles {
+    scroll-snap-type: x mandatory;
+  }
+  .ind-tiles > div {
+    scroll-snap-align: start;
+  }
+}
+
+/* booking button stays above the skyline drawing */
+.contact-info .info-item {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 575.98px) {
+  /* newsletter: email field and button line up with the text above */
+  .blogNewsletter-input {
+    padding: 0;
+  }
+
+  /* FAQ: the decorative tile peeked out beside the photo */
+  .askUs-glow {
+    display: none;
+  }
+
+  /* contact: slimmer card padding gives the fields and topic cards room */
+  .contact-form {
+    padding: 22px 18px;
+  }
+  .contact-info {
+    min-height: 0;
+    padding: 24px 20px 150px; /* bottom space keeps the skyline clear of the button */
+  }
+  .contact-infobg {
+    height: 130px;
+    bottom: -8px;
+  }
+
+  /* topic cards: icon above the label so long names fit two per row */
+  .topic-chip-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: 100px;
+    padding: 12px 28px 12px 12px;
+  }
+  .topic-chip-text {
+    overflow-wrap: anywhere;
+  }
+}

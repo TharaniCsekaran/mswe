@@ -1274,7 +1274,9 @@
     </div>
 
     
-    <div class="ind-nav-wrap">   
+    <div class="ind-nav-wrap">
+      <button type="button" class="ind-nav-btn ind-prev" id="indPrev" aria-label="Previous industry" aria-controls="indTiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+      <button type="button" class="ind-nav-btn ind-next" id="indNext" aria-label="Next industry" aria-controls="indTiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
 
    
 <div class="row g-3 ind-tiles" id="indTiles">
@@ -3268,21 +3270,32 @@ document.querySelectorAll('.js-hw').forEach(function (root) {
         $next.prop('disabled', scrollLeft >= maxScroll - 2);
     }
 
-    $next.on('click', function () {
-        $tiles[0].scrollBy({
-            left: getScrollAmount(),
-            behavior: 'smooth'
-        });
-    });
+    // index of the tile at the left edge of the strip
+    function currentIndex() {
+        return Math.round($tiles.scrollLeft() / getScrollAmount());
+    }
 
-    $prev.on('click', function () {
-        $tiles[0].scrollBy({
-            left: -getScrollAmount(),
-            behavior: 'smooth'
-        });
-    });
+    // arrows move one tile and show that industry's details below
+    function go(step) {
+        const tiles = $tiles.find('.ind-tile');
+        const i = Math.max(0, Math.min(tiles.length - 1, currentIndex() + step));
+        $tiles[0].scrollTo({ left: i * getScrollAmount(), behavior: 'smooth' });
+        tiles[i].click();
+    }
+    $next.on('click', function () { go(1); });
+    $prev.on('click', function () { go(-1); });
 
-    $tiles.on('scroll', updateButtons);
+    // phones show one tile at a time: after a swipe, show the visible industry
+    let swipeTimer;
+    $tiles.on('scroll', function () {
+        updateButtons();
+        if (window.innerWidth > 575) return;
+        clearTimeout(swipeTimer);
+        swipeTimer = setTimeout(function () {
+            const tile = $tiles.find('.ind-tile')[currentIndex()];
+            if (tile && !tile.classList.contains('active')) tile.click();
+        }, 150);
+    });
 
     $(window).on('resize', updateButtons);
 
