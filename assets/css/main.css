@@ -1891,6 +1891,7 @@ p.mswecrd-serv-desc {
   position: relative;
   padding: 50px 0;
 }
+/* compact card: icon, text, Apply button (stacked on phones, one row on desktop) */
 .careers-card {
   position: relative;
   display: flex;
@@ -1942,36 +1943,227 @@ p.mswecrd-serv-desc {
   line-height: 1.65;
   color: var(--muted);
 }
-.careers-status {
+.careers-apply {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
+  flex: 0 0 auto;
+  min-width: 180px;
+  padding: 12px 26px;
   white-space: nowrap;
+}
+.careers-apply i {
+  transition: transform 0.25s var(--ease);
+}
+.careers-apply:hover i {
+  transform: translateX(3px);
+}
+
+/* ---- application popup ---- */
+/* the sticky site header (z-index 9999) would cover any popup: drop it below the backdrop while one is open */
+body.modal-open header {
+  z-index: 1030 !important;
+}
+.careersModal .modal-content {
+  border: 0;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 30px 80px rgb(11 14 20 / 25%);
+}
+.careersModal .modal-header {
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.careersModal-hdr {
+  min-width: 0;
+}
+.careersModal-tag {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   color: var(--grad-a);
-  background: rgb(110 107 255 / 8%);
 }
-.careers-pulse {
+.careersModal .modal-title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+}
+.careersModal-sub {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.careersModal .mdlclsbtn {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  border-color: var(--border);
+  color: var(--text);
+  background: var(--surface);
+}
+.careersModal .mdlclsbtn:hover {
+  border-color: var(--grad-a);
+  color: var(--grad-a);
+}
+.careersModal .mdlclsbtn svg {
+  width: 18px;
+  height: 18px;
+}
+.careersModal .modal-body {
+  padding: 18px 20px 24px;
+}
+/* phones: full-screen sheet keeps the submit button in reach */
+@media (max-width: 575.98px) {
+  .careersModal .modal-content {
+    border-radius: 0;
+  }
+}
+
+/* the form reuses the contact form's field styles */
+.careers-form.contact-form {
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+.careers-form.contact-form .form-control {
+  background: var(--surface);
+}
+.careers-form .form-select {
+  padding-right: 36px;
+  background-position: right 12px center;
+}
+.careers-form .form-select:invalid {
+  color: var(--muted);
+}
+.careers-form .is-invalid,
+.careers-form .resume-drop.is-invalid {
+  border-color: #dc3545;
+}
+
+/* resume upload box */
+.resume-drop {
   position: relative;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--grad-b);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin: 6px 0 0;
+  padding: 16px;
+  border: 1.5px dashed rgb(110 107 255 / 45%);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
 }
-.careers-pulse::after {
-  content: "";
+.resume-drop:hover,
+.resume-drop.is-drag,
+.resume-drop:focus-within {
+  border-color: var(--grad-a);
+  background: rgb(110 107 255 / 5%);
+}
+.resume-drop input[type="file"] {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
-  background: var(--grad-b);
-  animation: careersPulse 1.8s ease-out infinite;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
-@keyframes careersPulse {
-  from { transform: scale(1); opacity: 0.6; }
-  to   { transform: scale(2.8); opacity: 0; }
+.resume-drop-icon {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 20px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+}
+.resume-drop-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.resume-drop-text strong {
+  font-size: 15px;
+  color: var(--text);
+}
+.resume-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 14px;
+  color: var(--text);
+}
+.resume-file > i {
+  font-size: 20px;
+  color: var(--grad-a);
+}
+.resume-file-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.resume-file-remove {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+}
+.resume-file-remove:hover {
+  color: #dc3545;
+  background: rgb(220 53 69 / 8%);
+}
+.careers-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  cursor: pointer;
+}
+.careers-consent input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--grad-a);
+}
+.careers-consent input.is-invalid {
+  outline: 2px solid #dc3545;
+  outline-offset: 1px;
 }
 
 @media (min-width: 768px) {
@@ -1984,8 +2176,17 @@ p.mswecrd-serv-desc {
   .careers-title {
     font-size: 30px;
   }
+  .careersModal .modal-header {
+    padding: 26px 30px 18px;
+  }
+  .careersModal .modal-title {
+    font-size: 26px;
+  }
+  .careersModal .modal-body {
+    padding: 22px 30px 30px;
+  }
 }
-/* laptop/desktop: one row (icon | text | status) */
+/* laptop/desktop: one row (icon | text | Apply button) */
 @media (min-width: 992px) {
   .careers-card {
     flex-direction: row;
@@ -1999,9 +2200,6 @@ p.mswecrd-serv-desc {
     margin: 0;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .careers-pulse::after { animation: none; }
-}
 
 /* SME Experience (clients) section start (mobile-first) */
 
@@ -2010,59 +2208,98 @@ p.mswecrd-serv-desc {
   padding: 80px 0;
 }
 
-/* logo cards: 2 per row on phones, centred; grows to 6 per row on desktop */
-/* centred wrapping rows: a part-filled last row sits in the middle */
-.sme-clients {
-  --cols: 2;
+/* logo carousel: one row of cards that scrolls on its own and loops.
+   The script duplicates the cards once, so moving the row by -50% loops seamlessly.
+   Without the script (or with reduced motion) the row is a normal swipeable scroller. */
+.sme-marquee {
+  --card-w: 156px;
   --gap: 14px;
+  --speed: 40s;
+  position: relative;
+  margin: 8px -12px 0; /* use the container's side padding on phones */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.sme-marquee::-webkit-scrollbar {
+  display: none;
+}
+.sme-clients {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-  max-width: 560px;
-  margin: 8px auto 0;
-  padding: 0;
+  width: max-content;
+  margin: 0;
+  padding: 12px 0 16px; /* room for the hover lift and shadow */
   list-style: none;
 }
 .sme-client {
-  flex: 0 0 calc((100% - var(--gap) * (var(--cols) - 1)) / var(--cols));
+  flex: 0 0 var(--card-w);
+  margin-right: var(--gap); /* margin (not gap) keeps both halves equal for the -50% loop */
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 22px 14px 18px;
+  gap: 10px;
+  padding: 18px 12px 14px;
   text-align: center;
+  scroll-snap-align: center;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: 0 8px 24px rgb(11 14 20 / 4%);
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
 }
+.sme-client:first-child {
+  margin-left: 12px;
+}
 .sme-client:hover {
   transform: translateY(-4px);
   border-color: rgb(110 107 255 / 22%);
   box-shadow: 0 14px 32px rgba(110, 107, 255, 0.14);
 }
-/* fixed logo box so square marks (Target) and wide ones (Tata Power) feel equal */
+
+/* running: the script added the copies and the class */
+.sme-marquee.is-running {
+  overflow: hidden;
+}
+.sme-marquee.is-running .sme-clients {
+  animation: sme-scroll var(--speed) linear infinite;
+}
+.sme-marquee.is-running .sme-client:first-child {
+  margin-left: 0;
+}
+/* pause while the visitor looks at a logo, keyboard-focuses it, or holds a finger on it */
+.sme-marquee.is-running:hover .sme-clients,
+.sme-marquee.is-running:focus-within .sme-clients,
+.sme-marquee.is-paused .sme-clients {
+  animation-play-state: paused;
+}
+@keyframes sme-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* fixed logo box so square marks and wide wordmarks feel equal */
 .sme-client-logo {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 56px;
+  height: 48px;
 }
 .sme-client-logo img {
-  max-width: min(120px, 100%);
-  max-height: 56px;
+  max-width: min(112px, 100%);
+  max-height: 48px;
   width: auto;
   height: auto;
   object-fit: contain;
 }
 .sme-client-ind {
   font-family: var(--font-label);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: 0.1em;
@@ -2077,7 +2314,7 @@ p.mswecrd-serv-desc {
 /* companies without a downloadable logo: their name, typeset */
 .sme-client-logo--text {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.01em;
@@ -2091,7 +2328,7 @@ p.mswecrd-serv-desc {
 }
 .sme-clients-note {
   max-width: 560px;
-  margin: 18px auto 0;
+  margin: 14px auto 0;
   text-align: center;
   font-size: 12px;
   line-height: 1.5;
@@ -2099,42 +2336,28 @@ p.mswecrd-serv-desc {
 }
 
 @media (min-width: 768px) {
-  .sme-clients {
+  .sme-marquee {
+    --card-w: 200px;
     --gap: 20px;
-    gap: 20px;
-    max-width: 600px;
+    --speed: 50s;
+    margin-left: 0;
+    margin-right: 0;
   }
   .sme-client {
-    padding: 28px 20px 22px;
+    padding: 22px 16px 18px;
   }
   .sme-client-logo {
-    height: 64px;
+    height: 56px;
   }
   .sme-client-logo img {
-    max-width: min(150px, 100%);
-    max-height: 64px;
+    max-width: min(140px, 100%);
+    max-height: 56px;
   }
   .sme-client-logo--text {
-    font-size: 19px;
+    font-size: 18px;
   }
-  /* many companies: 3 per row on tablets */
-  .sme-clients:has(> .sme-client:nth-child(3)) {
-    --cols: 3;
-    max-width: 760px;
-  }
-}
-
-/* once there are more companies, desktop shows them 3 / 6 per row */
-@media (min-width: 992px) {
-  .sme-clients:has(> .sme-client:nth-child(3)) {
-    --cols: 3;
-    max-width: 900px;
-  }
-}
-@media (min-width: 1200px) {
-  .sme-clients:has(> .sme-client:nth-child(5)) {
-    --cols: 6;
-    max-width: none;
+  .sme-client-ind {
+    font-size: 11px;
   }
 }
 

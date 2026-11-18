@@ -1370,8 +1370,9 @@
       </div>
     </div>
 
-    <!-- add companies here: one list item per company, two per industry -->
-    <ul class="sme-clients" data-aos="fade-up" data-aos-delay="250">
+    <!-- add companies here: one list item per company. The carousel copies them automatically. -->
+    <div class="sme-marquee js-sme-marquee" data-aos="fade-up" data-aos-delay="250">
+    <ul class="sme-clients" aria-label="Companies our SMEs have worked with">
       <li class="sme-client">
         <span class="sme-client-logo"><img src="assets/images/clients/bank-of-ireland.svg" alt="Bank of Ireland" loading="lazy"></span>
         <span class="sme-client-ind">Fintech &amp; Banking</span>
@@ -1417,6 +1418,7 @@
         <span class="sme-client-ind">Energy &amp; Utilities</span>
       </li>
     </ul>
+    </div>
 
     <p class="sme-clients-note">Logos are trademarks of their respective owners and reflect our SMEs&#39; prior delivery experience. Northern Powergrid logo via <a href="https://commons.wikimedia.org/wiki/File:1356_NPG_New_Logo_Red_187_9-5-2013_No_Strap.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p>
 
@@ -1989,7 +1991,7 @@
         </p>
     </div>
 
-    <form class="blogNewsletter-form">
+    <form class="blogNewsletter-form js-newsletter" novalidate>
         <div class="blogNewsletter-input">
             <i class="bi bi-envelope"></i>
             <input type="email"
@@ -2064,12 +2066,12 @@
                         to your inbox.
                     </p>
 
-                    <form class="blogNewsletter-form">
+                    <form class="blogNewsletter-form js-newsletter" novalidate>
 
                         <div class="blogNewsletter-input">
 
                             <input type="email"
-                                placeholder="Your email address"
+                                name="email" autocomplete="email" placeholder="Your email address"
                                 aria-label="Your email address"
                                 required>
 
@@ -2264,15 +2266,122 @@
         <span class="about-badge"><i class="about-badge-dot"></i>Careers</span>
         <h2 class="careers-title">Join the <span class="grad-text">MSWE team</span></h2>
         <p class="careers-text">
-          We&#39;re growing across cybersecurity, AI, and enterprise platforms. There are no open
-          positions right now, but new roles will be posted here soon. Thank you for your
-          patience, and please check back shortly.
+          We&#39;re always looking for curious, driven people in cybersecurity, AI, and enterprise
+          platforms. Share your details and resume, and our team will reach out when there&#39;s a
+          role that fits you.
         </p>
       </div>
-      <span class="careers-status"><span class="careers-pulse" aria-hidden="true"></span>New openings coming soon</span>
+      <button type="button" class="btn btn-primary careers-apply" data-bs-toggle="modal" data-bs-target="#careersModal">
+        Apply now <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 </section>
+
+<!-- Careers application popup -->
+<div class="modal fade careersModal" id="careersModal" tabindex="-1" aria-labelledby="careersModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="careersModal-hdr">
+          <span class="careersModal-tag">MSWE &middot; CAREERS</span>
+          <h2 class="modal-title" id="careersModalTitle">Apply to join MSWE</h2>
+          <p class="careersModal-sub">Share your details and resume. They go straight to our hiring team.</p>
+        </div>
+        <button type="button" class="mdlclsbtn btn-close" data-bs-dismiss="modal" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      </div>
+      <div class="modal-body">
+              <form class="contact-form careers-form" id="careers-form" novalidate>
+                <div class="contact-hp-field" aria-hidden="true">
+                  <label for="cr-website">Leave this field empty</label>
+                  <input type="text" id="cr-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <label for="cr-name" class="form-label">Full name*</label>
+                    <input type="text" class="form-control" id="cr-name" name="name" autocomplete="name" placeholder="Jane Doe" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="cr-email" class="form-label">Email*</label>
+                    <input type="email" class="form-control" id="cr-email" name="email" autocomplete="email" placeholder="jane@email.com" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="cr-phone" class="form-label">Phone*</label>
+                    <input type="tel" class="form-control" id="cr-phone" name="phone" autocomplete="tel" placeholder="+91 98765 43210" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="cr-location" class="form-label">Current location</label>
+                    <input type="text" class="form-control" id="cr-location" name="location" autocomplete="address-level2" placeholder="City">
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="cr-area" class="form-label">Area of interest*</label>
+                    <select class="form-control form-select" id="cr-area" name="area" required>
+                      <option value="" selected disabled>Choose an area</option>
+                      <option>Cybersecurity</option>
+                      <option>AI &amp; Data</option>
+                      <option>Governance &amp; Compliance (GaaS)</option>
+                      <option>SaaS &amp; Enterprise Development</option>
+                      <option>Cloud &amp; DevOps</option>
+                      <option>Industry Expert (SME) / Trainer</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="cr-experience" class="form-label">Experience*</label>
+                    <select class="form-control form-select" id="cr-experience" name="experience" required>
+                      <option value="" selected disabled>Years of experience</option>
+                      <option>Fresher (0-1 years)</option>
+                      <option>1-3 years</option>
+                      <option>3-5 years</option>
+                      <option>5-10 years</option>
+                      <option>10+ years</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label for="cr-linkedin" class="form-label">LinkedIn or portfolio</label>
+                    <input type="url" class="form-control" id="cr-linkedin" name="linkedin" placeholder="https://linkedin.com/in/your-name">
+                  </div>
+
+                  <div class="col-12">
+                    <span class="form-label" id="cr-resume-label">Resume*</span>
+                    <label class="resume-drop" for="cr-resume" id="cr-drop">
+                      <input type="file" id="cr-resume" name="resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" aria-labelledby="cr-resume-label" required>
+                      <span class="resume-drop-icon" aria-hidden="true"><i class="bi bi-cloud-arrow-up"></i></span>
+                      <span class="resume-drop-text">
+                        <strong>Upload your resume</strong>
+                        <span>Drag &amp; drop or tap to browse. PDF or Word, up to 3 MB</span>
+                      </span>
+                    </label>
+                    <div class="resume-file" id="cr-file" hidden>
+                      <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                      <span class="resume-file-name" id="cr-file-name"></span>
+                      <button type="button" class="resume-file-remove" id="cr-file-remove" aria-label="Remove file"><i class="bi bi-x-lg"></i></button>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="cr-message" class="form-label">Anything you&#39;d like us to know?</label>
+                    <textarea class="form-control" id="cr-message" name="message" rows="3" placeholder="Roles you are interested in, notice period, certifications..."></textarea>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="careers-consent">
+                      <input type="checkbox" id="cr-consent" name="consent" required>
+                      <span>I agree that MSWE may store and use my details and resume for recruitment purposes.</span>
+                    </label>
+                  </div>
+
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100" id="cr-submit">Send application</button>
+                  </div>
+                </div>
+              </form>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ===== Careers Section End ===== -->
 
  <!-- CONTACT -->
@@ -4071,5 +4180,194 @@ $(document).ready(function () {
     });
 })();
 </script>
-  </body>
+  <script>
+/* SME experience logos: endless auto-scrolling row (pauses on hover, focus, or touch) */
+(function () {
+  var box = document.querySelector('.js-sme-marquee');
+  if (!box) return;
+  var list = box.querySelector('.sme-clients');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!list || reduce) return; // leave it as a swipeable row
+
+  // second copy of the cards so the loop has no gap; hidden from screen readers
+  Array.prototype.slice.call(list.children).forEach(function (li) {
+    var copy = li.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    copy.querySelectorAll('img').forEach(function (img) { img.alt = ''; img.loading = 'eager'; });
+    list.appendChild(copy);
+  });
+  box.scrollLeft = 0;
+  box.classList.add('is-running');
+
+  // touch screens: hold to pause, release to continue
+  box.addEventListener('touchstart', function () { box.classList.add('is-paused'); }, { passive: true });
+  ['touchend', 'touchcancel'].forEach(function (ev) {
+    box.addEventListener(ev, function () { box.classList.remove('is-paused'); }, { passive: true });
+  });
+})();
+</script>
+<script>
+/* Newsletter sign-up: saves the address and sends a welcome email (api/subscribe.js) */
+(function () {
+  document.querySelectorAll('.js-newsletter').forEach(function (form) {
+    var input = form.querySelector('input[type="email"]');
+    var button = form.querySelector('button[type="submit"]');
+    if (!input || !button) return;
+
+    // hidden honeypot: real visitors never fill it
+    var trap = document.createElement('input');
+    trap.type = 'text'; trap.name = 'website'; trap.tabIndex = -1; trap.autocomplete = 'off';
+    trap.setAttribute('aria-hidden', 'true');
+    trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0';
+    form.appendChild(trap);
+
+    var label = button.innerHTML;
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var email = input.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        toastr.warning('Please enter a valid email address.', 'Newsletter');
+        input.focus();
+        return;
+      }
+      button.disabled = true;
+      button.textContent = 'Subscribing...';
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, website: trap.value, source: 'home page' })
+      })
+        .then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, status: r.status, data: d }; });
+        })
+        .then(function (res) {
+          if (res.ok) {
+            toastr.success(res.data.message || "You're subscribed!", 'Newsletter');
+            if (!res.data.already) form.reset();
+            if (res.data.code) console.warn('[newsletter] welcome email not sent', res.data);
+          } else {
+            toastr.error(res.data.message || 'Sorry, we could not subscribe you right now. Please try again later.', 'Newsletter');
+            console.error('[newsletter] sign-up failed', res.status, res.data);
+          }
+        })
+        .catch(function (e) {
+          toastr.error('Network error: please check your connection and try again.', 'Newsletter');
+          console.error('[newsletter] sign-up failed', e);
+        })
+        .then(function () {
+          button.disabled = false;
+          button.innerHTML = label;
+        });
+    });
+  });
+})();
+</script>
+<script>
+/* Careers: application form with resume upload (api/careers.js -> pmo@mswe.in) */
+(function () {
+  var form = document.getElementById('careers-form');
+  if (!form) return;
+  var MAX = 3 * 1024 * 1024;
+  var fileInput = document.getElementById('cr-resume');
+  var drop = document.getElementById('cr-drop');
+  var chip = document.getElementById('cr-file');
+  var chipName = document.getElementById('cr-file-name');
+  var button = document.getElementById('cr-submit');
+  var file = null;
+
+  function setFile(f) {
+    if (f && !/\.(pdf|docx?)$/i.test(f.name)) { toastr.warning('Please upload a PDF or Word document (.pdf, .doc, .docx).', 'Resume'); f = null; }
+    else if (f && f.size > MAX) { toastr.warning('That file is larger than 3 MB. Please upload a smaller resume.', 'Resume'); f = null; }
+    file = f || null;
+    if (!file) fileInput.value = '';
+    chip.hidden = !file;
+    drop.hidden = !!file;
+    drop.classList.remove('is-invalid');
+    if (file) chipName.textContent = file.name + ' (' + Math.max(1, Math.round(file.size / 1024)) + ' KB)';
+  }
+  fileInput.addEventListener('change', function () { setFile(fileInput.files[0]); });
+  document.getElementById('cr-file-remove').addEventListener('click', function () { setFile(null); fileInput.focus(); });
+  ['dragenter', 'dragover'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-drag'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-drag'); });
+  });
+  drop.addEventListener('drop', function (e) { if (e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]); });
+
+  function readBase64(f) {
+    return new Promise(function (resolve, reject) {
+      var r = new FileReader();
+      r.onload = function () { resolve(String(r.result).split(',')[1] || ''); };
+      r.onerror = function () { reject(r.error); };
+      r.readAsDataURL(f);
+    });
+  }
+
+  function invalid(el, msg) {
+    el.classList.add('is-invalid');
+    toastr.warning(msg, 'Application');
+    el.focus && el.focus();
+    return false;
+  }
+  function check() {
+    form.querySelectorAll('.is-invalid').forEach(function (el) { el.classList.remove('is-invalid'); });
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    if (v('cr-name').length < 2) return invalid(document.getElementById('cr-name'), 'Please enter your full name.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('cr-email'))) return invalid(document.getElementById('cr-email'), 'Please enter a valid email address.');
+    if (!/^\+?[0-9][0-9 ()-]{5,23}$/.test(v('cr-phone'))) return invalid(document.getElementById('cr-phone'), 'Please enter a valid phone number.');
+    if (!v('cr-area')) return invalid(document.getElementById('cr-area'), 'Please choose your area of interest.');
+    if (!v('cr-experience')) return invalid(document.getElementById('cr-experience'), 'Please choose your experience.');
+    if (v('cr-linkedin') && !/^https?:\/\/\S+\.\S+/.test(v('cr-linkedin'))) return invalid(document.getElementById('cr-linkedin'), 'The LinkedIn / portfolio link must start with https://');
+    if (!file) { drop.classList.add('is-invalid'); toastr.warning('Please attach your resume.', 'Application'); fileInput.focus(); return false; }
+    if (!document.getElementById('cr-consent').checked) return invalid(document.getElementById('cr-consent'), 'Please tick the consent box to continue.');
+    return true;
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!check()) return;
+    var label = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Sending...';
+    readBase64(file).then(function (data) {
+      var get = function (id) { return document.getElementById(id).value.trim(); };
+      return fetch('/api/careers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: get('cr-name'), email: get('cr-email'), phone: get('cr-phone'), location: get('cr-location'),
+          area: get('cr-area'), experience: get('cr-experience'), linkedin: get('cr-linkedin'),
+          message: get('cr-message'), consent: document.getElementById('cr-consent').checked,
+          website: get('cr-website'),
+          resume: { name: file.name, type: file.type, data: data }
+        })
+      });
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, status: r.status, data: d }; });
+    }).then(function (res) {
+      if (res.ok) {
+        toastr.success(res.data.message || 'Thank you! Your application has been sent.', 'Application sent');
+        form.reset();
+        setFile(null);
+        var modalEl = document.getElementById('careersModal');
+        if (modalEl && window.bootstrap) bootstrap.Modal.getOrCreateInstance(modalEl).hide();
+      } else {
+        var msg = res.data.message || (res.status === 413
+          ? 'The upload is too large. Please attach a resume under 3 MB.'
+          : 'Sorry, we could not send your application. Please email your resume to pmo@mswe.in.');
+        toastr.error(msg + (res.data.code ? '<br><small class="toast-debug">Error ' + res.status + ' \u00b7 ' + res.data.code + '</small>' : ''), 'Application not sent');
+        console.error('[careers] submission failed', res.status, res.data);
+      }
+    }).catch(function (e) {
+      toastr.error('Network error: please check your connection and try again.', 'Application not sent');
+      console.error('[careers] submission failed', e);
+    }).then(function () {
+      button.disabled = false;
+      button.textContent = label;
+    });
+  });
+})();
+</script>
+</body>
 </html>

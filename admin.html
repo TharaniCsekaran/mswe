@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Newsletter Admin | MSWE</title>
+<link rel="icon" href="assets/images/mswe-dark.png">
+<style>
+  :root {
+    --bg: #F3F4F8; --surface: #fff; --ink: #0B0E14; --muted: #5B6475; --border: #E3E6EE;
+    --brand: #6E6BFF; --brand-2: #1AA8E0; --ok: #12805C; --bad: #C2362F; --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  [hidden] { display: none !important; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; }
+  header.top { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  header.top img { width: 40px; height: 40px; border-radius: 10px; }
+  header.top h1 { font-size: 18px; margin: 0; flex: 1; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .card + .card { margin-top: 16px; }
+  .card h2 { font-size: 16px; margin: 0 0 4px; }
+  .card .sub { color: var(--muted); margin: 0 0 16px; font-size: 14px; }
+  label { display: block; font-weight: 600; font-size: 13px; margin: 14px 0 6px; }
+  label small { font-weight: 400; color: var(--muted); }
+  input, textarea { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
+    font: inherit; color: inherit; background: #fff; }
+  input:focus, textarea:focus { outline: 2px solid rgb(110 107 255 / 35%); border-color: var(--brand); }
+  textarea { min-height: 220px; resize: vertical; }
+  .row2 { display: grid; gap: 0 14px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  button { border: 1px solid var(--border); background: #fff; color: var(--ink); border-radius: 999px;
+    padding: 10px 18px; font: 600 14px/1.2 inherit; font-family: inherit; cursor: pointer; }
+  button:hover { border-color: var(--brand); }
+  button.primary { border: 0; color: #fff; background: linear-gradient(90deg, var(--brand), var(--brand-2)); }
+  button.link { border: 0; padding: 4px 8px; color: var(--bad); background: none; font-weight: 500; }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  .msg { margin-top: 14px; padding: 10px 14px; border-radius: 10px; font-size: 14px; }
+  .msg.ok { background: #E8F6F0; color: var(--ok); }
+  .msg.bad { background: #FBECEB; color: var(--bad); }
+  .msg.info { background: #EEF0FF; color: #3E3BB8; }
+  .stats { display: flex; gap: 10px; flex-wrap: wrap; }
+  .stat { flex: 1 1 140px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .stat b { display: block; font-size: 26px; line-height: 1.1; }
+  .stat span { color: var(--muted); font-size: 13px; }
+  .grid { display: grid; gap: 16px; margin-top: 16px; }
+  iframe { width: 100%; height: 640px; border: 1px solid var(--border); border-radius: 10px; background: #F3F4F8; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 6px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+  td.email { word-break: break-all; }
+  .tablewrap { max-height: 420px; overflow: auto; }
+  .bar { height: 8px; background: #ECEEF5; border-radius: 99px; overflow: hidden; margin-top: 14px; }
+  .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--brand), var(--brand-2)); transition: width .3s; }
+  .login { max-width: 400px; margin: 12vh auto 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+  .toolbar input { flex: 1 1 200px; width: auto; }
+  @media (min-width: 720px) { .row2 { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .grid { grid-template-columns: 1.1fr .9fr; align-items: start; } }
+</style>
+</head>
+<body>
+
+<!-- Sign in -->
+<main class="wrap" id="loginView">
+  <form class="card login" id="loginForm">
+    <header class="top"><img src="assets/images/mswe-dark.png" alt=""><h1>Newsletter admin</h1></header>
+    <label for="pw">Admin password</label>
+    <input id="pw" type="password" autocomplete="current-password" required>
+    <div class="btns"><button class="primary" type="submit">Sign in</button></div>
+    <div class="msg bad" id="loginMsg" hidden></div>
+  </form>
+</main>
+
+<!-- Dashboard -->
+<main class="wrap" id="appView" hidden>
+  <header class="top">
+    <img src="assets/images/mswe-dark.png" alt="">
+    <h1>Newsletter admin</h1>
+    <button type="button" id="logout">Sign out</button>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b id="statSubs">0</b><span>Subscribers</span></div>
+    <div class="stat"><b id="statNew">0</b><span>New in the last 30 days</span></div>
+    <div class="stat"><b id="statSends">0</b><span>Case studies sent</span></div>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Send a case study</h2>
+      <p class="sub">Emails go from <b id="fromAddr">info@mswe.in</b>, one per subscriber, each with its own unsubscribe link. Your draft is saved in this browser.</p>
+      <form id="compose" novalidate>
+        <label for="f-subject">Email subject</label>
+        <input id="f-subject" maxlength="150" placeholder="Case study: Zero-trust IAM for a 10,000-user bank">
+        <label for="f-headline">Headline</label>
+        <input id="f-headline" maxlength="150" placeholder="How we cut identity incidents by 60% in 90 days">
+        <label for="f-body">Case study text <small>(blank line = new paragraph; a short first line like "The challenge" becomes a heading; start a line with "- " for a bullet)</small></label>
+        <textarea id="f-body" maxlength="10000" placeholder="The challenge&#10;A leading bank needed...&#10;&#10;What we did&#10;- Consolidated 4 identity providers into one&#10;- Rolled out phishing-resistant MFA&#10;&#10;The result&#10;..."></textarea>
+        <div class="row2">
+          <div>
+            <label for="f-ctaLabel">Button text <small>(optional)</small></label>
+            <input id="f-ctaLabel" maxlength="40" placeholder="Read the full case study">
+          </div>
+          <div>
+            <label for="f-ctaUrl">Button link <small>(optional)</small></label>
+            <input id="f-ctaUrl" type="url" placeholder="https://www.mswe.in/...">
+          </div>
+        </div>
+        <label for="f-imageUrl">Image link <small>(optional, https://… .jpg or .png)</small></label>
+        <input id="f-imageUrl" type="url" placeholder="https://www.mswe.in/assets/images/...">
+
+        <div class="btns">
+          <button type="button" id="btnPreview">Preview</button>
+          <button type="button" id="btnTest">Send test to <span id="testAddr">info@mswe.in</span></button>
+          <button type="button" class="primary" id="btnSend">Send to all subscribers</button>
+        </div>
+        <div class="bar" id="bar" hidden><i></i></div>
+        <div class="msg" id="composeMsg" hidden></div>
+        <ul class="muted" id="failedList" hidden></ul>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Preview</h2>
+      <p class="sub">Exactly what subscribers will see. Press Preview after editing.</p>
+      <iframe id="preview" title="Email preview" sandbox="allow-same-origin"></iframe>
+    </section>
+  </div>
+
+  <section class="card" style="margin-top:16px">
+    <h2>Subscribers</h2>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search email">
+      <button type="button" id="btnExport">Export CSV</button>
+      <button type="button" id="btnRefresh">Refresh</button>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Email</th><th>Subscribed</th><th>From</th><th></th></tr></thead>
+        <tbody id="subsBody"></tbody>
+      </table>
+    </div>
+    <p class="muted" id="subsEmpty" hidden>No subscribers yet. Sign-ups from the website's newsletter form appear here.</p>
+  </section>
+
+  <section class="card">
+    <h2>Sent case studies</h2>
+    <table>
+      <thead><tr><th>Subject</th><th>Sent on</th><th>Delivered</th><th>Failed</th></tr></thead>
+      <tbody id="sendsBody"></tbody>
+    </table>
+    <p class="muted" id="sendsEmpty" hidden>Nothing sent yet.</p>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var API = '/api/admin';
+  var BATCH = 25;
+  var KEY_PW = 'mswe-admin-pw';
+  var KEY_DRAFT = 'mswe-admin-draft';
+  var FIELDS = ['subject', 'headline', 'body', 'ctaLabel', 'ctaUrl', 'imageUrl'];
+  var state = { subscribers: [], sends: [] };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var store = {
+    get: function (s, k) { try { return window[s].getItem(k); } catch (e) { return null; } },
+    set: function (s, k, v) { try { window[s].setItem(k, v); } catch (e) { /* private mode */ } },
+    del: function (s, k) { try { window[s].removeItem(k); } catch (e) { /* ignore */ } }
+  };
+  var password = store.get('sessionStorage', KEY_PW) || '';
+
+  function call(action, extra) {
+    var body = Object.assign({ action: action }, extra || {});
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + password },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      return r.json().catch(function () { return { message: 'Server error (' + r.status + ').' }; })
+        .then(function (data) {
+          if (!r.ok) {
+            var err = new Error(data.message || ('Error ' + r.status));
+            err.status = r.status; err.data = data;
+            throw err;
+          }
+          return data;
+        });
+    });
+  }
+
+  function show(el, kind, text) {
+    el.className = 'msg ' + kind;
+    el.textContent = text;
+    el.hidden = false;
+  }
+  function errText(e) {
+    var d = e.data || {};
+    return e.message + (d.code ? ' [' + d.code + ']' : '') + (d.debug && d.debug.hint ? ' ' + d.debug.hint : '');
+  }
+  var fmtDate = function (iso) {
+    try { return new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }); }
+    catch (e) { return iso; }
+  };
+
+  /* ---- sign in ---- */
+  function enter() {
+    return call('overview').then(function (data) {
+      store.set('sessionStorage', KEY_PW, password);
+      $('loginView').hidden = true;
+      $('appView').hidden = false;
+      $('fromAddr').textContent = data.from;
+      $('testAddr').textContent = data.testTo;
+      render(data);
+    });
+  }
+  $('loginForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    password = $('pw').value;
+    $('loginMsg').hidden = true;
+    enter().catch(function (e) { show($('loginMsg'), 'bad', errText(e)); });
+  });
+  $('logout').addEventListener('click', function () {
+    store.del('sessionStorage', KEY_PW);
+    location.reload();
+  });
+  if (password) enter().catch(function () { store.del('sessionStorage', KEY_PW); password = ''; });
+
+  /* ---- dashboard ---- */
+  function render(data) {
+    state.subscribers = data.subscribers || [];
+    state.sends = data.sends || [];
+    var monthAgo = Date.now() - 30 * 864e5;
+    $('statSubs').textContent = state.subscribers.length;
+    $('statNew').textContent = state.subscribers.filter(function (s) { return Date.parse(s.subscribedAt) > monthAgo; }).length;
+    $('statSends').textContent = state.sends.length;
+    $('btnSend').textContent = 'Send to all ' + state.subscribers.length + ' subscriber' + (state.subscribers.length === 1 ? '' : 's');
+    renderSubs();
+    var tb = $('sendsBody');
+    tb.textContent = '';
+    state.sends.forEach(function (s) {
+      var tr = document.createElement('tr');
+      [s.subject, fmtDate(s.at), s.sent, s.failed].forEach(function (v) {
+        var td = document.createElement('td'); td.textContent = v; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    $('sendsEmpty').hidden = state.sends.length > 0;
+  }
+  function renderSubs() {
+    var q = $('search').value.trim().toLowerCase();
+    var tb = $('subsBody');
+    tb.textContent = '';
+    state.subscribers.slice().reverse()
+      .filter(function (s) { return !q || s.email.toLowerCase().indexOf(q) !== -1; })
+      .forEach(function (s) {
+        var tr = document.createElement('tr');
+        var td1 = document.createElement('td'); td1.className = 'email'; td1.textContent = s.email;
+        var td2 = document.createElement('td'); td2.textContent = fmtDate(s.subscribedAt);
+        var td3 = document.createElement('td'); td3.textContent = s.source || '';
+        var td4 = document.createElement('td');
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'link'; b.textContent = 'Remove';
+        b.addEventListener('click', function () {
+          if (!confirm('Remove ' + s.email + ' from the newsletter?')) return;
+          call('remove', { email: s.email }).then(refresh).catch(function (e) { alert(errText(e)); });
+        });
+        td4.appendChild(b);
+        tr.append(td1, td2, td3, td4);
+        tb.appendChild(tr);
+      });
+    $('subsEmpty').hidden = state.subscribers.length > 0;
+  }
+  function refresh() { return call('overview').then(render); }
+  $('search').addEventListener('input', renderSubs);
+  $('btnRefresh').addEventListener('click', function () { refresh().catch(function (e) { alert(errText(e)); }); });
+  $('btnExport').addEventListener('click', function () {
+    var rows = [['email', 'subscribed_at', 'source']].concat(state.subscribers.map(function (s) {
+      return [s.email, s.subscribedAt, s.source || ''];
+    }));
+    var csv = rows.map(function (r) {
+      return r.map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(',');
+    }).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'mswe-subscribers-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+
+  /* ---- compose ---- */
+  function content() {
+    var c = {};
+    FIELDS.forEach(function (f) { c[f] = $('f-' + f).value; });
+    return c;
+  }
+  var saved = store.get('localStorage', KEY_DRAFT);
+  if (saved) {
+    try { var d = JSON.parse(saved); FIELDS.forEach(function (f) { if (d[f]) $('f-' + f).value = d[f]; }); } catch (e) { /* ignore */ }
+  }
+  $('compose').addEventListener('input', function () {
+    store.set('localStorage', KEY_DRAFT, JSON.stringify(content()));
+  });
+
+  var busy = function (on) {
+    ['btnPreview', 'btnTest', 'btnSend'].forEach(function (id) { $(id).disabled = on; });
+  };
+  function preview() {
+    return call('preview', { content: content() }).then(function (d) { $('preview').srcdoc = d.html; });
+  }
+  $('btnPreview').addEventListener('click', function () {
+    $('composeMsg').hidden = true;
+    preview().catch(function (e) { show($('composeMsg'), 'bad', errText(e)); });
+  });
+  $('btnTest').addEventListener('click', function () {
+    busy(true);
+    show($('composeMsg'), 'info', 'Sending a test copy...');
+    preview()
+      .then(function () { return call('send', { content: content(), test: true }); })
+      .then(function (r) {
+        if (r.failed.length) show($('composeMsg'), 'bad', 'Test not delivered: ' + r.failed[0].reason);
+        else show($('composeMsg'), 'ok', 'Test sent to ' + $('testAddr').textContent + '. Check the inbox before sending to everyone.');
+      })
+      .catch(function (e) { show($('composeMsg'), 'bad', errText(e)); })
+      .then(function () { busy(false); });
+  });
+
+  $('btnSend').addEventListener('click', function () {
+    var c = content();
+    var everyone = state.subscribers.map(function (s) { return s.email; });
+    if (!everyone.length) { show($('composeMsg'), 'bad', 'There are no subscribers yet.'); return; }
+    // validate + render first, so a typo doesn't stop us halfway
+    preview().then(function () {
+      if (!confirm('Send "' + c.subject + '" to all ' + everyone.length + ' subscribers now? This cannot be undone.')) return;
+      busy(true);
+      var bar = $('bar'); bar.hidden = false; bar.firstElementChild.style.width = '0%';
+      var sent = 0, failed = [], i = 0;
+      var list = $('failedList'); list.hidden = true; list.textContent = '';
+      function next() {
+        if (i >= everyone.length) return Promise.resolve();
+        var batch = everyone.slice(i, i + BATCH);
+        show($('composeMsg'), 'info', 'Sending... ' + sent + ' of ' + everyone.length + ' delivered.');
+        return call('send', { content: c, recipients: batch }).then(function (r) {
+          sent += r.sent.length;
+          failed = failed.concat(r.failed);
+          i += batch.length;
+          bar.firstElementChild.style.width = Math.round(i / everyone.length * 100) + '%';
+          return next();
+        });
+      }
+      next()
+        .then(function () {
+          show($('composeMsg'), failed.length ? 'bad' : 'ok',
+            'Done: sent to ' + sent + ' subscriber' + (sent === 1 ? '' : 's') + (failed.length ? ', ' + failed.length + ' failed (listed below).' : '.'));
+          failed.forEach(function (f) {
+            var li = document.createElement('li'); li.textContent = f.email + ': ' + f.reason; list.appendChild(li);
+          });
+          list.hidden = !failed.length;
+          return call('log', { subject: c.subject, sent: sent, failed: failed.length }).then(refresh);
+        })
+        .catch(function (e) {
+          show($('composeMsg'), 'bad', 'Stopped after ' + sent + ' of ' + everyone.length + ': ' + errText(e));
+          if (sent) call('log', { subject: c.subject + ' (stopped)', sent: sent, failed: failed.length }).then(refresh);
+        })
+        .then(function () { busy(false); });
+    }).catch(function (e) { show($('composeMsg'), 'bad', errText(e)); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -11,9 +11,11 @@
 
 'use strict';
 
-const net = require('net');
-const tls = require('tls');
 const crypto = require('crypto');
+const {
+  getConfig, cleanLine, cleanText, EMAIL_RE, makeRateLimiter, clientIp, requestOrigin,
+  encodeWord, displayName, smtpSend, send, readBody, passwordWarnings, HINTS, debugInfo, failureCode,
+} = require('./_lib/mail');
 
 // Topic values the form may send (must match <select id="cf-topics"> in index.html)
 const ALLOWED_TOPICS = [
@@ -27,54 +29,11 @@ const ALLOWED_TOPICS = [
 
 const RATE_LIMIT_MAX = 5;               // submissions allowed ...
 const RATE_LIMIT_WINDOW_MS = 10 * 60e3; // ... per IP per 10 minutes (best effort per instance)
-const SMTP_TIMEOUT_MS = 15e3;
 
 /* ------------------------------------------------------------------ */
-/* config                                                              */
+/* validation                                                          */
 /* ------------------------------------------------------------------ */
 
-function getConfig(env = process.env) {
-  const origins = (env.ALLOWED_ORIGINS || 'https://mswe.in,https://www.mswe.in')
-    .split(',')
-    .map((o) => o.trim().replace(/\/+$/, ''))
-    .filter(Boolean);
-  // Vercel's own deployment URLs (preview + production) are always allowed
-  for (const host of [env.VERCEL_URL, env.VERCEL_BRANCH_URL, env.VERCEL_PROJECT_PRODUCTION_URL]) {
-    if (host) origins.push(`https://${host}`);
-  }
-  return {
-    host: env.SMTP_HOST || 'smtpout.secureserver.net', // GoDaddy's SMTP for Titan mailboxes (mswe.in MX is secureserver.net)
-    port: Number(env.SMTP_PORT || 465),
-    secure: (env.SMTP_SECURE || 'ssl').toLowerCase(), // 'ssl' (465) | 'tls' (587 STARTTLS) | 'none' (local tests only)
-    user: (env.SMTP_USER || 'info@mswe.in').trim(),
-    // strip a trailing newline that pasting into the Vercel dashboard can add
-    pass: (env.SMTP_PASS || '').replace(/[\r\n]+$/, ''),
-    to: env.MAIL_TO || 'info@mswe.in',
-    from: env.MAIL_FROM || env.SMTP_USER || 'info@mswe.in', // Titan only sends as the logged-in mailbox
-    fromName: env.MAIL_FROM_NAME || 'MSWE Website',
-    origins,
-  };
-}
-
-/* ------------------------------------------------------------------ */
-/* input cleaning                                                      */
-/* ------------------------------------------------------------------ */
-
-/** One line: removes control characters (prevents email header injection), trims, caps length. */
-function cleanLine(v, max) {
-  return (typeof v === 'string' ? v : '').replace(/[\x00-\x1F\x7F]+/g, ' ').trim().slice(0, max);
-}
-
-/** Multi-line text: keeps line breaks, removes other control characters. */
-function cleanText(v, max) {
-  return (typeof v === 'string' ? v : '')
-    .replace(/\r\n?/g, '\n')
-    .replace(/[\x00-\x08\x0B-\x1F\x7F]+/g, '')
-    .trim()
-    .slice(0, max);
-}
-
-const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/;
 const PHONE_RE = /^\+?[0-9][0-9 ()-]{5,23}$/;
 
 function validate(input) {
@@ -106,31 +65,12 @@ function validate(input) {
 /* rate limit (in-memory: per warm serverless instance, best effort)   */
 /* ------------------------------------------------------------------ */
 
-const hits = new Map();
-function rateLimited(ip, now = Date.now()) {
-  const recent = (hits.get(ip) || []).filter((t) => t > now - RATE_LIMIT_WINDOW_MS);
-  if (recent.length >= RATE_LIMIT_MAX) {
-    hits.set(ip, recent);
-    return true;
-  }
-  recent.push(now);
-  hits.set(ip, recent);
-  if (hits.size > 5000) hits.clear(); // keep memory bounded
-  return false;
-}
+const rateLimited = makeRateLimiter(RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+const hits = rateLimited.hits;
 
 /* ------------------------------------------------------------------ */
 /* email building                                                      */
 /* ------------------------------------------------------------------ */
-
-const NON_ASCII = /[^\x20-\x7E]/;
-const encodeWord = (s) => (NON_ASCII.test(s) ? `=?UTF-8?B?${Buffer.from(s, 'utf8').toString('base64')}?=` : s);
-/** Display name for From/Reply-To: encoded if non-ASCII, quoted if it has special characters. */
-function displayName(s) {
-  if (NON_ASCII.test(s)) return encodeWord(s);
-  if (/[()<>[\]:;@\\,."]/.test(s)) return `"${s.replace(/(["\\])/g, '\\$1')}"`;
-  return s;
-}
 
 function buildMessage(cfg, d, origin, ip) {
   const topics = d.topics.map((t) => (t === 'Others' ? `Others: ${d.topicOther}` : t));
@@ -172,183 +112,8 @@ function buildMessage(cfg, d, origin, ip) {
 }
 
 /* ------------------------------------------------------------------ */
-/* minimal SMTP client                                                 */
-/* ------------------------------------------------------------------ */
-
-function smtpSend(cfg, raw) {
-  return new Promise((resolve, reject) => {
-    let socket;
-    let buffer = '';
-    let waiter = null;
-    let done = false;
-    let stage = 'connect'; // last SMTP step attempted, reported on failure
-
-    const finish = (err) => {
-      if (done) return;
-      done = true;
-      if (err && !err.stage) err.stage = stage;
-      clearTimeout(timer);
-      if (socket) {
-        if (err) socket.destroy();
-        else socket.end(); // polite close after QUIT
-      }
-      err ? reject(err) : resolve();
-    };
-    const timer = setTimeout(() => finish(new Error('SMTP timeout')), SMTP_TIMEOUT_MS);
-
-    // a reply is complete when a line has "NNN " (space after the 3-digit code)
-    const tryReply = () => {
-      if (!waiter) return;
-      const lines = buffer.split('\r\n');
-      for (let i = 0; i < lines.length - 1; i++) {
-        if (/^\d{3} /.test(lines[i]) || /^\d{3}$/.test(lines[i])) {
-          const text = lines.slice(0, i + 1).join('\n');
-          buffer = lines.slice(i + 1).join('\r\n');
-          const w = waiter;
-          waiter = null;
-          w({ code: Number(text.slice(0, 3)), text });
-          return;
-        }
-      }
-    };
-    const onData = (chunk) => {
-      buffer += chunk.toString('utf8');
-      tryReply();
-    };
-    const read = () => new Promise((res) => { waiter = res; tryReply(); });
-    const attach = (s) => {
-      socket = s;
-      s.on('data', onData);
-      s.on('error', (e) => finish(new Error(`SMTP connection error: ${e.message}`)));
-      s.on('close', () => finish(new Error('SMTP connection closed unexpectedly')));
-    };
-    // label is used in errors instead of the command (never log the password)
-    const cmd = async (line, expect, label) => {
-      stage = label;
-      if (line !== null) socket.write(`${line}\r\n`);
-      const r = await read();
-      if (!expect.includes(r.code)) {
-        const e = new Error(`SMTP ${label} failed: ${r.text}`);
-        e.stage = label;
-        e.reply = r.text; // the mail server's own words, e.g. "535 5.7.8 Authentication failed"
-        throw e;
-      }
-      return r;
-    };
-
-    const run = async () => {
-      await cmd(null, [220], 'greeting');
-      await cmd('EHLO mswe.in', [250], 'EHLO');
-      if (cfg.secure === 'tls') {
-        await cmd('STARTTLS', [220], 'STARTTLS');
-        const plain = socket;
-        plain.removeListener('data', onData);
-        await new Promise((res, rej) => {
-          const secured = tls.connect({ socket: plain, servername: cfg.host, minVersion: 'TLSv1.2' }, res);
-          secured.once('error', rej);
-          attach(secured);
-        });
-        await cmd('EHLO mswe.in', [250], 'EHLO');
-      }
-      await cmd('AUTH LOGIN', [334], 'AUTH');
-      await cmd(Buffer.from(cfg.user).toString('base64'), [334], 'AUTH user');
-      await cmd(Buffer.from(cfg.pass).toString('base64'), [235], 'AUTH password');
-      await cmd(`MAIL FROM:<${cfg.from}>`, [250], 'MAIL FROM');
-      await cmd(`RCPT TO:<${cfg.to}>`, [250, 251], 'RCPT TO');
-      await cmd('DATA', [354], 'DATA');
-      await cmd(`${raw}\r\n.`, [250], 'message body');
-      socket.write('QUIT\r\n');
-      finish();
-    };
-
-    const onConnect = () => { stage = 'greeting'; run().catch(finish); };
-    if (cfg.secure === 'ssl') {
-      attach(tls.connect({ host: cfg.host, port: cfg.port, servername: cfg.host, minVersion: 'TLSv1.2' }, onConnect));
-    } else {
-      attach(net.connect({ host: cfg.host, port: cfg.port }, onConnect));
-    }
-  });
-}
-
-/* ------------------------------------------------------------------ */
 /* HTTP handler                                                        */
 /* ------------------------------------------------------------------ */
-
-function send(res, status, message, code, debug) {
-  res.statusCode = status;
-  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.setHeader('Cache-Control', 'no-store');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  const body = { message };
-  if (code) body.code = code;
-  if (debug) body.debug = debug;
-  res.end(JSON.stringify(body));
-}
-
-/**
- * Common copy-paste mistakes in the saved password. Reports only which mistake
- * it looks like, never the password, its length or any of its characters.
- */
-function passwordWarnings(pass) {
-  const w = [];
-  if (/^\s|\s$/.test(pass)) w.push('starts or ends with a space');
-  if (/^(["'`]).*\1$/s.test(pass)) w.push('is wrapped in quotes');
-  if (/^\s*SMTP_PASS\s*=/.test(pass)) w.push('includes "SMTP_PASS=" (paste only the password)');
-  if (/[\r\n\t]/.test(pass)) w.push('contains a line break or tab');
-  return w;
-}
-
-/** Plain-English hint for each failure code, shown with the error. */
-const HINTS = {
-  smtp_auth: 'Titan rejected the info@mswe.in login: check SMTP_PASS in Vercel (Production), or Titan security / 2FA settings.',
-  smtp_timeout: 'Titan did not answer in time: try SMTP_PORT=587 and SMTP_SECURE=tls.',
-  smtp_connect: 'Could not connect to the mail server: check SMTP_HOST / SMTP_PORT.',
-  smtp_rejected: 'Titan refused the sender or recipient: SMTP_USER and MAIL_FROM must both be info@mswe.in.',
-  smtp_not_configured: 'SMTP_PASS is not set for this deployment: add it in Vercel and redeploy.',
-};
-
-/**
- * Non-secret details about where sending failed. Never includes the password,
- * its length, or anything derived from it.
- */
-function debugInfo(cfg, err) {
-  const oneLine = (v) => String(v || '').replace(/\s+/g, ' ').trim().slice(0, 200);
-  const info = {
-    step: err ? err.stage || 'unknown' : 'config',
-    server_reply: err && err.reply ? oneLine(err.reply) : undefined,
-    error: err ? oneLine(err.message.replace(/^SMTP .+? failed: /, '')) : undefined,
-    smtp: `${cfg.host}:${cfg.port} (${cfg.secure})`,
-    user: cfg.user,
-    password_check: undefined,
-    region: process.env.VERCEL_REGION || 'local',
-    env: process.env.VERCEL_ENV || 'local',
-  };
-  if (err && /AUTH/.test(err.stage || '')) {
-    const w = passwordWarnings(cfg.pass);
-    info.password_check = w.length ? `saved SMTP_PASS ${w.join('; ')}` : 'no copy-paste problems found';
-  }
-  Object.keys(info).forEach((k) => info[k] === undefined && delete info[k]);
-  return info;
-}
-
-/** Short, non-secret reason for a mail failure (visible in the browser Network tab). */
-function failureCode(msg) {
-  if (/AUTH password failed|AUTH user failed/.test(msg)) return 'smtp_auth';     // wrong mailbox password / user
-  if (/timeout/i.test(msg)) return 'smtp_timeout';                                 // port blocked or server slow
-  if (/connection error|closed unexpectedly|greeting/.test(msg)) return 'smtp_connect';
-  return 'smtp_rejected';                                                          // e.g. sender/recipient refused
-}
-
-async function readBody(req) {
-  if (req.body && typeof req.body === 'object') return req.body; // Vercel already parsed JSON
-  if (typeof req.body === 'string') return JSON.parse(req.body);
-  let raw = '';
-  for await (const chunk of req) {
-    raw += chunk;
-    if (raw.length > 20000) throw new Error('too large');
-  }
-  return JSON.parse(raw || 'null');
-}
 
 async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -359,7 +124,7 @@ async function handler(req, res) {
   const cfg = getConfig();
 
   // Only accept posts from the MSWE site itself (browsers send Origin on POST)
-  const origin = String(req.headers.origin || '').replace(/\/+$/, '');
+  const origin = requestOrigin(req);
   if (origin && !cfg.origins.includes(origin)) {
     return send(res, 403, 'This form can only be submitted from the MSWE website.');
   }
@@ -382,7 +147,7 @@ async function handler(req, res) {
   const { data, error } = validate(input);
   if (error) return send(res, 422, error);
 
-  const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown').split(',')[0].trim();
+  const ip = clientIp(req);
   if (rateLimited(ip)) {
     return send(res, 429, 'Too many messages from your connection. Please try again in a few minutes, or email info@mswe.in.');
   }
