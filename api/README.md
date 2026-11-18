@@ -2,7 +2,7 @@
 
 The form on `index.html` posts to **`/api/contact`**. On Vercel, `api/contact.js`
 runs automatically as a serverless function. It validates the enquiry and emails
-it to **info@mswe.in** through Titan Mail's SMTP server (`smtp.titan.email`).
+it to **info@mswe.in** through GoDaddy's SMTP server for Titan mailboxes (`smtpout.secureserver.net`).
 The visitor's address is set as *Reply-To*, so pressing **Reply** in Titan answers them.
 
 No npm packages are needed: the function uses only Node's built-in modules.
@@ -45,10 +45,13 @@ Open the live site, fill in the form and press **Send Message**. You should see
 "Thanks …! Your message has been sent." and the email should arrive in info@mswe.in
 within a minute. Check the spam folder the first time.
 
-**Deliverability:** because the DNS for mswe.in is on Vercel, make sure Titan's
-records are there (Vercel → Domains → mswe.in → DNS): **MX** `mx1.titan.email` (10)
-and `mx2.titan.email` (20), **SPF** TXT `v=spf1 include:spf.titan.email ~all`, and the
-**DKIM** TXT record shown in your Titan admin panel.
+**Deliverability:** mswe.in's mail is hosted by GoDaddy, so keep GoDaddy's records in
+the DNS (Vercel → Domains → mswe.in → DNS): **MX** `smtp.secureserver.net` (0) and
+`mailstore1.secureserver.net` (10), and **SPF** TXT `v=spf1 include:secureserver.net -all`.
+
+**Check the login from your own computer** (same code as the form, the password is typed hidden):
+`node tools/check-titan-login.js`. If it fails there too, the problem is the password or the
+mailbox, not Vercel.
 
 ## If it doesn't work
 
@@ -63,7 +66,7 @@ browser: DevTools → **Network** → `contact` → **Response**. It has the sam
 
 | `code` | Log line | Fix |
 |---|---|---|
-| `smtp_auth` | `SMTP AUTH password failed` | `SMTP_PASS` is wrong. Use the **info@mswe.in mailbox password** (the one you use at mail.titan.email), not your GoDaddy account password. Re-enter it, check it's set for **Production**, then **Redeploy**. |
+| `smtp_auth` | `SMTP AUTH password failed` | `SMTP_PASS` is wrong. Use the **info@mswe.in mailbox password** (the one you use at secureserver.titan.email), not your GoDaddy account password. Re-enter it, check it's set for **Production**, then **Redeploy**. |
 | `smtp_timeout` / `smtp_connect` | `SMTP timeout` / `SMTP connection error` | set `SMTP_PORT=587` and `SMTP_SECURE=tls`, then redeploy |
 | `smtp_rejected` | `SMTP MAIL FROM/RCPT TO failed` | `SMTP_USER` and `MAIL_FROM` must both be `info@mswe.in` |
 

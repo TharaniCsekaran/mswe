@@ -43,7 +43,7 @@ function getConfig(env = process.env) {
     if (host) origins.push(`https://${host}`);
   }
   return {
-    host: env.SMTP_HOST || 'smtp.titan.email',
+    host: env.SMTP_HOST || 'smtpout.secureserver.net', // GoDaddy's SMTP for Titan mailboxes (mswe.in MX is secureserver.net)
     port: Number(env.SMTP_PORT || 465),
     secure: (env.SMTP_SECURE || 'ssl').toLowerCase(), // 'ssl' (465) | 'tls' (587 STARTTLS) | 'none' (local tests only)
     user: (env.SMTP_USER || 'info@mswe.in').trim(),
@@ -285,6 +285,19 @@ function send(res, status, message, code, debug) {
   res.end(JSON.stringify(body));
 }
 
+/**
+ * Common copy-paste mistakes in the saved password. Reports only which mistake
+ * it looks like, never the password, its length or any of its characters.
+ */
+function passwordWarnings(pass) {
+  const w = [];
+  if (/^\s|\s$/.test(pass)) w.push('starts or ends with a space');
+  if (/^(["'`]).*\1$/s.test(pass)) w.push('is wrapped in quotes');
+  if (/^\s*SMTP_PASS\s*=/.test(pass)) w.push('includes "SMTP_PASS=" (paste only the password)');
+  if (/[\r\n\t]/.test(pass)) w.push('contains a line break or tab');
+  return w;
+}
+
 /** Plain-English hint for each failure code, shown with the error. */
 const HINTS = {
   smtp_auth: 'Titan rejected the info@mswe.in login: check SMTP_PASS in Vercel (Production), or Titan security / 2FA settings.',
@@ -306,9 +319,14 @@ function debugInfo(cfg, err) {
     error: err ? oneLine(err.message.replace(/^SMTP .+? failed: /, '')) : undefined,
     smtp: `${cfg.host}:${cfg.port} (${cfg.secure})`,
     user: cfg.user,
+    password_check: undefined,
     region: process.env.VERCEL_REGION || 'local',
     env: process.env.VERCEL_ENV || 'local',
   };
+  if (err && /AUTH/.test(err.stage || '')) {
+    const w = passwordWarnings(cfg.pass);
+    info.password_check = w.length ? `saved SMTP_PASS ${w.join('; ')}` : 'no copy-paste problems found';
+  }
   Object.keys(info).forEach((k) => info[k] === undefined && delete info[k]);
   return info;
 }
@@ -392,4 +410,4 @@ async function handler(req, res) {
 
 module.exports = handler;
 // exposed for local tests only
-module.exports._internal = { validate, buildMessage, smtpSend, getConfig, rateLimited, hits };
+module.exports._internal = { passwordWarnings, validate, buildMessage, smtpSend, getConfig, rateLimited, hits };

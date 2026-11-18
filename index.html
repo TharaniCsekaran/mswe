@@ -3935,6 +3935,7 @@ $(document).ready(function () {
                         where = "Error " + xhr.status + " · " + res.code +
                             (res.debug && res.debug.step ? " · failed at: " + res.debug.step : "") +
                             (res.debug && res.debug.server_reply ? " · server said: " + res.debug.server_reply : "") +
+                            (res.debug && res.debug.password_check ? " · password check: " + res.debug.password_check : "") +
                             (res.debug && res.debug.region ? " · region: " + res.debug.region : "");
                     } else if (xhr.status === 404) {
                         where = "Error 404 · /api/contact not found (the api folder was not deployed).";
