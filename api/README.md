@@ -31,6 +31,14 @@ That's it. Everything else has working defaults.
 | `SMTP_USER`, `MAIL_FROM` | `info@mswe.in` | sending from a different Titan mailbox (both must match) |
 | `ALLOWED_ORIGINS` | `https://mswe.in,https://www.mswe.in` | the site moves to another domain. Vercel's own `*.vercel.app` URLs for this project are always allowed. |
 
+## Server region
+
+`vercel.json` runs the function in Vercel's **Mumbai** region (`bom1`), so Titan sees
+logins to info@mswe.in coming from India (fewer "suspicious sign-in" blocks) and
+Indian visitors get a faster response. After deploying, check the `x-vercel-id`
+response header: its **second** part is where the function ran. It should read
+`bom1::bom1::...` (before this change it was `bom1::iad1::...`, i.e. Washington).
+
 ## Test it
 
 Open the live site, fill in the form and press **Send Message**. You should see
