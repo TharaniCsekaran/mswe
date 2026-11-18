@@ -3920,16 +3920,46 @@ $(document).ready(function () {
                 },
 
 
-                error: function (xhr) {
+                error: function (xhr, textStatus, errorThrown) {
 
+                    const res = xhr.responseJSON || {};
                     const message =
-                        xhr.responseJSON?.message ||
+                        res.message ||
                         "Sorry, we could not send your message. Please try again, or email us at info@mswe.in.";
 
+                    // Where did it fail? Build a short technical line for the toast + full details in the console
+                    let where;
+                    if (xhr.status === 0) {
+                        where = "Network error: the request never reached the server (offline, blocked, or " + (textStatus || "aborted") + ").";
+                    } else if (res.code) {
+                        where = "Error " + xhr.status + " · " + res.code +
+                            (res.debug && res.debug.step ? " · failed at: " + res.debug.step : "") +
+                            (res.debug && res.debug.server_reply ? " · server said: " + res.debug.server_reply : "") +
+                            (res.debug && res.debug.region ? " · region: " + res.debug.region : "");
+                    } else if (xhr.status === 404) {
+                        where = "Error 404 · /api/contact not found (the api folder was not deployed).";
+                    } else if (!xhr.responseJSON) {
+                        where = "Error " + xhr.status + " · " + (errorThrown || textStatus) + " (the server function crashed or returned a non-JSON page).";
+                    } else {
+                        where = "Error " + xhr.status;
+                    }
+
+                    const esc = function (t) { return $("<div>").text(t).html(); };
+                    const hint = res.debug && res.debug.hint ? "<br><small><strong>Fix:</strong> " + esc(res.debug.hint) + "</small>" : "";
+
                     toastr.error(
-                        message,
-                        "Submission Failed"
+                        esc(message) + '<br><small class="toast-debug">' + esc(where) + "</small>" + hint,
+                        "Submission Failed",
+                        { timeOut: 0, extendedTimeOut: 0, closeButton: true }
                     );
+
+                    console.error("[contact-form] submission failed", {
+                        status: xhr.status,
+                        textStatus: textStatus,
+                        error: errorThrown,
+                        response: xhr.responseJSON || (xhr.responseText || "").slice(0, 500),
+                        vercelId: xhr.getResponseHeader && xhr.getResponseHeader("x-vercel-id")
+                    });
 
                 },
 

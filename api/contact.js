@@ -181,10 +181,12 @@ function smtpSend(cfg, raw) {
     let buffer = '';
     let waiter = null;
     let done = false;
+    let stage = 'connect'; // last SMTP step attempted, reported on failure
 
     const finish = (err) => {
       if (done) return;
       done = true;
+      if (err && !err.stage) err.stage = stage;
       clearTimeout(timer);
       if (socket) {
         if (err) socket.destroy();
@@ -222,9 +224,15 @@ function smtpSend(cfg, raw) {
     };
     // label is used in errors instead of the command (never log the password)
     const cmd = async (line, expect, label) => {
+      stage = label;
       if (line !== null) socket.write(`${line}\r\n`);
       const r = await read();
-      if (!expect.includes(r.code)) throw new Error(`SMTP ${label} failed: ${r.text}`);
+      if (!expect.includes(r.code)) {
+        const e = new Error(`SMTP ${label} failed: ${r.text}`);
+        e.stage = label;
+        e.reply = r.text; // the mail server's own words, e.g. "535 5.7.8 Authentication failed"
+        throw e;
+      }
       return r;
     };
 
@@ -253,7 +261,7 @@ function smtpSend(cfg, raw) {
       finish();
     };
 
-    const onConnect = () => run().catch(finish);
+    const onConnect = () => { stage = 'greeting'; run().catch(finish); };
     if (cfg.secure === 'ssl') {
       attach(tls.connect({ host: cfg.host, port: cfg.port, servername: cfg.host, minVersion: 'TLSv1.2' }, onConnect));
     } else {
@@ -266,12 +274,43 @@ function smtpSend(cfg, raw) {
 /* HTTP handler                                                        */
 /* ------------------------------------------------------------------ */
 
-function send(res, status, message, code) {
+function send(res, status, message, code, debug) {
   res.statusCode = status;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.end(JSON.stringify(code ? { message, code } : { message }));
+  const body = { message };
+  if (code) body.code = code;
+  if (debug) body.debug = debug;
+  res.end(JSON.stringify(body));
+}
+
+/** Plain-English hint for each failure code, shown with the error. */
+const HINTS = {
+  smtp_auth: 'Titan rejected the info@mswe.in login: check SMTP_PASS in Vercel (Production), or Titan security / 2FA settings.',
+  smtp_timeout: 'Titan did not answer in time: try SMTP_PORT=587 and SMTP_SECURE=tls.',
+  smtp_connect: 'Could not connect to the mail server: check SMTP_HOST / SMTP_PORT.',
+  smtp_rejected: 'Titan refused the sender or recipient: SMTP_USER and MAIL_FROM must both be info@mswe.in.',
+  smtp_not_configured: 'SMTP_PASS is not set for this deployment: add it in Vercel and redeploy.',
+};
+
+/**
+ * Non-secret details about where sending failed. Never includes the password,
+ * its length, or anything derived from it.
+ */
+function debugInfo(cfg, err) {
+  const oneLine = (v) => String(v || '').replace(/\s+/g, ' ').trim().slice(0, 200);
+  const info = {
+    step: err ? err.stage || 'unknown' : 'config',
+    server_reply: err && err.reply ? oneLine(err.reply) : undefined,
+    error: err ? oneLine(err.message.replace(/^SMTP .+? failed: /, '')) : undefined,
+    smtp: `${cfg.host}:${cfg.port} (${cfg.secure})`,
+    user: cfg.user,
+    region: process.env.VERCEL_REGION || 'local',
+    env: process.env.VERCEL_ENV || 'local',
+  };
+  Object.keys(info).forEach((k) => info[k] === undefined && delete info[k]);
+  return info;
 }
 
 /** Short, non-secret reason for a mail failure (visible in the browser Network tab). */
@@ -332,15 +371,19 @@ async function handler(req, res) {
 
   if (!cfg.pass) {
     console.error('[mswe-contact] SMTP_PASS is not set in Vercel environment variables');
-    return send(res, 503, 'Our contact form is being set up. Please email us directly at info@mswe.in.');
+    const code = 'smtp_not_configured';
+    return send(res, 503, 'Our contact form is being set up. Please email us directly at info@mswe.in.', code,
+      { ...debugInfo(cfg, null), hint: HINTS[code] });
   }
 
   try {
     const { raw } = buildMessage(cfg, data, origin, ip);
     await smtpSend(cfg, raw);
   } catch (e) {
-    console.error(`[mswe-contact] ${e.message}`);
-    return send(res, 502, 'Sorry, we could not send your message right now. Please try again, or email info@mswe.in.', failureCode(e.message));
+    const code = failureCode(e.message);
+    const debug = { ...debugInfo(cfg, e), hint: HINTS[code] };
+    console.error(`[mswe-contact] ${code} at step "${debug.step}": ${e.message} | ${debug.smtp} region=${debug.region}`);
+    return send(res, 502, 'Sorry, we could not send your message right now. Please try again, or email info@mswe.in.', code, debug);
   }
 
   const first = data.name.split(' ')[0];

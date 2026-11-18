@@ -7400,3 +7400,13 @@ button#mswePrivacyOk:disabled {
         width: 93%;
     }
 }
+/* Contact form: technical details shown under a failed-submission toast */
+#toast-container .toast-debug {
+  display: block;
+  margin-top: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  line-height: 1.45;
+  opacity: .9;
+  overflow-wrap: anywhere;
+}
