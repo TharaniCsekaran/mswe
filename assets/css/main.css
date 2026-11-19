@@ -2321,19 +2321,6 @@ body.modal-open header {
   color: var(--text);
   text-align: center;
 }
-.sme-clients-note a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.sme-clients-note {
-  max-width: 560px;
-  margin: 14px auto 0;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--muted);
-}
 
 @media (min-width: 768px) {
   .sme-marquee {
